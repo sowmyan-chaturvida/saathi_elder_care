@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-warm: #FBF9F4;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --saffron-500: #EA580C;
+    --saffron-600: #C2410C;
+    --saffron-100: #FFEDD5;
+    --teal-500: #0D9488;
+    --teal-600: #0F766E;
+    --teal-100: #CCFBF1;
+    --emerald-600: #059669;
+    --crimson-600: #DC2626;
+  }
+
+  body {
+    background-color: var(--bg-warm);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
+  }
+}
+
+/* Senior-optimized tactile buttons */
+.btn-tactile {
+  min-height: 60px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-tactile:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Voice Companion Orb Animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.orb-pulse {
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+
+.orb-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.orb-active-pulse {
+  animation: pulse-ring 1.2s ease-in-out infinite;
+}
