@@ -1,4 +1,4 @@
-# Saathi (साथी) — AI Companion & Family Care Platform for Ageing Parents
+# Saathi — AI Companion & Family Care Platform for Ageing Parents
 
 > **Product Philosophy:** Independence for the older adult, peace of mind for the family.  
 > **Market:** India-first, global-ready  

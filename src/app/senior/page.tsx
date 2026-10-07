@@ -1,17 +1,18 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ShieldCheck, Clock } from 'lucide-react';
 import { FamilySummary } from '@/types/care';
 import { fetchFamilySummary } from '@/client/services/apiClient';
-import { VoiceCompanionOrb } from '@/client/components/senior/VoiceCompanionOrb';
-import { MedicationCardList } from '@/client/components/senior/MedicationCardList';
-import { EmergencySosButton } from '@/client/components/senior/EmergencySosButton';
-import { ScamShieldModal } from '@/client/components/senior/ScamShieldModal';
+import { SaathiHeader } from '@/client/components/common/SaathiHeader';
+import { SaathiBottomNav } from '@/client/components/common/SaathiBottomNav';
+import { SeniorCompanionStitch } from '@/client/components/senior/SeniorCompanionStitch';
+import { CareProfileModal } from '@/client/components/modals/CareProfileModal';
+import { useRouter } from 'next/navigation';
 
 export default function SeniorPage() {
+  const router = useRouter();
   const [summary, setSummary] = useState<FamilySummary | null>(null);
-  const [currentTime, setCurrentTime] = useState<string>('');
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   const loadData = async () => {
     try {
@@ -24,62 +25,57 @@ export default function SeniorPage() {
 
   useEffect(() => {
     loadData();
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
+    const interval = setInterval(loadData, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-slate-900 pb-16">
-      {/* Senior Greeting & Status Bar */}
-      <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 sm:px-8 py-6 shadow-md">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-amber-100 text-sm font-semibold uppercase tracking-wider">
-              <span>New Delhi, India</span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5" />
-                {currentTime}
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold mt-1 tracking-tight">
-              Good Day, Ramesh Uncle! 👋
-            </h1>
-            <p className="text-amber-100 text-base font-medium mt-0.5">
-              Wishing you a peaceful and healthy day. Saathi is here to assist you.
-            </p>
-          </div>
+    <div className="min-h-screen bg-surface font-body text-on-surface flex flex-col antialiased">
+      <SaathiHeader
+        currentTab="senior"
+        onTabChange={(tab) => {
+          if (tab === 'senior') return;
+          if (tab === 'family') router.push('/family');
+          else router.push(`/?tab=${tab}`);
+        }}
+        onOpenProfile={() => setProfileModalOpen(true)}
+        senior={summary?.senior}
+      />
 
-          <div className="flex items-center gap-2 bg-amber-600/60 border border-amber-400/40 px-4 py-2 rounded-2xl">
-            <ShieldCheck className="w-5 h-5 text-amber-200" />
-            <span className="text-sm font-semibold text-white">Connected with Priya</span>
-          </div>
-        </div>
-      </div>
-
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-        {/* Voice Companion Hero */}
-        <VoiceCompanionOrb onActivityLogged={loadData} />
-
-        {/* Medication Routine Cards */}
-        {summary && (
-          <MedicationCardList
-            medications={summary.medications}
-            onMedicationUpdated={loadData}
+      <main className="flex-1 w-full">
+        {summary ? (
+          <SeniorCompanionStitch
+            summary={summary}
+            onRefresh={loadData}
+            onOpenScamShield={() => router.push('/?tab=scam')}
           />
+        ) : (
+          <div className="flex items-center justify-center min-h-[60vh] text-on-surface-variant text-sm">
+            <span className="material-symbols-outlined text-3xl text-primary animate-spin mr-2">
+              progress_activity
+            </span>
+            Loading Senior Companion Hub...
+          </div>
         )}
-
-        {/* Scam & Fraud Shield */}
-        <ScamShieldModal onScanCompleted={loadData} />
-
-        {/* Emergency SOS Button */}
-        <EmergencySosButton onSosTriggered={loadData} />
       </main>
+
+      <SaathiBottomNav
+        currentTab="senior"
+        onTabChange={(tab) => {
+          if (tab === 'senior') return;
+          if (tab === 'family') router.push('/family');
+          else router.push(`/?tab=${tab}`);
+        }}
+      />
+
+      <CareProfileModal
+        isOpen={profileModalOpen}
+        onClose={() => setProfileModalOpen(false)}
+        senior={summary?.senior}
+        onSwitchMode={(mode) => {
+          if (mode === 'family') router.push('/family');
+        }}
+      />
     </div>
   );
 }

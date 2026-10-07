@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/v1/audit-logs/route": "/api/v1/audit-logs",
+  "/api/v1/companion/converse/route": "/api/v1/companion/converse",
+  "/api/v1/family/summary/route": "/api/v1/family/summary",
+  "/api/v1/health/route": "/api/v1/health",
+  "/api/v1/medications/[id]/take/route": "/api/v1/medications/[id]/take",
+  "/api/v1/medications/route": "/api/v1/medications",
+  "/api/v1/scam/analyze/route": "/api/v1/scam/analyze",
+  "/api/v1/sos/resolve/route": "/api/v1/sos/resolve",
+  "/api/v1/sos/trigger/route": "/api/v1/sos/trigger",
+  "/family/page": "/family",
+  "/page": "/",
+  "/senior/page": "/senior"
+}

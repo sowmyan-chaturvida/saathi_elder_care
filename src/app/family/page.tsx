@@ -3,14 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import { FamilySummary } from '@/types/care';
 import { fetchFamilySummary } from '@/client/services/apiClient';
-import { PeaceOfMindHeader } from '@/client/components/family/PeaceOfMindHeader';
-import { ActivityTimeline } from '@/client/components/family/ActivityTimeline';
-import { MedicationManager } from '@/client/components/family/MedicationManager';
-import { Soc2AuditViewer } from '@/client/components/family/Soc2AuditViewer';
+import { SaathiHeader } from '@/client/components/common/SaathiHeader';
+import { SaathiBottomNav } from '@/client/components/common/SaathiBottomNav';
+import { FamilyPortalStitch } from '@/client/components/family/FamilyPortalStitch';
+import { CareProfileModal } from '@/client/components/modals/CareProfileModal';
+import { useRouter } from 'next/navigation';
 
 export default function FamilyPage() {
+  const router = useRouter();
   const [summary, setSummary] = useState<FamilySummary | null>(null);
-  const [auditModalOpen, setAuditModalOpen] = useState(false);
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
 
   const loadData = async () => {
     try {
@@ -23,32 +25,58 @@ export default function FamilyPage() {
 
   useEffect(() => {
     loadData();
-    const interval = setInterval(loadData, 5000); // Poll every 5s for real-time peace of mind
+    const interval = setInterval(loadData, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pb-16">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-        {summary && (
-          <>
-            <PeaceOfMindHeader summary={summary} onRefresh={loadData} />
+    <div className="min-h-screen bg-surface font-body text-on-surface flex flex-col antialiased">
+      <SaathiHeader
+        currentTab="family"
+        onTabChange={(tab) => {
+          if (tab === 'family') return;
+          router.push(`/?tab=${tab}`);
+        }}
+        onOpenProfile={() => setProfileModalOpen(true)}
+        senior={summary?.senior}
+      />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Left Column: Live Activity Timeline */}
-              <ActivityTimeline activities={summary.recentActivities} />
-
-              {/* Right Column: Prescriptions & Schedule Manager */}
-              <MedicationManager
-                medications={summary.medications}
-                onMedicationAdded={loadData}
-              />
-            </div>
-          </>
+      <main className="flex-1 w-full">
+        {summary ? (
+          <FamilyPortalStitch
+            summary={summary}
+            onRefresh={loadData}
+            onOpenAudit={() => router.push('/?tab=audit')}
+            onSwitchToSenior={() => router.push('/senior')}
+            onSwitchToScam={() => router.push('/?tab=scam')}
+          />
+        ) : (
+          <div className="flex items-center justify-center min-h-[60vh] text-on-surface-variant text-sm">
+            <span className="material-symbols-outlined text-3xl text-primary animate-spin mr-2">
+              progress_activity
+            </span>
+            Loading Family Portal...
+          </div>
         )}
       </main>
 
-      <Soc2AuditViewer isOpen={auditModalOpen} onClose={() => setAuditModalOpen(false)} />
+      <SaathiBottomNav
+        currentTab="family"
+        onTabChange={(tab) => {
+          if (tab === 'family') return;
+          if (tab === 'senior') router.push('/senior');
+          else router.push(`/?tab=${tab}`);
+        }}
+      />
+
+      <CareProfileModal
+        isOpen={profileModalOpen}
+        onClose={() => setProfileModalOpen(false)}
+        senior={summary?.senior}
+        onSwitchMode={(mode) => {
+          if (mode === 'senior') router.push('/senior');
+        }}
+      />
     </div>
   );
 }

@@ -130,27 +130,42 @@ export const INITIAL_ROUTINES: RoutineItem[] = [
 
 export const INITIAL_ACTIVITIES: ActivityLog[] = [
   {
-    id: 'act_1',
-    timestamp: new Date(Date.now() - 3.8 * 3600 * 1000).toISOString(),
-    type: 'medication_taken',
-    title: 'Morning Medication Taken',
-    description: 'Ramesh Uncle took Amlodipine 5mg on schedule after breakfast.',
-    severity: 'success',
+    id: 'act_scam_1',
+    timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(), // 45 mins ago
+    type: 'scam_checked',
+    title: 'Suspicious Disconnection SMS Deflected',
+    description: 'Papa checked an SMS alleging BSES Rajdhani bill default. Saathi auto-quarantined the link (bit.ly/del-power-pay) and alerted audio warning. System Blocked Successfully.',
+    severity: 'warning',
+    metadata: {
+      quarantinedUrl: 'bit.ly/del-power-pay',
+      provider: 'BSES Rajdhani',
+      verifiedBlocked: true,
+    },
   },
   {
-    id: 'act_2',
-    timestamp: new Date(Date.now() - 5 * 3600 * 1000).toISOString(),
-    type: 'routine_completed',
-    title: 'Morning Routine Completed',
-    description: 'Completed 35-minute walk at District Park.',
-    severity: 'info',
-  },
-  {
-    id: 'act_3',
-    timestamp: new Date(Date.now() - 24 * 3600 * 1000).toISOString(),
+    id: 'act_companion_1',
+    timestamp: new Date(Date.now() - 2.5 * 3600 * 1000).toISOString(), // ~2.5 hrs ago
     type: 'companion_chat',
-    title: 'Voice Chat with Saathi',
-    description: 'Enjoyed a 6-minute conversation about morning walk routines and the pleasant autumn weather.',
+    title: 'Retro Kishore Kumar & Weather Chat',
+    description: '12-minute engaging Hindi dialogue. Papa asked for "Zindagi Ke Safar Mein" playlist and checked afternoon temperature for West Delhi.',
     severity: 'info',
-  }
+    metadata: {
+      audioDuration: '12m',
+      audioDigestAvailable: true,
+      sentiment: 'Cheerful & Calm',
+    },
+  },
+  {
+    id: 'act_med_1',
+    timestamp: new Date(Date.now() - 4.2 * 3600 * 1000).toISOString(), // morning ~8:15 AM
+    type: 'medication_taken',
+    title: 'Amlodipine 5mg marked Taken',
+    description: 'Confirmed via physical Senior Tablet interaction: "Maine Le Li" button tapped on living room hub. Hardware Touch Verified.',
+    severity: 'success',
+    metadata: {
+      hardwareTouchVerified: true,
+      medicationName: 'Amlodipine 5mg',
+      doseTime: '08:15 AM',
+    },
+  },
 ];

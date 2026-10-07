@@ -1,24 +1,21 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { RoleSwitcher } from '@/client/components/common/RoleSwitcher';
-import { VoiceCompanionOrb } from '@/client/components/senior/VoiceCompanionOrb';
-import { MedicationCardList } from '@/client/components/senior/MedicationCardList';
-import { EmergencySosButton } from '@/client/components/senior/EmergencySosButton';
-import { ScamShieldModal } from '@/client/components/senior/ScamShieldModal';
-import { PeaceOfMindHeader } from '@/client/components/family/PeaceOfMindHeader';
-import { ActivityTimeline } from '@/client/components/family/ActivityTimeline';
-import { MedicationManager } from '@/client/components/family/MedicationManager';
-import { Soc2AuditViewer } from '@/client/components/family/Soc2AuditViewer';
-import { fetchFamilySummary } from '@/client/services/apiClient';
 import { FamilySummary } from '@/types/care';
-import { Clock, ShieldCheck } from 'lucide-react';
+import { fetchFamilySummary, postResolveSos } from '@/client/services/apiClient';
+import { SaathiHeader } from '@/client/components/common/SaathiHeader';
+import { SaathiBottomNav } from '@/client/components/common/SaathiBottomNav';
+import { FamilyPortalStitch } from '@/client/components/family/FamilyPortalStitch';
+import { SeniorCompanionStitch } from '@/client/components/senior/SeniorCompanionStitch';
+import { ScamShieldStitch } from '@/client/components/scam/ScamShieldStitch';
+import { AuditComplianceStitch } from '@/client/components/audit/AuditComplianceStitch';
+import { CareProfileModal } from '@/client/components/modals/CareProfileModal';
 
 export default function HomePage() {
-  const [currentMode, setCurrentMode] = useState<'senior' | 'family'>('senior');
+  const [currentTab, setCurrentTab] = useState<'family' | 'senior' | 'scam' | 'audit'>('family');
   const [summary, setSummary] = useState<FamilySummary | null>(null);
-  const [auditModalOpen, setAuditModalOpen] = useState(false);
-  const [currentTime, setCurrentTime] = useState<string>('');
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [resolvingSos, setResolvingSos] = useState(false);
 
   const loadData = async () => {
     try {
@@ -32,120 +29,111 @@ export default function HomePage() {
   useEffect(() => {
     loadData();
     const interval = setInterval(loadData, 4000); // 4s real-time poll
-
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-    };
-    updateTime();
-    const timeInterval = setInterval(updateTime, 1000);
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(timeInterval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
+  const handleResolveSos = async () => {
+    if (!summary?.activeSos) return;
+    setResolvingSos(true);
+    try {
+      await postResolveSos('Priya Sharma', 'Spoke on VoIP line, Papa is safe at home.');
+      await loadData();
+    } catch (e) {
+      console.error('Failed to resolve SOS', e);
+    } finally {
+      setResolvingSos(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#FDFBF7] flex flex-col font-sans">
-      {/* Universal Role Switcher & SOC 2 Status Header */}
-      <RoleSwitcher
-        currentMode={currentMode}
-        onModeChange={(mode) => setCurrentMode(mode)}
-        onOpenAuditLogs={() => setAuditModalOpen(true)}
+    <div className="min-h-screen bg-surface font-body text-on-surface flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+      {/* 1. Header (Stitch Shell with brand, live beacon & profile switcher) */}
+      <SaathiHeader
+        currentTab={currentTab}
+        onTabChange={(tab) => setCurrentTab(tab)}
+        onOpenProfile={() => setProfileModalOpen(true)}
+        senior={summary?.senior}
       />
 
-      {/* Main Content Area Based on Selected Persona */}
-      {currentMode === 'senior' ? (
-        <div className="flex-1 pb-16">
-          {/* Senior Greeting Banner */}
-          <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-4 sm:px-8 py-6 shadow-md">
-            <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2 text-amber-100 text-sm font-semibold uppercase tracking-wider">
-                  <span>New Delhi, India</span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {currentTime}
-                  </span>
-                </div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold mt-1 tracking-tight">
-                  Good Day, Ramesh Uncle! 👋
-                </h1>
-                <p className="text-amber-100 text-base font-medium mt-0.5">
-                  Wishing you a peaceful and healthy day. Saathi is here to assist you.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 bg-amber-600/60 border border-amber-400/40 px-4 py-2 rounded-2xl">
-                <ShieldCheck className="w-5 h-5 text-amber-200" />
-                <span className="text-sm font-semibold text-white">Connected with Priya</span>
-              </div>
+      {/* Active SOS High-Priority Banner (if triggered) */}
+      {summary?.activeSos && (
+        <div className="fixed top-20 left-0 right-0 z-40 bg-error text-on-error px-4 py-2.5 shadow-lg border-b border-error-container flex items-center justify-between animate-pulse">
+          <div className="flex items-center gap-2 max-w-4xl mx-auto w-full justify-between">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-xl">warning</span>
+              <span className="text-xs sm:text-sm font-headline font-bold">
+                EMERGENCY SOS ACTIVE: Ramesh Papa triggered emergency button!
+              </span>
             </div>
+            <button
+              onClick={handleResolveSos}
+              disabled={resolvingSos}
+              className="px-3 py-1 rounded-xl bg-surface-container-lowest text-error font-headline font-bold text-xs hover:bg-surface transition-all cursor-pointer shadow-xs"
+            >
+              {resolvingSos ? 'Resolving...' : 'Resolve Emergency'}
+            </button>
           </div>
-
-          <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-            {/* 1. Voice Companion Orb */}
-            <VoiceCompanionOrb onActivityLogged={loadData} />
-
-            {/* 2. Medication Routine Cards */}
-            {summary && (
-              <MedicationCardList
-                medications={summary.medications}
-                onMedicationUpdated={loadData}
-              />
-            )}
-
-            {/* 3. Scam & Fraud Shield */}
-            <ScamShieldModal onScanCompleted={loadData} />
-
-            {/* 4. Emergency SOS Trigger */}
-            <EmergencySosButton onSosTriggered={loadData} />
-          </main>
-        </div>
-      ) : (
-        <div className="flex-1 pb-16 bg-slate-50">
-          <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-            {summary && (
-              <>
-                <PeaceOfMindHeader summary={summary} onRefresh={loadData} />
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Left Column: Live Activity Timeline */}
-                  <ActivityTimeline activities={summary.recentActivities} />
-
-                  {/* Right Column: Prescriptions & Schedule Manager */}
-                  <MedicationManager
-                    medications={summary.medications}
-                    onMedicationAdded={loadData}
-                  />
-                </div>
-              </>
-            )}
-          </main>
         </div>
       )}
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 py-6 text-center text-xs">
-        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© 2026 Saathi — Dedicated to dignified senior independence & family reassurance.</p>
-          <div className="flex items-center gap-4 text-slate-300">
-            <button
-              onClick={() => setAuditModalOpen(true)}
-              className="hover:text-teal-400 transition-colors"
-            >
-              SOC 2 Type II Audit Matrix
-            </button>
-            <span>•</span>
-            <span>Family Care Platform</span>
-          </div>
-        </div>
-      </footer>
+      {/* 2. Main Content Area Based on Active Tab */}
+      <main className="flex-1 w-full">
+        {currentTab === 'family' && summary && (
+          <FamilyPortalStitch
+            summary={summary}
+            onRefresh={loadData}
+            onOpenAudit={() => setCurrentTab('audit')}
+            onSwitchToSenior={() => setCurrentTab('senior')}
+            onSwitchToScam={() => setCurrentTab('scam')}
+          />
+        )}
 
-      {/* SOC 2 Audit Viewer Modal */}
-      <Soc2AuditViewer isOpen={auditModalOpen} onClose={() => setAuditModalOpen(false)} />
+        {currentTab === 'senior' && summary && (
+          <SeniorCompanionStitch
+            summary={summary}
+            onRefresh={loadData}
+            onOpenScamShield={() => setCurrentTab('scam')}
+          />
+        )}
+
+        {currentTab === 'scam' && (
+          <ScamShieldStitch
+            onScanCompleted={loadData}
+            onBackToPortal={() => setCurrentTab('family')}
+          />
+        )}
+
+        {currentTab === 'audit' && (
+          <AuditComplianceStitch
+            onBackToPortal={() => setCurrentTab('family')}
+          />
+        )}
+
+        {!summary && (
+          <div className="flex items-center justify-center min-h-[60vh] text-on-surface-variant text-sm">
+            <div className="flex flex-col items-center gap-2">
+              <span className="material-symbols-outlined text-3xl text-primary animate-spin">
+                progress_activity
+              </span>
+              <span>Connecting to Saathi Care Hub...</span>
+            </div>
+          </div>
+        )}
+      </main>
+
+      {/* 3. Bottom Tab Navigation (Terra Shell) */}
+      <SaathiBottomNav
+        currentTab={currentTab}
+        onTabChange={(tab) => setCurrentTab(tab)}
+      />
+
+      {/* 4. Care Profile Switcher & Details Modal */}
+      <CareProfileModal
+        isOpen={profileModalOpen}
+        onClose={() => setProfileModalOpen(false)}
+        senior={summary?.senior}
+        onSwitchMode={(mode) => setCurrentTab(mode)}
+      />
     </div>
   );
 }
