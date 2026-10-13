@@ -1,3 +1,5 @@
+import 'server-only';
+
 /**
  * SOC 2 Privacy Control: PII Sanitization
  * Automatically redacts sensitive Indian mobile numbers, email addresses, 

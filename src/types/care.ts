@@ -84,6 +84,18 @@ export interface SosAlert {
   resolutionNote?: string;
 }
 
+export interface VitalsLog {
+  id: string;
+  timestamp: string;
+  bloodPressureSystolic: number;
+  bloodPressureDiastolic: number;
+  bloodSugar: number;
+  bloodSugarType: 'fasting' | 'post_meal' | 'random';
+  pulse?: number;
+  recordedBy: string;
+  notes?: string;
+}
+
 export interface FamilySummary {
   senior: SeniorProfile;
   activeSos: SosAlert | null;
@@ -92,6 +104,8 @@ export interface FamilySummary {
   totalMedicationsCount: number;
   medications: Medication[];
   routines: RoutineItem[];
+  vitals?: VitalsLog[];
   recentActivities: ActivityLog[];
   lastCheckinTime: string;
 }
+

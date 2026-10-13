@@ -34,8 +34,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { text, senderInfo } = parsed.data;
-    const report = await detectScamMessage(text);
+    const { text, imageBase64, senderInfo } = parsed.data;
+    const report = await detectScamMessage(text, imageBase64);
 
     // Audit log
     logAuditEvent({

@@ -1155,9 +1155,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$VoIPCallModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/client/components/modals/VoIPCallModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$AddMedModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/client/components/modals/AddMedModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$HomeAmbienceModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/client/components/modals/HomeAmbienceModal.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/client/services/apiClient.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -1171,7 +1173,23 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
     const [voipCallOpen, setVoipCallOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [addMedOpen, setAddMedOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [ambienceModalOpen, setAmbienceModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [vitalsModalOpen, setVitalsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [dispatchModalOpen, setDispatchModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [fallSimulating, setFallSimulating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [toastMessage, setToastMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const handleSimulateFallCaregiver = async ()=>{
+        setFallSimulating(true);
+        try {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["postTriggerSos"])('fall_sensor');
+            onRefresh();
+            setDispatchModalOpen(true);
+            showToast('⚠️ Fall Sensor Alert triggered and broadcasted to emergency contacts!');
+        } catch (e) {
+            console.error('Failed to trigger fall simulation', e);
+        } finally{
+            setFallSimulating(false);
+        }
+    };
     const showToast = (msg)=>{
         setToastMessage(msg);
         setTimeout(()=>setToastMessage(null), 3000);
@@ -1221,33 +1239,92 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                         children: "check_circle"
                     }, void 0, false, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 83,
+                        lineNumber: 103,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         children: toastMessage
                     }, void 0, false, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 84,
+                        lineNumber: 104,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 82,
+                lineNumber: 102,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto",
                 children: [
+                    summary.activeSos && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "rounded-2xl bg-error text-on-error p-4 shadow-lg border-2 border-white/30 flex items-center justify-between animate-pulse mt-3",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-3",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "material-symbols-outlined text-3xl",
+                                        children: "warning"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 113,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "font-headline font-bold text-sm",
+                                                children: summary.activeSos.triggerSource === 'fall_sensor' ? 'FALL SENSOR ALERT DETECTED!' : 'EMERGENCY SOS ACTIVE!'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 115,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-xs text-error-container mt-0.5",
+                                                children: "Ramesh Papa triggered emergency from Janakpuri Hub"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 120,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 114,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                lineNumber: 112,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setDispatchModalOpen(true),
+                                className: "px-3.5 py-2 rounded-xl bg-surface-container-lowest text-error font-headline font-bold text-xs hover:bg-surface cursor-pointer shadow-md transition-all active:scale-95",
+                                children: "Dispatch WA/SMS"
+                            }, void 0, false, {
+                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                lineNumber: 125,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                        lineNumber: 111,
+                        columnNumber: 11
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high/60 p-4 border border-outline-variant/40 shadow-sm mt-3 transition-all hover:shadow-md",
+                        className: "relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high/60 p-4 border border-outline-variant/40 shadow-sm mt-1 transition-all hover:shadow-md",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-primary/8 blur-2xl pointer-events-none"
                             }, void 0, false, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 91,
+                                lineNumber: 136,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1268,7 +1345,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         alt: "Ramesh Sharma"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 100,
+                                                        lineNumber: 145,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1277,18 +1354,18 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                             className: "w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 107,
+                                                            lineNumber: 152,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 106,
+                                                        lineNumber: 151,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 95,
+                                                lineNumber: 140,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1302,7 +1379,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "Papa is doing well today"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 113,
+                                                                lineNumber: 158,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1310,13 +1387,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "💚"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 116,
+                                                                lineNumber: 161,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 112,
+                                                        lineNumber: 157,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1330,19 +1407,19 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 120,
+                                                        lineNumber: 165,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 156,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 139,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1357,18 +1434,18 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                             children: "refresh"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                            lineNumber: 133,
+                                            lineNumber: 178,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 126,
+                                        lineNumber: 171,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 93,
+                                lineNumber: 138,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1381,7 +1458,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 className: "w-2.5 h-2.5 rounded-full bg-primary flex-shrink-0 animate-pulse-dot"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 192,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1389,13 +1466,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "Active 14m ago at home • Morning walk done"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 193,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 146,
+                                        lineNumber: 191,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1406,32 +1483,32 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "directions_walk"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 153,
+                                                lineNumber: 198,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "2,410 steps"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 154,
+                                                lineNumber: 199,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 197,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 145,
+                                lineNumber: 190,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 90,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1445,7 +1522,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "location_on"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 162,
+                                        lineNumber: 207,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1453,13 +1530,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "Priya Sharma • Monitoring from Indiranagar, BLR"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 208,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 161,
+                                lineNumber: 206,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1467,13 +1544,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                 children: "Sync Live"
                             }, void 0, false, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 165,
+                                lineNumber: 210,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 160,
+                        lineNumber: 205,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1493,7 +1570,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "medication"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 175,
+                                                        lineNumber: 220,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1501,13 +1578,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Meds Adherence"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 221,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 174,
+                                                lineNumber: 219,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1522,7 +1599,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 179,
+                                                        lineNumber: 224,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1530,13 +1607,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Doses Taken"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 182,
+                                                        lineNumber: 227,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 178,
+                                                lineNumber: 223,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1547,20 +1624,20 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "check_circle"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 230,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Morning BP taken at 8:15 AM"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 184,
+                                                lineNumber: 229,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 173,
+                                        lineNumber: 218,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1582,7 +1659,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         strokeWidth: "4.5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 197,
+                                                        lineNumber: 242,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1598,13 +1675,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         strokeWidth: "4.5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 206,
+                                                        lineNumber: 251,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 196,
+                                                lineNumber: 241,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1615,19 +1692,19 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 264,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 236,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 172,
+                                lineNumber: 217,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1640,7 +1717,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 className: "w-2 h-2 rounded-full bg-tertiary-container animate-pulse-dot flex-shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 227,
+                                                lineNumber: 272,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1651,13 +1728,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 228,
+                                                lineNumber: 273,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 271,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1665,167 +1742,181 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: pendingMed ? pendingMed.scheduledTime : 'Great job'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 230,
+                                        lineNumber: 275,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 225,
+                                lineNumber: 270,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 171,
+                        lineNumber: 216,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-2 gap-3",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                onClick: ()=>showToast('Omron BLE Heart Sync: Normal 74 bpm • 126/82 mmHg'),
-                                className: "bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center justify-between text-secondary",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "material-symbols-outlined text-lg text-primary",
-                                                        children: "favorite"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 245,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant flex items-center gap-1",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 247,
-                                                                columnNumber: 19
-                                                            }, this),
-                                                            " Omron BLE"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 246,
-                                                        columnNumber: 17
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 244,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "mt-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-headline text-3xl font-bold text-on-surface leading-none",
-                                                        children: "74"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 251,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-xs text-on-surface-variant ml-0.5 font-medium",
-                                                        children: "bpm"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 252,
-                                                        columnNumber: 17
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 250,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-on-surface font-semibold mt-1",
-                                                children: [
-                                                    "126/82 ",
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-on-surface-variant font-normal",
-                                                        children: "mmHg"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 255,
-                                                        columnNumber: 24
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 254,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 243,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 pt-2 border-t border-outline-variant/30",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-full h-5 text-primary overflow-visible",
-                                                fill: "none",
-                                                viewBox: "0 0 100 24",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                    className: "animate-ecg",
-                                                    d: "M0 16 Q 15 12, 25 15 T 45 10 T 65 14 T 80 8 T 100 12",
-                                                    fill: "none",
-                                                    stroke: "currentColor",
-                                                    strokeLinecap: "round",
-                                                    strokeWidth: "2.5"
+                            (()=>{
+                                const latestVitals = summary.vitals?.[0];
+                                const bp = latestVitals ? `${latestVitals.bloodPressureSystolic}/${latestVitals.bloodPressureDiastolic}` : '124/80';
+                                const pulse = latestVitals?.pulse || 72;
+                                const sugar = latestVitals ? `${latestVitals.bloodSugar}` : '108';
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    onClick: ()=>setVitalsModalOpen(true),
+                                    className: "bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer group",
+                                    title: "Click to view & log vitals",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-center justify-between text-secondary",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "material-symbols-outlined text-lg text-primary",
+                                                            children: "vital_signs"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 297,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant flex items-center gap-1 group-hover:bg-primary group-hover:text-on-primary transition-colors",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                                    lineNumber: 299,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                " + Log Vitals"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 298,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 296,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "mt-2 flex items-baseline justify-between",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "font-headline text-2xl font-bold text-on-surface leading-none",
+                                                                    children: pulse
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                                    lineNumber: 304,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "text-xs text-on-surface-variant ml-0.5 font-medium",
+                                                                    children: "bpm"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                                    lineNumber: 305,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 303,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-xs font-mono font-bold text-primary",
+                                                            children: [
+                                                                sugar,
+                                                                " mg/dL"
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 307,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 302,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs text-on-surface font-semibold mt-1",
+                                                    children: [
+                                                        bp,
+                                                        " ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-on-surface-variant font-normal",
+                                                            children: "mmHg (BP)"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 310,
+                                                            columnNumber: 26
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 309,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                            lineNumber: 295,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-3 pt-2 border-t border-outline-variant/30 flex items-center justify-between",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-[11px] text-primary flex items-center gap-0.5 font-semibold",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "material-symbols-outlined text-xs",
+                                                            children: "check_circle"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                            lineNumber: 315,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        " Normal Range"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 314,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "text-[10px] text-on-surface-variant font-medium",
+                                                    children: "Omron Sync"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 261,
-                                                    columnNumber: 17
+                                                    lineNumber: 317,
+                                                    columnNumber: 19
                                                 }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 260,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[11px] text-primary flex items-center gap-0.5 mt-1 font-semibold",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "material-symbols-outlined text-xs",
-                                                        children: "arrow_downward"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 271,
-                                                        columnNumber: 17
-                                                    }, this),
-                                                    " Optimal range"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 270,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 258,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 239,
-                                columnNumber: 11
-                            }, this),
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                            lineNumber: 313,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                    lineNumber: 290,
+                                    columnNumber: 15
+                                }, this);
+                            })(),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 onClick: onSwitchToSenior,
                                 className: "bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer",
@@ -1840,7 +1931,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "sentiment_satisfied"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 283,
+                                                        lineNumber: 330,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1848,13 +1939,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "✨"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 284,
+                                                        lineNumber: 331,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 282,
+                                                lineNumber: 329,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1862,141 +1953,6 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "font-headline text-sm font-bold text-on-surface block leading-snug",
                                                     children: "Cheerful & Calm"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 287,
-                                                    columnNumber: 17
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 286,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-on-surface-variant mt-1 line-clamp-2 leading-relaxed",
-                                                children: "Spoke 12m with Saathi AI about 70s Kishore Kumar songs."
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 291,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 281,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 pt-2 border-t border-outline-variant/30 flex items-center gap-1.5",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "w-2 h-2 rounded-full bg-primary flex-shrink-0 animate-pulse-dot"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 296,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[11px] text-on-surface-variant font-medium truncate",
-                                                children: "Voice Tone: Relaxed"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 297,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 295,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 277,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 237,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-surface-container-high/80 rounded-2xl p-3 border border-outline-variant/50 shadow-sm",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between mb-2.5 px-1",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "font-headline text-xs font-bold text-on-surface uppercase tracking-wide",
-                                        children: "Remote Care Actions"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 307,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[10px] font-bold text-secondary uppercase tracking-wider bg-surface-container px-2 py-0.5 rounded-full",
-                                        children: "Instant Relay"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 310,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 306,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-cols-3 gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setVoiceNoteOpen(true),
-                                        className: "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
-                                        id: "voiceNoteBtn",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "material-symbols-outlined text-xl",
-                                                    children: "mic"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 322,
-                                                    columnNumber: 17
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 321,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-semibold text-center text-on-surface",
-                                                children: "Voice Note"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 324,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 316,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setVoipCallOpen(true),
-                                        className: "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
-                                        id: "callPapaBtn",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-10 h-10 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "material-symbols-outlined text-xl",
-                                                    children: "call"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
                                                     lineNumber: 334,
@@ -2007,12 +1963,12 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 lineNumber: 333,
                                                 columnNumber: 15
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-semibold text-center text-on-surface",
-                                                children: "Call Ramesh"
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-xs text-on-surface-variant mt-1 line-clamp-2 leading-relaxed",
+                                                children: "Spoke 12m with Saathi AI about 70s Kishore Kumar songs."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 336,
+                                                lineNumber: 338,
                                                 columnNumber: 15
                                             }, this)
                                         ]
@@ -2021,50 +1977,219 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         lineNumber: 328,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        onClick: ()=>setAddMedOpen(true),
-                                        className: "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
-                                        id: "addMedBtn",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mt-3 pt-2 border-t border-outline-variant/30 flex items-center gap-1.5",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-10 h-10 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "material-symbols-outlined text-xl",
-                                                    children: "add_circle"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 346,
-                                                    columnNumber: 17
-                                                }, this)
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "w-2 h-2 rounded-full bg-primary flex-shrink-0 animate-pulse-dot"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 345,
+                                                lineNumber: 343,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-semibold text-center text-on-surface",
-                                                children: "Add Med"
+                                                className: "text-[11px] text-on-surface-variant font-medium truncate",
+                                                children: "Voice Tone: Relaxed"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 348,
+                                                lineNumber: 344,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 340,
+                                        lineNumber: 342,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 314,
+                                lineNumber: 324,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 305,
+                        lineNumber: 282,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-surface-container-high/80 rounded-2xl p-3 border border-outline-variant/50 shadow-sm",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center justify-between mb-2.5 px-1",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-headline text-xs font-bold text-on-surface uppercase tracking-wide",
+                                        children: "Remote Care & Safety Actions"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 354,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[10px] font-bold text-secondary uppercase tracking-wider bg-surface-container px-2 py-0.5 rounded-full",
+                                        children: "Instant Relay"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 357,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                lineNumber: 353,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "grid grid-cols-4 gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setVoiceNoteOpen(true),
+                                        className: "flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
+                                        id: "voiceNoteBtn",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-9 h-9 rounded-xl bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined text-lg",
+                                                    children: "mic"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 369,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 368,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-center text-on-surface truncate w-full",
+                                                children: "Voice Note"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 371,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 363,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setVoipCallOpen(true),
+                                        className: "flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
+                                        id: "callPapaBtn",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-9 h-9 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined text-lg",
+                                                    children: "call"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 381,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 380,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-center text-on-surface truncate w-full",
+                                                children: "Call Papa"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 383,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 375,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setVitalsModalOpen(true),
+                                        className: "flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-9 h-9 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined text-lg",
+                                                    children: "favorite"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 392,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 391,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-center text-on-surface truncate w-full",
+                                                children: "Log Vitals"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 394,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 387,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleSimulateFallCaregiver,
+                                        disabled: fallSimulating,
+                                        className: "flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-error-container/40 hover:bg-error-container/80 hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-error/30 text-error group cursor-pointer",
+                                        title: "Test Fall Sensor trigger",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "w-9 h-9 rounded-xl bg-error text-on-error flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "material-symbols-outlined text-lg",
+                                                    children: "personal_injury"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                    lineNumber: 405,
+                                                    columnNumber: 17
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 404,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-bold text-center text-error truncate w-full",
+                                                children: fallSimulating ? 'Testing...' : 'Test Fall'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                                lineNumber: 407,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                        lineNumber: 398,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                                lineNumber: 361,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
+                        lineNumber: 352,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2081,7 +2206,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "history"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 357,
+                                                lineNumber: 419,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2089,13 +2214,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "Today's Timeline"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 358,
+                                                lineNumber: 420,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 356,
+                                        lineNumber: 418,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2103,13 +2228,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "Auto-Synced"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 360,
+                                        lineNumber: 422,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 355,
+                                lineNumber: 417,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2119,7 +2244,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         className: "absolute left-2.5 top-2 bottom-2 w-0.5 bg-outline-variant/50"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 368,
+                                        lineNumber: 430,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2132,12 +2257,12 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                     children: "gshield"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 373,
+                                                    lineNumber: 435,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 372,
+                                                lineNumber: 434,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2152,7 +2277,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "Scam Shield Scan"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 380,
+                                                                lineNumber: 442,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2160,13 +2285,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "11:45 AM"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 383,
+                                                                lineNumber: 445,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 379,
+                                                        lineNumber: 441,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2174,7 +2299,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Suspicious Disconnection SMS Deflected"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 385,
+                                                        lineNumber: 447,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2186,14 +2311,14 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "bit.ly/del-power-pay"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 390,
+                                                                lineNumber: 452,
                                                                 columnNumber: 19
                                                             }, this),
                                                             ") and alerted audio warning."
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 388,
+                                                        lineNumber: 450,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2206,31 +2331,31 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                     children: "verified_user"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                    lineNumber: 397,
+                                                                    lineNumber: 459,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 " System Blocked Successfully"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 396,
+                                                            lineNumber: 458,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 395,
+                                                        lineNumber: 457,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 375,
+                                                lineNumber: 437,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 371,
+                                        lineNumber: 433,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2243,12 +2368,12 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                     children: "forum"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 406,
+                                                    lineNumber: 468,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 405,
+                                                lineNumber: 467,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2262,7 +2387,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "Voice Companion"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 410,
+                                                                lineNumber: 472,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2270,13 +2395,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "09:30 AM"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 413,
+                                                                lineNumber: 475,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 409,
+                                                        lineNumber: 471,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2284,7 +2409,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Retro Kishore Kumar & Weather Chat"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 415,
+                                                        lineNumber: 477,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2295,14 +2420,14 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "“Zindagi Ke Safar Mein”"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 419,
+                                                                lineNumber: 481,
                                                                 columnNumber: 69
                                                             }, this),
                                                             " playlist and checked afternoon temperature for West Delhi."
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 418,
+                                                        lineNumber: 480,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2317,20 +2442,20 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                         children: isPlayingAudioDigest ? 'pause_circle' : 'play_circle'
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 426,
+                                                                        lineNumber: 488,
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         children: isPlayingAudioDigest ? 'Playing Audio Digest...' : 'Listen to Audio Digest'
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 429,
+                                                                        lineNumber: 491,
                                                                         columnNumber: 21
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 422,
+                                                                lineNumber: 484,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2341,52 +2466,52 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                         className: `w-0.5 bg-primary rounded-full ${isPlayingAudioDigest ? 'eq-bar-1' : 'h-1'}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 433,
+                                                                        lineNumber: 495,
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         className: `w-0.5 bg-primary rounded-full ${isPlayingAudioDigest ? 'eq-bar-2' : 'h-2'}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 434,
+                                                                        lineNumber: 496,
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         className: `w-0.5 bg-primary rounded-full ${isPlayingAudioDigest ? 'eq-bar-3' : 'h-1.5'}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 435,
+                                                                        lineNumber: 497,
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         className: `w-0.5 bg-primary rounded-full ${isPlayingAudioDigest ? 'eq-bar-4' : 'h-2.5'}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                        lineNumber: 436,
+                                                                        lineNumber: 498,
                                                                         columnNumber: 21
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 432,
+                                                                lineNumber: 494,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 421,
+                                                        lineNumber: 483,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 408,
+                                                lineNumber: 470,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 404,
+                                        lineNumber: 466,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2399,12 +2524,12 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                     children: "check"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 445,
+                                                    lineNumber: 507,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 444,
+                                                lineNumber: 506,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2418,7 +2543,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "Medication Taken"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 449,
+                                                                lineNumber: 511,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2426,13 +2551,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                 children: "08:15 AM"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                lineNumber: 452,
+                                                                lineNumber: 514,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 448,
+                                                        lineNumber: 510,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2440,7 +2565,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Amlodipine 5mg marked Taken"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 454,
+                                                        lineNumber: 516,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2448,7 +2573,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "Confirmed via physical Senior Tablet interaction: “Maine Le Li” button tapped on living room hub."
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 457,
+                                                        lineNumber: 519,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2461,31 +2586,31 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                     children: "check_circle"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                    lineNumber: 462,
+                                                                    lineNumber: 524,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 " Hardware Touch Verified"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 461,
+                                                            lineNumber: 523,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 460,
+                                                        lineNumber: 522,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 447,
+                                                lineNumber: 509,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 443,
+                                        lineNumber: 505,
                                         columnNumber: 13
                                     }, this),
                                     summary.recentActivities.filter((a)=>![
@@ -2502,12 +2627,12 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "info"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 472,
+                                                        lineNumber: 534,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 471,
+                                                    lineNumber: 533,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2521,7 +2646,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                     children: act.type.replace('_', ' ')
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                    lineNumber: 476,
+                                                                    lineNumber: 538,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2532,13 +2657,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                                     })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                                    lineNumber: 479,
+                                                                    lineNumber: 541,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 475,
+                                                            lineNumber: 537,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2546,7 +2671,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                             children: act.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 483,
+                                                            lineNumber: 545,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2554,31 +2679,31 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                             children: act.description
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                            lineNumber: 484,
+                                                            lineNumber: 546,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                    lineNumber: 474,
+                                                    lineNumber: 536,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, act.id, true, {
                                             fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                            lineNumber: 470,
+                                            lineNumber: 532,
                                             columnNumber: 15
                                         }, this))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 366,
+                                lineNumber: 428,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 354,
+                        lineNumber: 416,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2595,7 +2720,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "sensors"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 495,
+                                                lineNumber: 557,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2603,13 +2728,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 children: "Home Ambience"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 496,
+                                                lineNumber: 558,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 494,
+                                        lineNumber: 556,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2619,20 +2744,20 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                 className: "w-2 h-2 rounded-full bg-primary animate-pulse-dot"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 499,
+                                                lineNumber: 561,
                                                 columnNumber: 15
                                             }, this),
                                             " Normal 24°C"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 498,
+                                        lineNumber: 560,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 493,
+                                lineNumber: 555,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2659,20 +2784,20 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         children: "home_pin"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 516,
+                                                        lineNumber: 578,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "Janakpuri B-Block Hub • Motion in Living Room (5m ago)"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 519,
+                                                        lineNumber: 581,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 515,
+                                                lineNumber: 577,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2682,36 +2807,36 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                         className: "w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                        lineNumber: 522,
+                                                        lineNumber: 584,
                                                         columnNumber: 19
                                                     }, this),
                                                     " Quiet & Safe"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                                lineNumber: 521,
+                                                lineNumber: 583,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 514,
+                                        lineNumber: 576,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                    lineNumber: 513,
+                                    lineNumber: 575,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 503,
+                                lineNumber: 565,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 492,
+                        lineNumber: 554,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2725,7 +2850,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "verified_user"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 532,
+                                        lineNumber: 594,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2733,13 +2858,13 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "SOC 2 CC7.2 & HIPAA Safeguarded"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 533,
+                                        lineNumber: 595,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 531,
+                                lineNumber: 593,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2747,7 +2872,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                 children: "End-to-End Encrypted Healthcare Node. Real-time telemetry, panic logs, and AI companion conversations are tokenized and protected under ISO/IEC 27001 guidelines."
                             }, void 0, false, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 537,
+                                lineNumber: 599,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2757,28 +2882,28 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "Node: DEL-HUB-8472"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 541,
+                                        lineNumber: 603,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "•"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 542,
+                                        lineNumber: 604,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "TLS 1.3 Strict"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 543,
+                                        lineNumber: 605,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "•"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 544,
+                                        lineNumber: 606,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2787,25 +2912,25 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                         children: "Verified Audit Trail"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 607,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                                lineNumber: 540,
+                                lineNumber: 602,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                        lineNumber: 530,
+                        lineNumber: 592,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 88,
+                lineNumber: 108,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$VoiceNoteModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VoiceNoteModal"], {
@@ -2817,7 +2942,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                 }
             }, void 0, false, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 556,
+                lineNumber: 618,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$VoIPCallModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VoIPCallModal"], {
@@ -2829,7 +2954,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                 }
             }, void 0, false, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 565,
+                lineNumber: 627,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$AddMedModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddMedModal"], {
@@ -2841,7 +2966,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                 }
             }, void 0, false, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 574,
+                lineNumber: 636,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$components$2f$modals$2f$HomeAmbienceModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["HomeAmbienceModal"], {
@@ -2849,17 +2974,17 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                 onClose: ()=>setAmbienceModalOpen(false)
             }, void 0, false, {
                 fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-                lineNumber: 583,
+                lineNumber: 645,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/client/components/family/FamilyPortalStitch.tsx",
-        lineNumber: 79,
+        lineNumber: 99,
         columnNumber: 5
     }, this);
 }
-_s(FamilyPortalStitch, "PH1/FkW/B4kJy9992IUIAcVDSk8=");
+_s(FamilyPortalStitch, "DZZOd+UdS8w+sWyGW4w44ShyoFI=");
 _c = FamilyPortalStitch;
 var _c;
 __turbopack_context__.k.register(_c, "FamilyPortalStitch");
@@ -5434,12 +5559,17 @@ var _s = __turbopack_context__.k.signature();
 function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
     _s();
     const [currentTime, setCurrentTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [language, setLanguage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('hinglish');
+    const [textScale, setTextScale] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('normal');
+    const [highContrast, setHighContrast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [speechRate, setSpeechRate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0.92);
     const [isListening, setIsListening] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isSpeaking, setIsSpeaking] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [companionReply, setCompanionReply] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('Namaste Ramesh ji! Aaj subah mausam suhana hai. Aapki chai ho gayi?');
     const [sosCountdown, setSosCountdown] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [sosFired, setSosFired] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [medLoadingId, setMedLoadingId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [fallSimulating, setFallSimulating] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SeniorCompanionStitch.useEffect": ()=>{
             const updateTime = {
@@ -5510,22 +5640,38 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
         if (("TURBOPACK compile-time value", "object") !== 'undefined' && 'speechSynthesis' in window) {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.92;
+            utterance.rate = speechRate;
+            utterance.lang = language === 'hindi' ? 'hi-IN' : 'en-IN';
             utterance.onstart = ()=>setIsSpeaking(true);
             utterance.onend = ()=>setIsSpeaking(false);
             utterance.onerror = ()=>setIsSpeaking(false);
             window.speechSynthesis.speak(utterance);
         }
     };
+    const handleTestAudio = ()=>{
+        if (language === 'hindi') {
+            const msg = 'नमस्ते रमेश जी! आपका स्वास्थ्य बहुत अच्छा रहे। अपनी दवाई समय पर ले लीजिए। साथी हमेशा आपके साथ है।';
+            setCompanionReply(msg);
+            speakText(msg);
+        } else if (language === 'english') {
+            const msg = 'Good morning Ramesh ji! Wishing you energy, health, and a happy day. Saathi companion is active.';
+            setCompanionReply(msg);
+            speakText(msg);
+        } else {
+            const msg = 'Namaste Ramesh ji! Aaj mausam bahut achha hai. Chai peene ke baad thodi der dhoop mein baithiye.';
+            setCompanionReply(msg);
+            speakText(msg);
+        }
+    };
     const handleOrbClick = async ()=>{
         if (isListening) return;
         setIsListening(true);
-        setCompanionReply('Sunte hain, Ramesh ji... (Listening)');
+        setCompanionReply(language === 'hindi' ? 'सुन रहे हैं, रमेश जी... (Listening)' : language === 'english' ? 'Listening to you, Ramesh ji...' : 'Sunte hain, Ramesh ji... (Listening)');
         // Check SpeechRecognition support
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             const recognition = new SpeechRecognition();
-            recognition.lang = 'hi-IN';
+            recognition.lang = language === 'hindi' ? 'hi-IN' : 'en-IN';
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
             recognition.onresult = async (event)=>{
@@ -5534,19 +5680,19 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                 setCompanionReply(`"${transcript}"`);
                 try {
                     const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["postConverse"])(transcript);
-                    const reply = res.reply || 'Bahut badhiya Ramesh ji, main samajh gaya!';
+                    const reply = res.reply || (language === 'hindi' ? 'बहुत बढ़िया रमेश जी, मैं समझ गया!' : 'Bahut badhiya Ramesh ji, main samajh gaya!');
                     setCompanionReply(reply);
                     speakText(reply);
                     onRefresh();
                 } catch (e) {
-                    const fallback = 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+                    const fallback = language === 'hindi' ? 'हाँ रमेश जी! मैं आपकी सेवा में हाज़िर हूँ।' : 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
                     setCompanionReply(fallback);
                     speakText(fallback);
                 }
             };
             recognition.onerror = ()=>{
                 setIsListening(false);
-                const fallback = 'Haan Ramesh ji! Main aapko sun raha hoon, bataiye kaisa lag raha hai?';
+                const fallback = language === 'hindi' ? 'हाँ रमेश जी! मैं आपको सुन रहा हूँ, बताइए कैसा लग रहा है?' : 'Haan Ramesh ji! Main aapko sun raha hoon, bataiye kaisa lag raha hai?';
                 setCompanionReply(fallback);
                 speakText(fallback);
             };
@@ -5570,6 +5716,22 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
             }, 2000);
         }
     };
+    const handleServerPrompt = async (promptText)=>{
+        setIsListening(false);
+        setCompanionReply(language === 'hindi' ? 'सोच रहे हैं, रमेश जी...' : 'Soch rahe hain, Ramesh ji... (Consulting Saathi)');
+        try {
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["postConverse"])(promptText);
+            const reply = res.reply || 'Bahut badhiya Ramesh ji!';
+            setCompanionReply(reply);
+            speakText(reply);
+            onRefresh();
+        } catch (e) {
+            console.error('Server conversation error:', e);
+            const fallback = 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+            setCompanionReply(fallback);
+            speakText(fallback);
+        }
+    };
     const handleTakeMedication = async (med)=>{
         if (med.takenToday) return;
         setMedLoadingId(med.id);
@@ -5591,7 +5753,8 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                     ]
                 });
             } catch (err) {}
-            speakText(`Shabash Ramesh ji! ${med.name} lene ke liye dhanyavaad.`);
+            const praise = language === 'hindi' ? `शाबाश रमेश जी! ${med.name} लेने के लिए धन्यवाद।` : language === 'english' ? `Well done Ramesh ji! ${med.name} recorded successfully.` : `Shabash Ramesh ji! ${med.name} lene ke liye dhanyavaad.`;
+            speakText(praise);
             onRefresh();
         } catch (e) {
             console.error(e);
@@ -5635,160 +5798,376 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
         setSosCountdown(null);
         setSosFired(false);
     };
+    const handleSimulateFall = async ()=>{
+        setFallSimulating(true);
+        playSiren();
+        try {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["postTriggerSos"])('fall_sensor');
+            setSosFired(true);
+            onRefresh();
+            speakText('Dhyan dein! Fall sensor ne girne ka aabhas kiya hai. Priya ji ko turant suchit kiya gaya hai!');
+        } catch (e) {
+            console.error(e);
+        } finally{
+            setFallSimulating(false);
+        }
+    };
+    // Scale classes
+    const scaleClass = textScale === 'extra-large' ? 'text-lg sm:text-xl' : textScale === 'large' ? 'text-base sm:text-lg' : 'text-sm';
+    const headingScale = textScale === 'extra-large' ? 'text-3xl sm:text-4xl' : textScale === 'large' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl';
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col relative w-full pt-20 pb-28 bg-surface min-h-screen",
+        className: `flex flex-col relative w-full pt-20 pb-28 min-h-screen transition-colors ${highContrast ? 'bg-black text-white font-sans' : 'bg-surface text-on-surface'}`,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "rounded-3xl bg-gradient-to-br from-primary via-primary-container to-surface-tint text-on-primary p-5 shadow-md relative overflow-hidden mt-3",
+                    className: `p-3 rounded-2xl border shadow-xs flex flex-col gap-2.5 ${highContrast ? 'bg-zinc-900 border-yellow-400 text-yellow-300' : 'bg-surface-container-low border-outline-variant/40'}`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-white/10 blur-xl pointer-events-none"
-                        }, void 0, false, {
-                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 222,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-start justify-between relative z-10",
+                            className: "flex items-center justify-between",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "font-headline font-bold text-xs uppercase tracking-wider flex items-center gap-1.5",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center gap-2 text-primary-fixed text-xs font-bold uppercase tracking-wider",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: "Janakpuri, New Delhi"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 227,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: "•"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 228,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "flex items-center gap-1",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "material-symbols-outlined text-sm",
-                                                            children: "schedule"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                            lineNumber: 230,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        currentTime || '08:45 AM'
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 229,
-                                                    columnNumber: 17
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 226,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                            className: "font-headline font-bold text-2xl sm:text-3xl text-white mt-1 tracking-tight",
-                                            children: "Namaste Ramesh Uncle! 🙏"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "material-symbols-outlined text-primary text-base",
+                                            children: "accessibility_new"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 235,
+                                            lineNumber: 321,
                                             columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-on-primary-container text-xs sm:text-sm font-medium mt-1",
-                                            children: "Wishing you a peaceful, healthy day. Saathi is always here with you."
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 238,
-                                            columnNumber: 15
-                                        }, this)
+                                        "Senior Easy Controls"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 225,
+                                    lineNumber: 320,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-primary-fixed",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: handleTestAudio,
+                                    className: "px-2.5 py-1 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors",
+                                    title: "Speak a greeting aloud",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "w-2 h-2 rounded-full bg-primary-fixed animate-pulse-dot"
+                                            className: "material-symbols-outlined text-sm",
+                                            children: "volume_up"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 244,
+                                            lineNumber: 330,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: "Priya Connected"
+                                            children: "Test Voice"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 245,
+                                            lineNumber: 331,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 243,
+                                    lineNumber: 325,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 224,
+                            lineNumber: 319,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "grid grid-cols-2 gap-2 text-xs",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setLanguage('hindi'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'hindi' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
+                                            children: "हिंदी"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 338,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setLanguage('hinglish'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'hinglish' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
+                                            children: "Hinglish"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 346,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setLanguage('english'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'english' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
+                                            children: "English"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 354,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 337,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setTextScale('normal'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${textScale === 'normal' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'}`,
+                                            title: "Normal text",
+                                            children: "A"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 366,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setTextScale('large'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-xs transition-all cursor-pointer ${textScale === 'large' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'}`,
+                                            title: "Large text (+20%)",
+                                            children: "A+"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 375,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>setTextScale('extra-large'),
+                                            className: `flex-1 py-1 rounded-lg text-center font-extrabold text-sm transition-all cursor-pointer ${textScale === 'extra-large' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'}`,
+                                            title: "Extra large text (+40%)",
+                                            children: "A++"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 384,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 365,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                            lineNumber: 335,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex items-center justify-between pt-1 border-t border-outline-variant/20 text-[11px]",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setHighContrast(!highContrast),
+                                    className: `flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-bold cursor-pointer transition-colors ${highContrast ? 'bg-yellow-400 text-black' : 'bg-surface-container text-on-surface hover:bg-surface-container-high'}`,
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "material-symbols-outlined text-sm",
+                                            children: "contrast"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 404,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: highContrast ? 'High Contrast ON' : 'High Contrast'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 405,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 398,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setSpeechRate(speechRate === 0.92 ? 0.75 : 0.92),
+                                    className: "flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold cursor-pointer transition-colors",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "material-symbols-outlined text-sm",
+                                            children: "speed"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 412,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            children: [
+                                                "Speech: ",
+                                                speechRate === 0.75 ? 'Gentle Slow (0.75x)' : 'Normal (0.9x)'
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 413,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 408,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                            lineNumber: 397,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 221,
+                    lineNumber: 312,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "rounded-3xl bg-surface-container p-5 border border-outline-variant/40 shadow-sm text-center flex flex-col items-center",
+                    className: `rounded-3xl p-5 shadow-md relative overflow-hidden transition-all ${highContrast ? 'bg-zinc-900 border-2 border-yellow-400 text-yellow-300' : 'bg-gradient-to-br from-primary via-primary-container to-surface-tint text-on-primary'}`,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-start justify-between relative z-10",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-2 text-xs font-bold uppercase tracking-wider opacity-90",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Janakpuri, New Delhi"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                                lineNumber: 429,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "•"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                                lineNumber: 430,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "flex items-center gap-1",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "material-symbols-outlined text-sm",
+                                                        children: "schedule"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                                        lineNumber: 432,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    currentTime || '08:45 AM'
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                                lineNumber: 431,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 428,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                        className: `font-headline font-bold ${headingScale} mt-1 tracking-tight`,
+                                        children: language === 'hindi' ? 'नमस्ते रमेश जी! 🙏' : language === 'english' ? 'Good Day Ramesh Uncle! 🙏' : 'Namaste Ramesh Uncle! 🙏'
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 437,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: `opacity-90 ${scaleClass} font-medium mt-1`,
+                                        children: language === 'hindi' ? 'आपका स्वास्थ्य अच्छा रहे। साथी हमेशा आपके साथ है।' : language === 'english' ? 'Wishing you a peaceful and energetic day.' : 'Wishing you a peaceful, healthy day. Saathi is always here with you.'
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 444,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                lineNumber: 427,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 454,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: "Priya Connected"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 455,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                lineNumber: 453,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                        lineNumber: 426,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                    lineNumber: 419,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: `rounded-3xl p-5 border shadow-sm text-center flex flex-col items-center ${highContrast ? 'bg-zinc-900 border-yellow-400/80 text-white' : 'bg-surface-container border-outline-variant/40'}`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center justify-between w-full mb-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "font-headline font-bold text-xs uppercase tracking-wide text-secondary flex items-center gap-1",
+                                    className: "font-headline font-bold text-xs uppercase tracking-wide flex items-center gap-1",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "material-symbols-outlined text-base text-primary",
                                             children: "psychology"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 254,
+                                            lineNumber: 470,
                                             columnNumber: 15
                                         }, this),
-                                        "AI Voice Companion"
+                                        language === 'hindi' ? 'एआई आवाज साथी' : 'AI Voice Companion'
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 253,
+                                    lineNumber: 469,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant",
-                                    children: "Hindi & English"
+                                    children: language.toUpperCase()
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 257,
+                                    lineNumber: 473,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 252,
+                            lineNumber: 468,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5796,37 +6175,37 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: handleOrbClick,
                                 "aria-label": "Tap to speak with Saathi",
-                                className: `w-28 h-28 rounded-full flex flex-col items-center justify-center transition-all cursor-pointer shadow-lg ${isListening ? 'bg-error text-on-error scale-110 animate-pulse' : isSpeaking ? 'bg-tertiary-container text-on-tertiary-container orb-active-pulse' : 'bg-gradient-to-tr from-primary to-primary-container text-on-primary orb-breathe hover:scale-105 active:scale-95'}`,
+                                className: `w-32 h-32 rounded-full flex flex-col items-center justify-center transition-all cursor-pointer shadow-lg ${isListening ? 'bg-error text-on-error scale-110 animate-pulse' : isSpeaking ? 'bg-tertiary-container text-on-tertiary-container orb-active-pulse' : 'bg-gradient-to-tr from-primary to-primary-container text-on-primary orb-breathe hover:scale-105 active:scale-95'}`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "material-symbols-outlined text-4xl",
+                                        className: "material-symbols-outlined text-5xl",
                                         children: isListening ? 'mic' : isSpeaking ? 'volume_up' : 'graphic_eq'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 275,
+                                        lineNumber: 491,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[11px] font-bold mt-1 uppercase tracking-tight",
-                                        children: isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : 'Tap to Speak'
+                                        className: "text-xs font-bold mt-1 uppercase tracking-tight",
+                                        children: isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : language === 'hindi' ? 'बोलने के लिए छुएं' : 'Tap to Speak'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 278,
+                                        lineNumber: 494,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 264,
+                                lineNumber: 480,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 263,
+                            lineNumber: 479,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "w-full mt-2 p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 text-left",
+                            className: `w-full mt-2 p-3.5 rounded-2xl border text-left ${highContrast ? 'bg-black border-yellow-400/50 text-yellow-200' : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface'}`,
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-xs text-on-surface-variant font-medium flex items-center gap-1.5 mb-1",
@@ -5836,24 +6215,24 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "chat_bubble"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 287,
+                                            lineNumber: 515,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "Saathi Response:"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 288,
+                                            lineNumber: 516,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 286,
+                                    lineNumber: 514,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-headline text-sm font-semibold text-on-surface leading-relaxed",
+                                    className: `font-headline ${scaleClass} font-semibold leading-relaxed`,
                                     children: [
                                         "“",
                                         companionReply,
@@ -5861,31 +6240,27 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 290,
+                                    lineNumber: 518,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 285,
+                            lineNumber: 507,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-full mt-3 grid grid-cols-2 gap-2 text-xs",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>{
-                                        const text = "Kishore Kumar ji ka mashhoor gaana 'Zindagi Ke Safar Mein' 1971 ki film Aap Ki Kasam se hai. Is gaane ko R.D. Burman ji ne compose kiya tha.";
-                                        setCompanionReply(text);
-                                        speakText(text);
-                                    },
+                                    onClick: ()=>handleServerPrompt('Mujhe Kishore Kumar ji ka koi gaana aur trivia batayein'),
                                     className: "p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "🎵"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 305,
+                                            lineNumber: 529,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5893,28 +6268,24 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "Kishore Kumar Trivia"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 530,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 297,
+                                    lineNumber: 525,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>{
-                                        const text = "New Delhi Janakpuri mein aaj aasmaan saaf hai, dhoop achhi hai aur taapmaan 24 degree Celsius hai.";
-                                        setCompanionReply(text);
-                                        speakText(text);
-                                    },
+                                    onClick: ()=>handleServerPrompt('Aaj New Delhi Janakpuri ka mausam kaisa hai?'),
                                     className: "p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "⛅"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 316,
+                                            lineNumber: 536,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5922,25 +6293,25 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "Janakpuri Weather"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 317,
+                                            lineNumber: 537,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 308,
+                                    lineNumber: 532,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 296,
+                            lineNumber: 524,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 251,
+                    lineNumber: 461,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5950,21 +6321,21 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                             className: "flex items-center justify-between px-1",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "font-headline font-bold text-base text-on-surface flex items-center gap-2",
+                                    className: `font-headline font-bold ${headingScale} text-on-surface flex items-center gap-2`,
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "material-symbols-outlined text-primary text-xl",
+                                            className: "material-symbols-outlined text-primary text-2xl",
                                             children: "medication"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 326,
+                                            lineNumber: 546,
                                             columnNumber: 15
                                         }, this),
-                                        "Aaj Ki Dawai (Today's Medicines)"
+                                        language === 'hindi' ? 'आज की दवाई' : "Aaj Ki Dawai (Today's Medicines)"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 325,
+                                    lineNumber: 545,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5977,20 +6348,20 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 329,
+                                    lineNumber: 549,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 324,
+                            lineNumber: 544,
                             columnNumber: 11
                         }, this),
                         summary.medications.map((med)=>{
                             const isTaken = med.takenToday;
                             const isLoading = medLoadingId === med.id;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `p-4 rounded-2xl border transition-all shadow-xs ${isTaken ? 'bg-surface-container-low border-primary/30 opacity-90' : 'bg-surface-container-lowest border-outline-variant/40 hover:border-primary/50'}`,
+                                className: `p-4 rounded-2xl border transition-all shadow-xs ${isTaken ? 'bg-surface-container-low border-primary/30 opacity-90' : highContrast ? 'bg-zinc-900 border-2 border-yellow-400' : 'bg-surface-container-lowest border-outline-variant/40 hover:border-primary/50'}`,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex items-start justify-between gap-3",
                                     children: [
@@ -6009,7 +6380,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                            lineNumber: 350,
+                                                            lineNumber: 572,
                                                             columnNumber: 23
                                                         }, this),
                                                         isTaken && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6020,28 +6391,28 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                                     children: "check_circle"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                                    lineNumber: 363,
+                                                                    lineNumber: 585,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 "Maine Le Li"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                            lineNumber: 362,
+                                                            lineNumber: 584,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 349,
+                                                    lineNumber: 571,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "font-headline font-bold text-lg text-on-surface mt-1 truncate",
+                                                    className: `font-headline font-bold ${scaleClass} text-on-surface mt-1 truncate`,
                                                     children: med.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 369,
+                                                    lineNumber: 591,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6053,65 +6424,65 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 372,
+                                                    lineNumber: 594,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-xs text-primary font-semibold mt-1",
-                                                    children: med.instructionsHindi || med.instructionsEnglish
+                                                    children: language === 'hindi' ? med.instructionsHindi : med.instructionsHindi || med.instructionsEnglish
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 375,
+                                                    lineNumber: 597,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 348,
+                                            lineNumber: 570,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>handleTakeMedication(med),
                                             disabled: isTaken || isLoading,
-                                            className: `px-4 py-3 rounded-2xl font-headline font-bold text-sm flex items-center gap-2 transition-all cursor-pointer shadow-xs ${isTaken ? 'bg-primary/10 text-primary border border-primary/20 cursor-default' : 'bg-primary text-on-primary hover:bg-primary-container active:scale-95'}`,
+                                            className: `px-4 py-3 rounded-2xl font-headline font-bold ${scaleClass} flex items-center gap-2 transition-all cursor-pointer shadow-xs ${isTaken ? 'bg-primary/10 text-primary border border-primary/20 cursor-default' : 'bg-primary text-on-primary hover:bg-primary-container active:scale-95'}`,
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "material-symbols-outlined text-xl",
                                                     children: isTaken ? 'check' : 'check_circle'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 390,
+                                                    lineNumber: 612,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : 'Maine Le Li'
+                                                    children: isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : language === 'hindi' ? 'मैंने ले ली' : 'Maine Le Li'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 393,
+                                                    lineNumber: 615,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 381,
+                                            lineNumber: 603,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 347,
+                                    lineNumber: 569,
                                     columnNumber: 17
                                 }, this)
                             }, med.id, false, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 339,
+                                lineNumber: 559,
                                 columnNumber: 15
                             }, this);
                         })
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 323,
+                    lineNumber: 543,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6128,42 +6499,42 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                         children: "gshield"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 408,
+                                        lineNumber: 638,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 407,
+                                    lineNumber: 637,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             className: "font-headline font-bold text-sm text-on-surface",
-                                            children: "Sandehik Message Checker (Scam Shield)"
+                                            children: "Sandehik Message & Screenshot Checker (Scam Shield)"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 411,
+                                            lineNumber: 641,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-xs text-on-surface-variant",
-                                            children: "WhatsApp ya Bank SMS ko check karein ki wo asli hai ya farzi"
+                                            children: "WhatsApp, SMS ya Screenshot photo upload karke check karein"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 414,
+                                            lineNumber: 644,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 410,
+                                    lineNumber: 640,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 406,
+                            lineNumber: 636,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6171,13 +6542,96 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                             children: "arrow_forward_ios"
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 419,
+                            lineNumber: 649,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 402,
+                    lineNumber: 632,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "p-3.5 rounded-2xl bg-secondary-container/30 border border-secondary/30 flex items-center justify-between",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex items-center gap-2.5",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "w-9 h-9 rounded-xl bg-secondary text-on-secondary flex items-center justify-center",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "material-symbols-outlined text-xl",
+                                        children: "personal_injury"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                        lineNumber: 656,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 655,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                            className: "font-headline font-bold text-xs text-on-surface",
+                                            children: "Fall Detection Motion Sensor"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 659,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[11px] text-on-surface-variant",
+                                            children: "Simulate living room impact / fall alert"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                            lineNumber: 660,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 658,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                            lineNumber: 654,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            onClick: handleSimulateFall,
+                            disabled: fallSimulating,
+                            className: "px-3 py-1.5 rounded-xl bg-secondary text-on-secondary font-headline font-bold text-xs hover:bg-secondary/90 transition-all cursor-pointer shadow-xs flex items-center gap-1",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "material-symbols-outlined text-sm",
+                                    children: "notification_important"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 668,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: fallSimulating ? 'Testing...' : 'Simulate Fall'
+                                }, void 0, false, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 669,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                            lineNumber: 663,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                    lineNumber: 653,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6194,14 +6648,14 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "emergency_home"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 426,
+                                            lineNumber: 677,
                                             columnNumber: 15
                                         }, this),
                                         "Emergency Escalation"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 425,
+                                    lineNumber: 676,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6209,13 +6663,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Siren + Family Alert"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 429,
+                                    lineNumber: 680,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 424,
+                            lineNumber: 675,
                             columnNumber: 11
                         }, this),
                         sosCountdown !== null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6230,7 +6684,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 436,
+                                    lineNumber: 687,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6238,7 +6692,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Priya and Dr. Verma will be notified immediately."
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 439,
+                                    lineNumber: 690,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6247,13 +6701,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Galti se dab gaya? Tap to Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 442,
+                                    lineNumber: 693,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 435,
+                            lineNumber: 686,
                             columnNumber: 13
                         }, this) : sosFired ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "p-4 rounded-2xl bg-error text-on-error flex flex-col items-center",
@@ -6263,7 +6717,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "warning"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 451,
+                                    lineNumber: 702,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6271,7 +6725,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "EMERGENCY SOS ACTIVE"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 452,
+                                    lineNumber: 703,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6279,7 +6733,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Siren sounded. Priya has received your urgent location and alert."
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 453,
+                                    lineNumber: 704,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6288,13 +6742,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "I am Safe Now (Reset SOS)"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 456,
+                                    lineNumber: 707,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 450,
+                            lineNumber: 701,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: handleSosStart,
@@ -6305,41 +6759,41 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "sos"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 468,
+                                    lineNumber: 719,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "EMERGENCY SOS (मदद चाहिए)"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 469,
+                                    lineNumber: 720,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 464,
+                            lineNumber: 715,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 423,
+                    lineNumber: 674,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-            lineNumber: 219,
+            lineNumber: 310,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-        lineNumber: 218,
+        lineNumber: 305,
         columnNumber: 5
     }, this);
 }
-_s(SeniorCompanionStitch, "Goclg9cbdFr1JNx+4JCDOO0BQPY=");
+_s(SeniorCompanionStitch, "ML8g3HTrx8pKgDb4VSERcQcQrQs=");
 _c = SeniorCompanionStitch;
 var _c;
 __turbopack_context__.k.register(_c, "SeniorCompanionStitch");
@@ -6355,12 +6809,16 @@ __turbopack_context__.s([
     ()=>fetchAuditLogs,
     "fetchFamilySummary",
     ()=>fetchFamilySummary,
+    "fetchVitals",
+    ()=>fetchVitals,
     "postAddMedication",
     ()=>postAddMedication,
     "postAnalyzeScam",
     ()=>postAnalyzeScam,
     "postConverse",
     ()=>postConverse,
+    "postLogVitals",
+    ()=>postLogVitals,
     "postResolveSos",
     ()=>postResolveSos,
     "postTakeMedication",
@@ -6445,18 +6903,40 @@ async function postConverse(message, history = []) {
     if (!json.success) throw new Error(json.error?.message || 'Failed to converse with Saathi');
     return json.data;
 }
-async function postAnalyzeScam(text) {
+async function postAnalyzeScam(text, imageBase64) {
     const res = await fetch('/api/v1/scam/analyze', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            text
+            text,
+            imageBase64
         })
     });
     const json = await res.json();
     if (!json.success) throw new Error(json.error?.message || 'Failed to analyze scam message');
+    return json.data;
+}
+async function fetchVitals() {
+    const res = await fetch('/api/v1/vitals', {
+        cache: 'no-store'
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error?.message || 'Failed to fetch vitals');
+    return json.data;
+}
+async function postLogVitals(data) {
+    const res = await fetch('/api/v1/vitals', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-user-role': 'caregiver'
+        },
+        body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error?.message || 'Failed to log vitals');
     return json.data;
 }
 async function fetchAuditLogs(limit = 30) {

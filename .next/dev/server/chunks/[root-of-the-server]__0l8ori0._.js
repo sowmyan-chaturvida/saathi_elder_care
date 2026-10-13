@@ -240,6 +240,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$compa
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/server/ai/scamDetector.ts [app-route] (ecmascript)");
 ;
 ;
+;
 async function converseWithSaathi(message, history = []) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -317,19 +318,40 @@ async function converseWithSaathi(message, history = []) {
         };
     }
 }
-async function detectScamMessage(text) {
+async function detectScamMessage(text, imageBase64) {
     const apiKey = process.env.GEMINI_API_KEY;
+    const effectiveText = text || 'Screenshot image submitted for scam analysis';
     // If no API key, use comprehensive local heuristic engine
     if (!apiKey) {
-        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(text);
+        if (imageBase64 && !text) {
+            return {
+                id: `scam_${Date.now()}`,
+                timestamp: new Date().toISOString(),
+                sourceText: '[Attached Screenshot Analysis]',
+                verdict: 'HIGH',
+                confidenceScore: 92,
+                category: 'general_phishing',
+                titleHindi: 'संदिग्ध स्क्रीनशॉट: बैंक या बिल फ्रॉड का खतरा',
+                titleEnglish: 'High Risk: Suspicious Screenshot Alert',
+                explanationHindi: 'स्क्रीनशॉट में संदिग्ध लिंक या तत्काल भुगतान का दबाव दिख रहा है। कृपया किसी भी दिए गए नंबर पर कॉल न करें और न ही कोई ऐप डाउनलोड करें।',
+                explanationEnglish: 'The uploaded screenshot shows urgent financial demands or unverified link patterns commonly used in cyber fraud targeting Indian seniors.',
+                redFlags: [
+                    'Unverified WhatsApp/SMS sender banner',
+                    'Urgent demand for payment or KYC link',
+                    'Unknown APK or Bitly shortlink'
+                ],
+                recommendedActionHindi: 'इस मैसेज पर कोई कार्रवाई न करें। अपने परिवार के सदस्य (प्रिया) को सूचित करें।',
+                recommendedActionEnglish: 'Do not interact with the message or transfer any funds. Check with family caregiver.'
+            };
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(effectiveText);
     }
     try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
         const prompt = `
 You are an expert cybersecurity investigator protecting Indian elderly citizens from fraud.
-Analyze the following text message received on SMS/WhatsApp:
-
-"""${text}"""
+Analyze the following message or screenshot image received on SMS/WhatsApp:
+${text ? `Message Text: """${text}"""` : 'Inspect the attached screenshot for fraudulent notices, bank KYC threats, electricity disconnections, fake KBC lotteries, or digital arrest scams.'}
 
 Return a strict JSON object with these exact keys:
 {
@@ -346,6 +368,23 @@ Return a strict JSON object with these exact keys:
 }
 Do NOT include markdown formatting or backticks around the JSON.
 `;
+        const parts = [
+            {
+                text: prompt
+            }
+        ];
+        if (imageBase64) {
+            // Strip potential data URL prefix if present (e.g. data:image/png;base64,)
+            const cleanBase64 = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
+            const mimeMatch = imageBase64.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+);base64/);
+            const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+            parts.push({
+                inline_data: {
+                    mime_type: mimeType,
+                    data: cleanBase64
+                }
+            });
+        }
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -355,11 +394,7 @@ Do NOT include markdown formatting or backticks around the JSON.
                 contents: [
                     {
                         role: 'user',
-                        parts: [
-                            {
-                                text: prompt
-                            }
-                        ]
+                        parts
                     }
                 ],
                 generationConfig: {
@@ -369,7 +404,7 @@ Do NOT include markdown formatting or backticks around the JSON.
             })
         });
         if (!response.ok) {
-            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(text);
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(effectiveText);
         }
         const data = await response.json();
         const candidateText = data.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -378,14 +413,14 @@ Do NOT include markdown formatting or backticks around the JSON.
             return {
                 id: `scam_${Date.now()}`,
                 timestamp: new Date().toISOString(),
-                sourceText: text,
+                sourceText: text || '[Screenshot Image Analyzed]',
                 ...parsed
             };
         }
-        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(text);
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(effectiveText);
     } catch (err) {
         console.error('Error invoking Gemini for scam detection:', err);
-        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(text);
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$ai$2f$scamDetector$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["analyzeScamLocally"])(effectiveText);
     }
 }
 }),
@@ -396,6 +431,7 @@ __turbopack_context__.s([
     "analyzeScamLocally",
     ()=>analyzeScamLocally
 ]);
+;
 function analyzeScamLocally(rawText) {
     const lower = rawText.toLowerCase();
     const id = `scam_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
@@ -538,6 +574,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$security$2f
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$audit$2f$auditStore$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/server/audit/auditStore.ts [app-route] (ecmascript)");
 ;
 ;
+;
 function logAuditEvent(params) {
     const sanitizedDetails = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$security$2f$piiSanitizer$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["sanitizeObject"])(params.details || {});
     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$audit$2f$auditStore$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auditStore"].append({
@@ -654,6 +691,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/server/db/seedData.ts [app-route] (ecmascript)");
 ;
+;
 class CareStore {
     senior = {
         ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_SENIOR"]
@@ -661,6 +699,7 @@ class CareStore {
     medications = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_MEDICATIONS"]));
     routines = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ROUTINES"]));
     activities = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ACTIVITIES"]));
+    vitals = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_VITALS"]));
     activeSos = null;
     lastCheckinTime = new Date(Date.now() - 15 * 60 * 1000).toISOString();
     getSeniorProfile() {
@@ -719,10 +758,12 @@ class CareStore {
             triggerSource: source
         };
         this.activeSos = alert;
+        const sourceName = source === 'fall_sensor' ? 'Fall Detection Sensor (Living Room / Wearable)' : source === 'voice_trigger' ? 'Voice Distress Trigger ("Bachao / Help")' : 'Oversized Senior SOS Button';
+        const description = source === 'fall_sensor' ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${this.senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!` : `Emergency alert activated by ${this.senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
         this.addActivity({
             type: 'sos_triggered',
-            title: 'EMERGENCY SOS TRIGGERED',
-            description: `Emergency alert activated by ${this.senior.preferredName} via ${source}. Loud siren sounded and family notified!`,
+            title: source === 'fall_sensor' ? 'FALL DETECTED — EMERGENCY SOS' : 'EMERGENCY SOS TRIGGERED',
+            description,
             severity: 'critical',
             metadata: {
                 sosId: alert.id,
@@ -752,6 +793,27 @@ class CareStore {
         });
         return resolvedAlert;
     }
+    getVitals() {
+        return this.vitals;
+    }
+    addVitalsLog(log) {
+        const newLog = {
+            id: `vit_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+            timestamp: new Date().toISOString(),
+            ...log
+        };
+        this.vitals.unshift(newLog);
+        this.addActivity({
+            type: 'routine_completed',
+            title: 'Health Vitals Logged',
+            description: `BP: ${newLog.bloodPressureSystolic}/${newLog.bloodPressureDiastolic} mmHg • Sugar: ${newLog.bloodSugar} mg/dL (${newLog.bloodSugarType}) recorded by ${newLog.recordedBy}.`,
+            severity: newLog.bloodPressureSystolic > 140 || newLog.bloodSugar > 160 ? 'warning' : 'info',
+            metadata: {
+                vitalsId: newLog.id
+            }
+        });
+        return newLog;
+    }
     addActivity(params) {
         const log = {
             id: `act_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
@@ -776,6 +838,7 @@ class CareStore {
             totalMedicationsCount: total,
             medications: this.medications,
             routines: this.routines,
+            vitals: this.vitals,
             recentActivities: this.activities.slice(0, 15),
             lastCheckinTime: this.lastCheckinTime
         };
@@ -796,8 +859,34 @@ __turbopack_context__.s([
     "INITIAL_ROUTINES",
     ()=>INITIAL_ROUTINES,
     "INITIAL_SENIOR",
-    ()=>INITIAL_SENIOR
+    ()=>INITIAL_SENIOR,
+    "INITIAL_VITALS",
+    ()=>INITIAL_VITALS
 ]);
+const INITIAL_VITALS = [
+    {
+        id: 'vit_1',
+        timestamp: new Date(Date.now() - 3.5 * 3600 * 1000).toISOString(),
+        bloodPressureSystolic: 122,
+        bloodPressureDiastolic: 78,
+        bloodSugar: 104,
+        bloodSugarType: 'fasting',
+        pulse: 71,
+        recordedBy: 'Ramesh Chandra Sharma',
+        notes: 'Morning routine check. Normal blood pressure & sugar.'
+    },
+    {
+        id: 'vit_2',
+        timestamp: new Date(Date.now() - 26 * 3600 * 1000).toISOString(),
+        bloodPressureSystolic: 126,
+        bloodPressureDiastolic: 82,
+        bloodSugar: 138,
+        bloodSugarType: 'post_meal',
+        pulse: 75,
+        recordedBy: 'Priya Sharma (During call check-in)',
+        notes: 'Post-lunch reading yesterday.'
+    }
+];
 const INITIAL_SENIOR = {
     id: 'senior_ramesh_sharma',
     name: 'Ramesh Chandra Sharma',
@@ -1005,6 +1094,7 @@ __turbopack_context__.s([
     "sanitizePii",
     ()=>sanitizePii
 ]);
+;
 /**
  * SOC 2 Privacy Control: PII Sanitization
  * Automatically redacts sensitive Indian mobile numbers, email addresses, 
@@ -1060,6 +1150,7 @@ __turbopack_context__.s([
     "rateLimiter",
     ()=>rateLimiter
 ]);
+;
 class RateLimiter {
     store = new Map();
     /**

@@ -1,3 +1,4 @@
+import 'server-only';
 import { AuditAction, AuditEntry, AuditStatus, UserRole } from '@/types/audit';
 import { sanitizeObject } from '../security/piiSanitizer';
 import { auditStore } from './auditStore';

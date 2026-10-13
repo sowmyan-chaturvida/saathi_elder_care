@@ -14,9 +14,11 @@ export interface ScamReport {
   recommendedActionHindi: string;
   recommendedActionEnglish: string;
   category: 'electricity_bill' | 'banking_kyc' | 'lottery_kbc' | 'apk_download' | 'digital_arrest' | 'general_phishing' | 'safe_message';
+  imageUrl?: string;
 }
 
 export interface ScamAnalysisRequest {
-  text: string;
+  text?: string;
+  imageBase64?: string;
   senderInfo?: string;
 }

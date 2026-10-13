@@ -1,4 +1,29 @@
-import { ActivityLog, Medication, RoutineItem, SeniorProfile } from '@/types/care';
+import { ActivityLog, Medication, RoutineItem, SeniorProfile, VitalsLog } from '@/types/care';
+
+export const INITIAL_VITALS: VitalsLog[] = [
+  {
+    id: 'vit_1',
+    timestamp: new Date(Date.now() - 3.5 * 3600 * 1000).toISOString(),
+    bloodPressureSystolic: 122,
+    bloodPressureDiastolic: 78,
+    bloodSugar: 104,
+    bloodSugarType: 'fasting',
+    pulse: 71,
+    recordedBy: 'Ramesh Chandra Sharma',
+    notes: 'Morning routine check. Normal blood pressure & sugar.',
+  },
+  {
+    id: 'vit_2',
+    timestamp: new Date(Date.now() - 26 * 3600 * 1000).toISOString(),
+    bloodPressureSystolic: 126,
+    bloodPressureDiastolic: 82,
+    bloodSugar: 138,
+    bloodSugarType: 'post_meal',
+    pulse: 75,
+    recordedBy: 'Priya Sharma (During call check-in)',
+    notes: 'Post-lunch reading yesterday.',
+  },
+];
 
 export const INITIAL_SENIOR: SeniorProfile = {
   id: 'senior_ramesh_sharma',

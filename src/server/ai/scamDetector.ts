@@ -1,3 +1,4 @@
+import 'server-only';
 import { RiskLevel, ScamReport } from '@/types/scam';
 
 export function analyzeScamLocally(rawText: string): ScamReport {

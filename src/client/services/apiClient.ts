@@ -63,14 +63,40 @@ export async function postConverse(message: string, history: Array<{ role: 'user
   return json.data;
 }
 
-export async function postAnalyzeScam(text: string): Promise<ScamReport> {
+export async function postAnalyzeScam(text?: string, imageBase64?: string): Promise<ScamReport> {
   const res = await fetch('/api/v1/scam/analyze', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ text, imageBase64 }),
   });
   const json = await res.json();
   if (!json.success) throw new Error(json.error?.message || 'Failed to analyze scam message');
+  return json.data;
+}
+
+export async function fetchVitals() {
+  const res = await fetch('/api/v1/vitals', { cache: 'no-store' });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error?.message || 'Failed to fetch vitals');
+  return json.data;
+}
+
+export async function postLogVitals(data: {
+  bloodPressureSystolic: number;
+  bloodPressureDiastolic: number;
+  bloodSugar: number;
+  bloodSugarType: 'fasting' | 'post_meal' | 'random';
+  pulse?: number;
+  recordedBy?: string;
+  notes?: string;
+}) {
+  const res = await fetch('/api/v1/vitals', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-user-role': 'caregiver' },
+    body: JSON.stringify(data),
+  });
+  const json = await res.json();
+  if (!json.success) throw new Error(json.error?.message || 'Failed to log vitals');
   return json.data;
 }
 
@@ -83,3 +109,4 @@ export async function fetchAuditLogs(limit = 30): Promise<AuditEntry[]> {
   if (!json.success) throw new Error(json.error?.message || 'Failed to fetch audit logs');
   return json.data.logs;
 }
+

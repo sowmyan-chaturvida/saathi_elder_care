@@ -11,12 +11,20 @@ interface SeniorCompanionStitchProps {
   onOpenScamShield: () => void;
 }
 
+type SeniorLanguage = 'hindi' | 'hinglish' | 'english';
+type TextScale = 'normal' | 'large' | 'extra-large';
+
 export function SeniorCompanionStitch({
   summary,
   onRefresh,
   onOpenScamShield,
 }: SeniorCompanionStitchProps) {
   const [currentTime, setCurrentTime] = useState('');
+  const [language, setLanguage] = useState<SeniorLanguage>('hinglish');
+  const [textScale, setTextScale] = useState<TextScale>('normal');
+  const [highContrast, setHighContrast] = useState(false);
+  const [speechRate, setSpeechRate] = useState<0.92 | 0.75>(0.92);
+
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [companionReply, setCompanionReply] = useState(
@@ -25,6 +33,7 @@ export function SeniorCompanionStitch({
   const [sosCountdown, setSosCountdown] = useState<number | null>(null);
   const [sosFired, setSosFired] = useState(false);
   const [medLoadingId, setMedLoadingId] = useState<string | null>(null);
+  const [fallSimulating, setFallSimulating] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -90,7 +99,8 @@ export function SeniorCompanionStitch({
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.92;
+      utterance.rate = speechRate;
+      utterance.lang = language === 'hindi' ? 'hi-IN' : 'en-IN';
       utterance.onstart = () => setIsSpeaking(true);
       utterance.onend = () => setIsSpeaking(false);
       utterance.onerror = () => setIsSpeaking(false);
@@ -98,11 +108,33 @@ export function SeniorCompanionStitch({
     }
   };
 
+  const handleTestAudio = () => {
+    if (language === 'hindi') {
+      const msg = 'नमस्ते रमेश जी! आपका स्वास्थ्य बहुत अच्छा रहे। अपनी दवाई समय पर ले लीजिए। साथी हमेशा आपके साथ है।';
+      setCompanionReply(msg);
+      speakText(msg);
+    } else if (language === 'english') {
+      const msg = 'Good morning Ramesh ji! Wishing you energy, health, and a happy day. Saathi companion is active.';
+      setCompanionReply(msg);
+      speakText(msg);
+    } else {
+      const msg = 'Namaste Ramesh ji! Aaj mausam bahut achha hai. Chai peene ke baad thodi der dhoop mein baithiye.';
+      setCompanionReply(msg);
+      speakText(msg);
+    }
+  };
+
   const handleOrbClick = async () => {
     if (isListening) return;
 
     setIsListening(true);
-    setCompanionReply('Sunte hain, Ramesh ji... (Listening)');
+    setCompanionReply(
+      language === 'hindi'
+        ? 'सुन रहे हैं, रमेश जी... (Listening)'
+        : language === 'english'
+        ? 'Listening to you, Ramesh ji...'
+        : 'Sunte hain, Ramesh ji... (Listening)'
+    );
 
     // Check SpeechRecognition support
     const SpeechRecognition =
@@ -110,7 +142,7 @@ export function SeniorCompanionStitch({
 
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
-      recognition.lang = 'hi-IN';
+      recognition.lang = language === 'hindi' ? 'hi-IN' : 'en-IN';
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
 
@@ -121,12 +153,12 @@ export function SeniorCompanionStitch({
 
         try {
           const res = await postConverse(transcript);
-          const reply = res.reply || 'Bahut badhiya Ramesh ji, main samajh gaya!';
+          const reply = res.reply || (language === 'hindi' ? 'बहुत बढ़िया रमेश जी, मैं समझ गया!' : 'Bahut badhiya Ramesh ji, main samajh gaya!');
           setCompanionReply(reply);
           speakText(reply);
           onRefresh();
         } catch (e) {
-          const fallback = 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+          const fallback = language === 'hindi' ? 'हाँ रमेश जी! मैं आपकी सेवा में हाज़िर हूँ।' : 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
           setCompanionReply(fallback);
           speakText(fallback);
         }
@@ -134,7 +166,9 @@ export function SeniorCompanionStitch({
 
       recognition.onerror = () => {
         setIsListening(false);
-        const fallback = 'Haan Ramesh ji! Main aapko sun raha hoon, bataiye kaisa lag raha hai?';
+        const fallback = language === 'hindi'
+          ? 'हाँ रमेश जी! मैं आपको सुन रहा हूँ, बताइए कैसा लग रहा है?'
+          : 'Haan Ramesh ji! Main aapko sun raha hoon, bataiye kaisa lag raha hai?';
         setCompanionReply(fallback);
         speakText(fallback);
       };
@@ -160,6 +194,23 @@ export function SeniorCompanionStitch({
     }
   };
 
+  const handleServerPrompt = async (promptText: string) => {
+    setIsListening(false);
+    setCompanionReply(language === 'hindi' ? 'सोच रहे हैं, रमेश जी...' : 'Soch rahe hain, Ramesh ji... (Consulting Saathi)');
+    try {
+      const res = await postConverse(promptText);
+      const reply = res.reply || 'Bahut badhiya Ramesh ji!';
+      setCompanionReply(reply);
+      speakText(reply);
+      onRefresh();
+    } catch (e) {
+      console.error('Server conversation error:', e);
+      const fallback = 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+      setCompanionReply(fallback);
+      speakText(fallback);
+    }
+  };
+
   const handleTakeMedication = async (med: Medication) => {
     if (med.takenToday) return;
 
@@ -176,7 +227,13 @@ export function SeniorCompanionStitch({
         });
       } catch (err) {}
 
-      speakText(`Shabash Ramesh ji! ${med.name} lene ke liye dhanyavaad.`);
+      const praise = language === 'hindi'
+        ? `शाबाश रमेश जी! ${med.name} लेने के लिए धन्यवाद।`
+        : language === 'english'
+        ? `Well done Ramesh ji! ${med.name} recorded successfully.`
+        : `Shabash Ramesh ji! ${med.name} lene ke liye dhanyavaad.`;
+
+      speakText(praise);
       onRefresh();
     } catch (e) {
       console.error(e);
@@ -214,16 +271,161 @@ export function SeniorCompanionStitch({
     setSosFired(false);
   };
 
-  return (
-    <div className="flex flex-col relative w-full pt-20 pb-28 bg-surface min-h-screen">
-      <div className="flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto">
-        {/* Dignified Senior Greeting Card (Terra Botanical Theme) */}
-        <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-container to-surface-tint text-on-primary p-5 shadow-md relative overflow-hidden mt-3">
-          <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-white/10 blur-xl pointer-events-none"></div>
+  const handleSimulateFall = async () => {
+    setFallSimulating(true);
+    playSiren();
+    try {
+      await postTriggerSos('fall_sensor');
+      setSosFired(true);
+      onRefresh();
+      speakText('Dhyan dein! Fall sensor ne girne ka aabhas kiya hai. Priya ji ko turant suchit kiya gaya hai!');
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setFallSimulating(false);
+    }
+  };
 
+  // Scale classes
+  const scaleClass =
+    textScale === 'extra-large'
+      ? 'text-lg sm:text-xl'
+      : textScale === 'large'
+      ? 'text-base sm:text-lg'
+      : 'text-sm';
+
+  const headingScale =
+    textScale === 'extra-large'
+      ? 'text-3xl sm:text-4xl'
+      : textScale === 'large'
+      ? 'text-2xl sm:text-3xl'
+      : 'text-xl sm:text-2xl';
+
+  return (
+    <div
+      className={`flex flex-col relative w-full pt-20 pb-28 min-h-screen transition-colors ${
+        highContrast ? 'bg-black text-white font-sans' : 'bg-surface text-on-surface'
+      }`}
+    >
+      <div className="flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto">
+        {/* Accessibility & Language Quick Switcher Bar */}
+        <div
+          className={`p-3 rounded-2xl border shadow-xs flex flex-col gap-2.5 ${
+            highContrast
+              ? 'bg-zinc-900 border-yellow-400 text-yellow-300'
+              : 'bg-surface-container-low border-outline-variant/40'
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            <span className="font-headline font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-primary text-base">accessibility_new</span>
+              Senior Easy Controls
+            </span>
+            {/* Audio Test Button */}
+            <button
+              onClick={handleTestAudio}
+              className="px-2.5 py-1 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors"
+              title="Speak a greeting aloud"
+            >
+              <span className="material-symbols-outlined text-sm">volume_up</span>
+              <span>Test Voice</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            {/* Language Selector */}
+            <div className="flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30">
+              <button
+                onClick={() => setLanguage('hindi')}
+                className={`flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${
+                  language === 'hindi' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'
+                }`}
+              >
+                हिंदी
+              </button>
+              <button
+                onClick={() => setLanguage('hinglish')}
+                className={`flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${
+                  language === 'hinglish' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'
+                }`}
+              >
+                Hinglish
+              </button>
+              <button
+                onClick={() => setLanguage('english')}
+                className={`flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${
+                  language === 'english' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'
+                }`}
+              >
+                English
+              </button>
+            </div>
+
+            {/* Font Zoom Controls */}
+            <div className="flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30">
+              <button
+                onClick={() => setTextScale('normal')}
+                className={`flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${
+                  textScale === 'normal' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'
+                }`}
+                title="Normal text"
+              >
+                A
+              </button>
+              <button
+                onClick={() => setTextScale('large')}
+                className={`flex-1 py-1 rounded-lg text-center font-bold text-xs transition-all cursor-pointer ${
+                  textScale === 'large' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'
+                }`}
+                title="Large text (+20%)"
+              >
+                A+
+              </button>
+              <button
+                onClick={() => setTextScale('extra-large')}
+                className={`flex-1 py-1 rounded-lg text-center font-extrabold text-sm transition-all cursor-pointer ${
+                  textScale === 'extra-large' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'
+                }`}
+                title="Extra large text (+40%)"
+              >
+                A++
+              </button>
+            </div>
+          </div>
+
+          {/* High Contrast & Speech Speed toggles */}
+          <div className="flex items-center justify-between pt-1 border-t border-outline-variant/20 text-[11px]">
+            <button
+              onClick={() => setHighContrast(!highContrast)}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-bold cursor-pointer transition-colors ${
+                highContrast ? 'bg-yellow-400 text-black' : 'bg-surface-container text-on-surface hover:bg-surface-container-high'
+              }`}
+            >
+              <span className="material-symbols-outlined text-sm">contrast</span>
+              <span>{highContrast ? 'High Contrast ON' : 'High Contrast'}</span>
+            </button>
+
+            <button
+              onClick={() => setSpeechRate(speechRate === 0.92 ? 0.75 : 0.92)}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold cursor-pointer transition-colors"
+            >
+              <span className="material-symbols-outlined text-sm">speed</span>
+              <span>Speech: {speechRate === 0.75 ? 'Gentle Slow (0.75x)' : 'Normal (0.9x)'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Dignified Senior Greeting Card */}
+        <div
+          className={`rounded-3xl p-5 shadow-md relative overflow-hidden transition-all ${
+            highContrast
+              ? 'bg-zinc-900 border-2 border-yellow-400 text-yellow-300'
+              : 'bg-gradient-to-br from-primary via-primary-container to-surface-tint text-on-primary'
+          }`}
+        >
           <div className="flex items-start justify-between relative z-10">
             <div>
-              <div className="flex items-center gap-2 text-primary-fixed text-xs font-bold uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider opacity-90">
                 <span>Janakpuri, New Delhi</span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
@@ -232,30 +434,44 @@ export function SeniorCompanionStitch({
                 </span>
               </div>
 
-              <h1 className="font-headline font-bold text-2xl sm:text-3xl text-white mt-1 tracking-tight">
-                Namaste Ramesh Uncle! 🙏
+              <h1 className={`font-headline font-bold ${headingScale} mt-1 tracking-tight`}>
+                {language === 'hindi'
+                  ? 'नमस्ते रमेश जी! 🙏'
+                  : language === 'english'
+                  ? 'Good Day Ramesh Uncle! 🙏'
+                  : 'Namaste Ramesh Uncle! 🙏'}
               </h1>
-              <p className="text-on-primary-container text-xs sm:text-sm font-medium mt-1">
-                Wishing you a peaceful, healthy day. Saathi is always here with you.
+              <p className={`opacity-90 ${scaleClass} font-medium mt-1`}>
+                {language === 'hindi'
+                  ? 'आपका स्वास्थ्य अच्छा रहे। साथी हमेशा आपके साथ है।'
+                  : language === 'english'
+                  ? 'Wishing you a peaceful and energetic day.'
+                  : 'Wishing you a peaceful, healthy day. Saathi is always here with you.'}
               </p>
             </div>
 
-            <div className="flex items-center gap-1.5 bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-primary-fixed">
-              <span className="w-2 h-2 rounded-full bg-primary-fixed animate-pulse-dot"></span>
+            <div className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot"></span>
               <span>Priya Connected</span>
             </div>
           </div>
         </div>
 
         {/* 1. Voice Companion Orb Card */}
-        <div className="rounded-3xl bg-surface-container p-5 border border-outline-variant/40 shadow-sm text-center flex flex-col items-center">
+        <div
+          className={`rounded-3xl p-5 border shadow-sm text-center flex flex-col items-center ${
+            highContrast
+              ? 'bg-zinc-900 border-yellow-400/80 text-white'
+              : 'bg-surface-container border-outline-variant/40'
+          }`}
+        >
           <div className="flex items-center justify-between w-full mb-2">
-            <span className="font-headline font-bold text-xs uppercase tracking-wide text-secondary flex items-center gap-1">
+            <span className="font-headline font-bold text-xs uppercase tracking-wide flex items-center gap-1">
               <span className="material-symbols-outlined text-base text-primary">psychology</span>
-              AI Voice Companion
+              {language === 'hindi' ? 'एआई आवाज साथी' : 'AI Voice Companion'}
             </span>
             <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant">
-              Hindi &amp; English
+              {language.toUpperCase()}
             </span>
           </div>
 
@@ -264,7 +480,7 @@ export function SeniorCompanionStitch({
             <button
               onClick={handleOrbClick}
               aria-label="Tap to speak with Saathi"
-              className={`w-28 h-28 rounded-full flex flex-col items-center justify-center transition-all cursor-pointer shadow-lg ${
+              className={`w-32 h-32 rounded-full flex flex-col items-center justify-center transition-all cursor-pointer shadow-lg ${
                 isListening
                   ? 'bg-error text-on-error scale-110 animate-pulse'
                   : isSpeaking
@@ -272,22 +488,34 @@ export function SeniorCompanionStitch({
                   : 'bg-gradient-to-tr from-primary to-primary-container text-on-primary orb-breathe hover:scale-105 active:scale-95'
               }`}
             >
-              <span className="material-symbols-outlined text-4xl">
+              <span className="material-symbols-outlined text-5xl">
                 {isListening ? 'mic' : isSpeaking ? 'volume_up' : 'graphic_eq'}
               </span>
-              <span className="text-[11px] font-bold mt-1 uppercase tracking-tight">
-                {isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : 'Tap to Speak'}
+              <span className="text-xs font-bold mt-1 uppercase tracking-tight">
+                {isListening
+                  ? 'Listening...'
+                  : isSpeaking
+                  ? 'Speaking...'
+                  : language === 'hindi'
+                  ? 'बोलने के लिए छुएं'
+                  : 'Tap to Speak'}
               </span>
             </button>
           </div>
 
           {/* Spoken Companion Dialogue Box */}
-          <div className="w-full mt-2 p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 text-left">
+          <div
+            className={`w-full mt-2 p-3.5 rounded-2xl border text-left ${
+              highContrast
+                ? 'bg-black border-yellow-400/50 text-yellow-200'
+                : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface'
+            }`}
+          >
             <p className="text-xs text-on-surface-variant font-medium flex items-center gap-1.5 mb-1">
               <span className="material-symbols-outlined text-sm text-primary">chat_bubble</span>
               <span>Saathi Response:</span>
             </p>
-            <p className="font-headline text-sm font-semibold text-on-surface leading-relaxed">
+            <p className={`font-headline ${scaleClass} font-semibold leading-relaxed`}>
               &ldquo;{companionReply}&rdquo;
             </p>
           </div>
@@ -295,22 +523,14 @@ export function SeniorCompanionStitch({
           {/* 1-Tap Quick Conversation Topics */}
           <div className="w-full mt-3 grid grid-cols-2 gap-2 text-xs">
             <button
-              onClick={() => {
-                const text = "Kishore Kumar ji ka mashhoor gaana 'Zindagi Ke Safar Mein' 1971 ki film Aap Ki Kasam se hai. Is gaane ko R.D. Burman ji ne compose kiya tha.";
-                setCompanionReply(text);
-                speakText(text);
-              }}
+              onClick={() => handleServerPrompt('Mujhe Kishore Kumar ji ka koi gaana aur trivia batayein')}
               className="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors"
             >
               <span>🎵</span>
               <span className="truncate">Kishore Kumar Trivia</span>
             </button>
             <button
-              onClick={() => {
-                const text = "New Delhi Janakpuri mein aaj aasmaan saaf hai, dhoop achhi hai aur taapmaan 24 degree Celsius hai.";
-                setCompanionReply(text);
-                speakText(text);
-              }}
+              onClick={() => handleServerPrompt('Aaj New Delhi Janakpuri ka mausam kaisa hai?')}
               className="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors"
             >
               <span>⛅</span>
@@ -322,9 +542,9 @@ export function SeniorCompanionStitch({
         {/* 2. Tactile Medication Adherence Checklist */}
         <div className="space-y-3">
           <div className="flex items-center justify-between px-1">
-            <h2 className="font-headline font-bold text-base text-on-surface flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-xl">medication</span>
-              Aaj Ki Dawai (Today&apos;s Medicines)
+            <h2 className={`font-headline font-bold ${headingScale} text-on-surface flex items-center gap-2`}>
+              <span className="material-symbols-outlined text-primary text-2xl">medication</span>
+              {language === 'hindi' ? 'आज की दवाई' : "Aaj Ki Dawai (Today's Medicines)"}
             </h2>
             <span className="text-xs text-primary font-bold bg-primary/10 px-2.5 py-0.5 rounded-lg">
               {summary.medicationsTakenCount} of {summary.totalMedicationsCount} Taken
@@ -341,6 +561,8 @@ export function SeniorCompanionStitch({
                 className={`p-4 rounded-2xl border transition-all shadow-xs ${
                   isTaken
                     ? 'bg-surface-container-low border-primary/30 opacity-90'
+                    : highContrast
+                    ? 'bg-zinc-900 border-2 border-yellow-400'
                     : 'bg-surface-container-lowest border-outline-variant/40 hover:border-primary/50'
                 }`}
               >
@@ -366,14 +588,14 @@ export function SeniorCompanionStitch({
                       )}
                     </div>
 
-                    <h3 className="font-headline font-bold text-lg text-on-surface mt-1 truncate">
+                    <h3 className={`font-headline font-bold ${scaleClass} text-on-surface mt-1 truncate`}>
                       {med.name}
                     </h3>
                     <p className="text-xs text-on-surface-variant font-medium">
                       {med.dosage} • {med.notes || 'Routine prescription'}
                     </p>
                     <p className="text-xs text-primary font-semibold mt-1">
-                      {med.instructionsHindi || med.instructionsEnglish}
+                      {language === 'hindi' ? med.instructionsHindi : med.instructionsHindi || med.instructionsEnglish}
                     </p>
                   </div>
 
@@ -381,7 +603,7 @@ export function SeniorCompanionStitch({
                   <button
                     onClick={() => handleTakeMedication(med)}
                     disabled={isTaken || isLoading}
-                    className={`px-4 py-3 rounded-2xl font-headline font-bold text-sm flex items-center gap-2 transition-all cursor-pointer shadow-xs ${
+                    className={`px-4 py-3 rounded-2xl font-headline font-bold ${scaleClass} flex items-center gap-2 transition-all cursor-pointer shadow-xs ${
                       isTaken
                         ? 'bg-primary/10 text-primary border border-primary/20 cursor-default'
                         : 'bg-primary text-on-primary hover:bg-primary-container active:scale-95'
@@ -390,7 +612,15 @@ export function SeniorCompanionStitch({
                     <span className="material-symbols-outlined text-xl">
                       {isTaken ? 'check' : 'check_circle'}
                     </span>
-                    <span>{isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : 'Maine Le Li'}</span>
+                    <span>
+                      {isTaken
+                        ? 'Taken ✓'
+                        : isLoading
+                        ? 'Saving...'
+                        : language === 'hindi'
+                        ? 'मैंने ले ली'
+                        : 'Maine Le Li'}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -409,17 +639,38 @@ export function SeniorCompanionStitch({
             </div>
             <div>
               <h3 className="font-headline font-bold text-sm text-on-surface">
-                Sandehik Message Checker (Scam Shield)
+                Sandehik Message &amp; Screenshot Checker (Scam Shield)
               </h3>
               <p className="text-xs text-on-surface-variant">
-                WhatsApp ya Bank SMS ko check karein ki wo asli hai ya farzi
+                WhatsApp, SMS ya Screenshot photo upload karke check karein
               </p>
             </div>
           </div>
           <span className="material-symbols-outlined text-xl text-primary">arrow_forward_ios</span>
         </div>
 
-        {/* 4. Giant Emergency SOS Trigger with Accidental Cancel Countdown */}
+        {/* 4. Fall Detection Simulation Widget */}
+        <div className="p-3.5 rounded-2xl bg-secondary-container/30 border border-secondary/30 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-secondary text-on-secondary flex items-center justify-center">
+              <span className="material-symbols-outlined text-xl">personal_injury</span>
+            </div>
+            <div>
+              <h4 className="font-headline font-bold text-xs text-on-surface">Fall Detection Motion Sensor</h4>
+              <p className="text-[11px] text-on-surface-variant">Simulate living room impact / fall alert</p>
+            </div>
+          </div>
+          <button
+            onClick={handleSimulateFall}
+            disabled={fallSimulating}
+            className="px-3 py-1.5 rounded-xl bg-secondary text-on-secondary font-headline font-bold text-xs hover:bg-secondary/90 transition-all cursor-pointer shadow-xs flex items-center gap-1"
+          >
+            <span className="material-symbols-outlined text-sm">notification_important</span>
+            <span>{fallSimulating ? 'Testing...' : 'Simulate Fall'}</span>
+          </button>
+        </div>
+
+        {/* 5. Giant Emergency SOS Trigger with Accidental Cancel Countdown */}
         <div className="rounded-3xl bg-error-container/40 p-4 border border-error/30 text-center">
           <div className="flex items-center justify-between mb-2">
             <span className="font-headline font-bold text-xs uppercase tracking-wide text-error flex items-center gap-1">

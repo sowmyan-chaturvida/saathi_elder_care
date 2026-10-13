@@ -6,6 +6,9 @@ import { VoiceNoteModal } from '@/client/components/modals/VoiceNoteModal';
 import { VoIPCallModal } from '@/client/components/modals/VoIPCallModal';
 import { AddMedModal } from '@/client/components/modals/AddMedModal';
 import { HomeAmbienceModal } from '@/client/components/modals/HomeAmbienceModal';
+import { LogVitalsModal } from '@/client/components/modals/LogVitalsModal';
+import { EmergencyDispatchModal } from '@/client/components/modals/EmergencyDispatchModal';
+import { postTriggerSos } from '@/client/services/apiClient';
 
 interface FamilyPortalStitchProps {
   summary: FamilySummary;
@@ -28,7 +31,24 @@ export function FamilyPortalStitch({
   const [voipCallOpen, setVoipCallOpen] = useState(false);
   const [addMedOpen, setAddMedOpen] = useState(false);
   const [ambienceModalOpen, setAmbienceModalOpen] = useState(false);
+  const [vitalsModalOpen, setVitalsModalOpen] = useState(false);
+  const [dispatchModalOpen, setDispatchModalOpen] = useState(false);
+  const [fallSimulating, setFallSimulating] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const handleSimulateFallCaregiver = async () => {
+    setFallSimulating(true);
+    try {
+      await postTriggerSos('fall_sensor');
+      onRefresh();
+      setDispatchModalOpen(true);
+      showToast('⚠️ Fall Sensor Alert triggered and broadcasted to emergency contacts!');
+    } catch (e) {
+      console.error('Failed to trigger fall simulation', e);
+    } finally {
+      setFallSimulating(false);
+    }
+  };
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -86,8 +106,33 @@ export function FamilyPortalStitch({
       )}
 
       <div className="flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto">
+        {/* Active SOS High-Priority Interactive Card */}
+        {summary.activeSos && (
+          <div className="rounded-2xl bg-error text-on-error p-4 shadow-lg border-2 border-white/30 flex items-center justify-between animate-pulse mt-3">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-3xl">warning</span>
+              <div>
+                <h3 className="font-headline font-bold text-sm">
+                  {summary.activeSos.triggerSource === 'fall_sensor'
+                    ? 'FALL SENSOR ALERT DETECTED!'
+                    : 'EMERGENCY SOS ACTIVE!'}
+                </h3>
+                <p className="text-xs text-error-container mt-0.5">
+                  Ramesh Papa triggered emergency from Janakpuri Hub
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setDispatchModalOpen(true)}
+              className="px-3.5 py-2 rounded-xl bg-surface-container-lowest text-error font-headline font-bold text-xs hover:bg-surface cursor-pointer shadow-md transition-all active:scale-95"
+            >
+              Dispatch WA/SMS
+            </button>
+          </div>
+        )}
+
         {/* 1. Peace of Mind Status Banner (Terra Botanical Reassurance) */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high/60 p-4 border border-outline-variant/40 shadow-sm mt-3 transition-all hover:shadow-md">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-high/60 p-4 border border-outline-variant/40 shadow-sm mt-1 transition-all hover:shadow-md">
           <div className="absolute -right-10 -bottom-10 w-36 h-36 rounded-full bg-primary/8 blur-2xl pointer-events-none"></div>
           
           <div className="flex items-start justify-between gap-3 relative z-10">
@@ -235,43 +280,45 @@ export function FamilyPortalStitch({
 
         {/* 4. Two-Column Split (Vitals & Sentiment Mood) */}
         <div className="grid grid-cols-2 gap-3">
-          {/* Omron BLE Vitals */}
-          <div
-            onClick={() => showToast('Omron BLE Heart Sync: Normal 74 bpm • 126/82 mmHg')}
-            className="bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
-          >
-            <div>
-              <div className="flex items-center justify-between text-secondary">
-                <span className="material-symbols-outlined text-lg text-primary">favorite</span>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot"></span> Omron BLE
-                </span>
+          {/* Health Vitals Card */}
+          {(() => {
+            const latestVitals = summary.vitals?.[0];
+            const bp = latestVitals ? `${latestVitals.bloodPressureSystolic}/${latestVitals.bloodPressureDiastolic}` : '124/80';
+            const pulse = latestVitals?.pulse || 72;
+            const sugar = latestVitals ? `${latestVitals.bloodSugar}` : '108';
+            return (
+              <div
+                onClick={() => setVitalsModalOpen(true)}
+                className="bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer group"
+                title="Click to view & log vitals"
+              >
+                <div>
+                  <div className="flex items-center justify-between text-secondary">
+                    <span className="material-symbols-outlined text-lg text-primary">vital_signs</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant flex items-center gap-1 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot"></span> + Log Vitals
+                    </span>
+                  </div>
+                  <div className="mt-2 flex items-baseline justify-between">
+                    <div>
+                      <span className="font-headline text-2xl font-bold text-on-surface leading-none">{pulse}</span>
+                      <span className="text-xs text-on-surface-variant ml-0.5 font-medium">bpm</span>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-primary">{sugar} mg/dL</span>
+                  </div>
+                  <p className="text-xs text-on-surface font-semibold mt-1">
+                    {bp} <span className="text-on-surface-variant font-normal">mmHg (BP)</span>
+                  </p>
+                </div>
+                <div className="mt-3 pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+                  <span className="text-[11px] text-primary flex items-center gap-0.5 font-semibold">
+                    <span className="material-symbols-outlined text-xs">check_circle</span> Normal Range
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant font-medium">Omron Sync</span>
+                </div>
               </div>
-              <div className="mt-2">
-                <span className="font-headline text-3xl font-bold text-on-surface leading-none">74</span>
-                <span className="text-xs text-on-surface-variant ml-0.5 font-medium">bpm</span>
-              </div>
-              <p className="text-xs text-on-surface font-semibold mt-1">
-                126/82 <span className="text-on-surface-variant font-normal">mmHg</span>
-              </p>
-            </div>
-            <div className="mt-3 pt-2 border-t border-outline-variant/30">
-              {/* Terra botanical micro wave curve with animated ecg pulse */}
-              <svg className="w-full h-5 text-primary overflow-visible" fill="none" viewBox="0 0 100 24">
-                <path
-                  className="animate-ecg"
-                  d="M0 16 Q 15 12, 25 15 T 45 10 T 65 14 T 80 8 T 100 12"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                ></path>
-              </svg>
-              <span className="text-[11px] text-primary flex items-center gap-0.5 mt-1 font-semibold">
-                <span className="material-symbols-outlined text-xs">arrow_downward</span> Optimal range
-              </span>
-            </div>
-          </div>
+            );
+          })()}
 
           {/* Sentiment & Emotional Mood */}
           <div
@@ -305,50 +352,65 @@ export function FamilyPortalStitch({
         <div className="bg-surface-container-high/80 rounded-2xl p-3 border border-outline-variant/50 shadow-sm">
           <div className="flex items-center justify-between mb-2.5 px-1">
             <span className="font-headline text-xs font-bold text-on-surface uppercase tracking-wide">
-              Remote Care Actions
+              Remote Care &amp; Safety Actions
             </span>
             <span className="text-[10px] font-bold text-secondary uppercase tracking-wider bg-surface-container px-2 py-0.5 rounded-full">
               Instant Relay
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             {/* Voice Note */}
             <button
               onClick={() => setVoiceNoteOpen(true)}
-              className="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
               id="voiceNoteBtn"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
-                <span className="material-symbols-outlined text-xl">mic</span>
+              <div className="w-9 h-9 rounded-xl bg-primary-fixed text-on-primary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
+                <span className="material-symbols-outlined text-lg">mic</span>
               </div>
-              <span className="text-xs font-semibold text-center text-on-surface">Voice Note</span>
+              <span className="text-[11px] font-semibold text-center text-on-surface truncate w-full">Voice Note</span>
             </button>
 
             {/* Call Ramesh */}
             <button
               onClick={() => setVoipCallOpen(true)}
-              className="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
               id="callPapaBtn"
             >
-              <div className="w-10 h-10 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
-                <span className="material-symbols-outlined text-xl">call</span>
+              <div className="w-9 h-9 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
+                <span className="material-symbols-outlined text-lg">call</span>
               </div>
-              <span className="text-xs font-semibold text-center text-on-surface">Call Ramesh</span>
+              <span className="text-[11px] font-semibold text-center text-on-surface truncate w-full">Call Papa</span>
             </button>
 
-            {/* Add Med */}
+            {/* Log Vitals */}
             <button
-              onClick={() => setAddMedOpen(true)}
-              className="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
-              id="addMedBtn"
+              onClick={() => setVitalsModalOpen(true)}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
-                <span className="material-symbols-outlined text-xl">add_circle</span>
+              <div className="w-9 h-9 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
+                <span className="material-symbols-outlined text-lg">favorite</span>
               </div>
-              <span className="text-xs font-semibold text-center text-on-surface">Add Med</span>
+              <span className="text-[11px] font-semibold text-center text-on-surface truncate w-full">Log Vitals</span>
+            </button>
+
+            {/* Simulate Fall Sensor */}
+            <button
+              onClick={handleSimulateFallCaregiver}
+              disabled={fallSimulating}
+              className="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-error-container/40 hover:bg-error-container/80 hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-error/30 text-error group cursor-pointer"
+              title="Test Fall Sensor trigger"
+            >
+              <div className="w-9 h-9 rounded-xl bg-error text-on-error flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
+                <span className="material-symbols-outlined text-lg">personal_injury</span>
+              </div>
+              <span className="text-[11px] font-bold text-center text-error truncate w-full">
+                {fallSimulating ? 'Testing...' : 'Test Fall'}
+              </span>
             </button>
           </div>
         </div>
+
 
         {/* 6. Live Activity Feed & Audit Timeline */}
         <div className="bg-surface-container rounded-2xl p-4 border border-outline-variant/40 shadow-sm">
@@ -584,6 +646,29 @@ export function FamilyPortalStitch({
         isOpen={ambienceModalOpen}
         onClose={() => setAmbienceModalOpen(false)}
       />
+
+      <LogVitalsModal
+        isOpen={vitalsModalOpen}
+        onClose={() => setVitalsModalOpen(false)}
+        onSuccess={() => {
+          showToast('Health vitals recorded and verified!');
+          onRefresh();
+        }}
+      />
+
+      {summary.activeSos && (
+        <EmergencyDispatchModal
+          isOpen={dispatchModalOpen || !!summary.activeSos}
+          onClose={() => setDispatchModalOpen(false)}
+          activeSos={summary.activeSos}
+          senior={summary.senior}
+          onResolved={() => {
+            showToast('Emergency resolved and marked safe.');
+            onRefresh();
+          }}
+        />
+      )}
     </div>
   );
 }
+

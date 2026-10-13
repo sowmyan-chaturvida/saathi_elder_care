@@ -133,6 +133,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$security$2f
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$audit$2f$auditStore$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/server/audit/auditStore.ts [app-route] (ecmascript)");
 ;
 ;
+;
 function logAuditEvent(params) {
     const sanitizedDetails = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$security$2f$piiSanitizer$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["sanitizeObject"])(params.details || {});
     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$audit$2f$auditStore$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auditStore"].append({
@@ -249,6 +250,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/server/db/seedData.ts [app-route] (ecmascript)");
 ;
+;
 class CareStore {
     senior = {
         ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_SENIOR"]
@@ -256,6 +258,7 @@ class CareStore {
     medications = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_MEDICATIONS"]));
     routines = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ROUTINES"]));
     activities = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ACTIVITIES"]));
+    vitals = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_VITALS"]));
     activeSos = null;
     lastCheckinTime = new Date(Date.now() - 15 * 60 * 1000).toISOString();
     getSeniorProfile() {
@@ -314,10 +317,12 @@ class CareStore {
             triggerSource: source
         };
         this.activeSos = alert;
+        const sourceName = source === 'fall_sensor' ? 'Fall Detection Sensor (Living Room / Wearable)' : source === 'voice_trigger' ? 'Voice Distress Trigger ("Bachao / Help")' : 'Oversized Senior SOS Button';
+        const description = source === 'fall_sensor' ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${this.senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!` : `Emergency alert activated by ${this.senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
         this.addActivity({
             type: 'sos_triggered',
-            title: 'EMERGENCY SOS TRIGGERED',
-            description: `Emergency alert activated by ${this.senior.preferredName} via ${source}. Loud siren sounded and family notified!`,
+            title: source === 'fall_sensor' ? 'FALL DETECTED — EMERGENCY SOS' : 'EMERGENCY SOS TRIGGERED',
+            description,
             severity: 'critical',
             metadata: {
                 sosId: alert.id,
@@ -347,6 +352,27 @@ class CareStore {
         });
         return resolvedAlert;
     }
+    getVitals() {
+        return this.vitals;
+    }
+    addVitalsLog(log) {
+        const newLog = {
+            id: `vit_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+            timestamp: new Date().toISOString(),
+            ...log
+        };
+        this.vitals.unshift(newLog);
+        this.addActivity({
+            type: 'routine_completed',
+            title: 'Health Vitals Logged',
+            description: `BP: ${newLog.bloodPressureSystolic}/${newLog.bloodPressureDiastolic} mmHg • Sugar: ${newLog.bloodSugar} mg/dL (${newLog.bloodSugarType}) recorded by ${newLog.recordedBy}.`,
+            severity: newLog.bloodPressureSystolic > 140 || newLog.bloodSugar > 160 ? 'warning' : 'info',
+            metadata: {
+                vitalsId: newLog.id
+            }
+        });
+        return newLog;
+    }
     addActivity(params) {
         const log = {
             id: `act_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
@@ -371,6 +397,7 @@ class CareStore {
             totalMedicationsCount: total,
             medications: this.medications,
             routines: this.routines,
+            vitals: this.vitals,
             recentActivities: this.activities.slice(0, 15),
             lastCheckinTime: this.lastCheckinTime
         };
@@ -391,8 +418,34 @@ __turbopack_context__.s([
     "INITIAL_ROUTINES",
     ()=>INITIAL_ROUTINES,
     "INITIAL_SENIOR",
-    ()=>INITIAL_SENIOR
+    ()=>INITIAL_SENIOR,
+    "INITIAL_VITALS",
+    ()=>INITIAL_VITALS
 ]);
+const INITIAL_VITALS = [
+    {
+        id: 'vit_1',
+        timestamp: new Date(Date.now() - 3.5 * 3600 * 1000).toISOString(),
+        bloodPressureSystolic: 122,
+        bloodPressureDiastolic: 78,
+        bloodSugar: 104,
+        bloodSugarType: 'fasting',
+        pulse: 71,
+        recordedBy: 'Ramesh Chandra Sharma',
+        notes: 'Morning routine check. Normal blood pressure & sugar.'
+    },
+    {
+        id: 'vit_2',
+        timestamp: new Date(Date.now() - 26 * 3600 * 1000).toISOString(),
+        bloodPressureSystolic: 126,
+        bloodPressureDiastolic: 82,
+        bloodSugar: 138,
+        bloodSugarType: 'post_meal',
+        pulse: 75,
+        recordedBy: 'Priya Sharma (During call check-in)',
+        notes: 'Post-lunch reading yesterday.'
+    }
+];
 const INITIAL_SENIOR = {
     id: 'senior_ramesh_sharma',
     name: 'Ramesh Chandra Sharma',
@@ -575,6 +628,7 @@ __turbopack_context__.s([
     "sanitizePii",
     ()=>sanitizePii
 ]);
+;
 /**
  * SOC 2 Privacy Control: PII Sanitization
  * Automatically redacts sensitive Indian mobile numbers, email addresses, 
