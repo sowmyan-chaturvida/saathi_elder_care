@@ -16,7 +16,6 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
   const [scheduledTime, setScheduledTime] = useState('08:30 PM');
   const [mealRelation, setMealRelation] = useState<'before_food' | 'after_food' | 'with_food'>('after_food');
   const [instructionsEnglish, setInstructionsEnglish] = useState('Take with warm water after food');
-  const [instructionsHindi, setInstructionsHindi] = useState('Khane ke baad gungune paani ke saath lein');
   const [notes, setNotes] = useState('Prescribed by Dr. Anand Verma');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +40,6 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
         scheduledTime,
         mealRelation,
         instructionsEnglish,
-        instructionsHindi,
         notes,
         colorTag: timeSlot === 'morning' ? '#316342' : timeSlot === 'afternoon' ? '#655d52' : '#6d5622',
       });
@@ -82,18 +80,19 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
           </div>
         )}
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="mt-4 space-y-3.5">
           <div>
             <label className="block text-xs font-bold text-secondary uppercase tracking-wider mb-1">
-              Medicine Name & Strength
+              Medicine Name &amp; Strength
             </label>
             <input
               type="text"
-              required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Metformin 500mg, Shelcal 500"
-              className="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+              placeholder="e.g. Metformin 500mg, Telmisartan 40mg"
+              className="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
+              required
             />
           </div>
 
@@ -126,10 +125,10 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
                 }}
                 className="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
               >
-                <option value="morning">Morning (सुबह)</option>
-                <option value="afternoon">Afternoon (दोपहर)</option>
-                <option value="evening">Evening (शाम)</option>
-                <option value="night">Night (रात)</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+                <option value="night">Night</option>
               </select>
             </div>
           </div>
@@ -156,22 +155,22 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
                 onChange={(e) => setMealRelation(e.target.value as any)}
                 className="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
               >
-                <option value="after_food">After Food (खाने के बाद)</option>
-                <option value="before_food">Before Food (खाली पेट)</option>
-                <option value="with_food">With Food (खाने के साथ)</option>
+                <option value="after_food">After Food</option>
+                <option value="before_food">Before Food</option>
+                <option value="with_food">With Food</option>
               </select>
             </div>
           </div>
 
           <div>
             <label className="block text-xs font-bold text-secondary uppercase tracking-wider mb-1">
-              Instructions (Hindi / Vernacular)
+              Instructions
             </label>
             <input
               type="text"
-              value={instructionsHindi}
-              onChange={(e) => setInstructionsHindi(e.target.value)}
-              placeholder="Khane ke baad paani ke saath"
+              value={instructionsEnglish}
+              onChange={(e) => setInstructionsEnglish(e.target.value)}
+              placeholder="Take with warm water after food"
               className="w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
             />
           </div>

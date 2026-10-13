@@ -44,7 +44,7 @@ export function useSpeech() {
         const recognition = new SpeechRecognition();
         recognition.continuous = false;
         recognition.interimResults = true;
-        recognition.lang = 'hi-IN'; // Default to Indian Hindi / Hinglish
+        recognition.lang = 'en-US'; // English speech recognition
 
         recognition.onstart = () => setIsListening(true);
         recognition.onresult = (event: SpeechRecognitionEvent) => {
@@ -97,12 +97,13 @@ export function useSpeech() {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.92; // Slightly measured, respectful pace for senior
     utterance.pitch = 1.0;
+    utterance.lang = 'en-US';
 
-    // Pick Indian English / Hindi voice if available
+    // Pick clear English voice if available
     const voices = window.speechSynthesis.getVoices();
-    const indianVoice = voices.find(v => v.lang.includes('hi-IN') || v.lang.includes('en-IN') || v.name.includes('India'));
-    if (indianVoice) {
-      utterance.voice = indianVoice;
+    const englishVoice = voices.find(v => v.lang.startsWith('en') || v.lang.includes('en-US') || v.lang.includes('en-IN') || v.name.includes('English'));
+    if (englishVoice) {
+      utterance.voice = englishVoice;
     }
 
     utterance.onstart = () => setIsSpeaking(true);

@@ -322,16 +322,13 @@ async function detectScamMessage(text, imageBase64) {
                 verdict: 'HIGH',
                 confidenceScore: 92,
                 category: 'general_phishing',
-                titleHindi: 'संदिग्ध स्क्रीनशॉट: बैंक या बिल फ्रॉड का खतरा',
                 titleEnglish: 'High Risk: Suspicious Screenshot Alert',
-                explanationHindi: 'स्क्रीनशॉट में संदिग्ध लिंक या तत्काल भुगतान का दबाव दिख रहा है। कृपया किसी भी दिए गए नंबर पर कॉल न करें और न ही कोई ऐप डाउनलोड करें।',
-                explanationEnglish: 'The uploaded screenshot shows urgent financial demands or unverified link patterns commonly used in cyber fraud targeting Indian seniors.',
+                explanationEnglish: 'The uploaded screenshot shows urgent financial demands or unverified link patterns commonly used in cyber fraud targeting seniors.',
                 redFlags: [
                     'Unverified WhatsApp/SMS sender banner',
                     'Urgent demand for payment or KYC link',
-                    'Unknown APK or Bitly shortlink'
+                    'Unknown APK or shortlink'
                 ],
-                recommendedActionHindi: 'इस मैसेज पर कोई कार्रवाई न करें। अपने परिवार के सदस्य (प्रिया) को सूचित करें।',
                 recommendedActionEnglish: 'Do not interact with the message or transfer any funds. Check with family caregiver.'
             };
         }
@@ -340,22 +337,19 @@ async function detectScamMessage(text, imageBase64) {
     try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
         const prompt = `
-You are an expert cybersecurity investigator protecting Indian elderly citizens from fraud.
+You are an expert cybersecurity investigator protecting elderly citizens from fraud.
 Analyze the following message or screenshot image received on SMS/WhatsApp:
-${text ? `Message Text: """${text}"""` : 'Inspect the attached screenshot for fraudulent notices, bank KYC threats, electricity disconnections, fake KBC lotteries, or digital arrest scams.'}
+${text ? `Message Text: """${text}"""` : 'Inspect the attached screenshot for fraudulent notices, bank KYC threats, electricity disconnections, fake lotteries, or extortion scams.'}
 
 Return a strict JSON object with these exact keys:
 {
   "verdict": "HIGH" | "MEDIUM" | "SAFE",
   "confidenceScore": number (0-100),
   "category": "electricity_bill" | "banking_kyc" | "lottery_kbc" | "apk_download" | "digital_arrest" | "general_phishing" | "safe_message",
-  "titleHindi": "Short clear headline in Hindi",
   "titleEnglish": "Short clear headline in English",
-  "explanationHindi": "Clear explanation in simple everyday Hindi for an Indian senior citizen (no jargon)",
-  "explanationEnglish": "Clear explanation in English",
+  "explanationEnglish": "Clear explanation in English for an elderly citizen (no jargon)",
   "redFlags": ["specific red flag 1", "specific red flag 2"],
-  "recommendedActionHindi": "Immediate safety advice in Hindi (e.g. do not call, do not click, delete now)",
-  "recommendedActionEnglish": "Immediate safety advice in English"
+  "recommendedActionEnglish": "Immediate safety advice in English (e.g. do not call, do not click, delete now)"
 }
 Do NOT include markdown formatting or backticks around the JSON.
 `;
@@ -436,20 +430,17 @@ function analyzeScamLocally(rawText) {
             verdict: 'HIGH',
             confidenceScore: 98,
             category: 'electricity_bill',
-            titleHindi: 'DANGER: Fake Electricity Bill Disconnection Fraud',
             titleEnglish: 'DANGER: Fake Electricity Bill Disconnection Fraud',
-            explanationHindi: 'This is a notorious cyber fraud scheme. Official utility boards never send SMS threats from personal mobile numbers claiming power will be cut tonight.',
             explanationEnglish: 'This is a notorious cyber fraud scheme. Official utility boards never send SMS threats from personal mobile numbers claiming power will be cut tonight.',
             redFlags: [
-                'Sent from an unknown personal mobile number, not an official utility header (e.g. BSES, TATA Power).',
+                'Sent from an unknown personal mobile number, not an official utility header.',
                 'Manufactures artificial panic with an immediate deadline ("tonight by 9:30 PM").',
-                'Directs you to call an unofficial personal phone number or install screen-sharing software (AnyDesk, TeamViewer).'
+                'Directs you to call an unofficial personal phone number or install unverified software.'
             ],
-            recommendedActionHindi: 'Do NOT call this phone number. Do NOT click any links or install apps. Delete this message immediately.',
             recommendedActionEnglish: 'Do NOT call this phone number. Do NOT click any links or install apps. Delete this message immediately.'
         };
     }
-    // 2. Bank KYC / Account Freeze / SBI YONO Scam
+    // 2. Bank KYC / Account Freeze Scam
     if ((lower.includes('sbi') || lower.includes('bank') || lower.includes('hdfc') || lower.includes('icici') || lower.includes('pan')) && (lower.includes('block') || lower.includes('suspend') || lower.includes('kyc') || lower.includes('update') || lower.includes('apk') || lower.includes('yono'))) {
         return {
             id,
@@ -458,16 +449,13 @@ function analyzeScamLocally(rawText) {
             verdict: 'HIGH',
             confidenceScore: 96,
             category: 'banking_kyc',
-            titleHindi: 'HIGH RISK: Fake Bank Account / PAN KYC Phishing Scam',
             titleEnglish: 'HIGH RISK: Fake Bank Account / PAN KYC Phishing Scam',
-            explanationHindi: 'Banks never send SMS links asking customers to update PAN or KYC documents. This is a credential-harvesting trap designed to compromise net banking access and OTPs.',
             explanationEnglish: 'Banks never send SMS links asking customers to update PAN or KYC documents. This is a credential-harvesting trap designed to compromise net banking access and OTPs.',
             redFlags: [
                 'Contains suspicious unverified links or downloads (.apk files, bit.ly, tinyurl).',
                 'Falsely warns that your bank account or debit card will be suspended within 24 hours.',
-                'Attempts to solicit sensitive OTPs, PINs, or PAN details.'
+                'Attempts to solicit sensitive OTPs, PINs, or account details.'
             ],
-            recommendedActionHindi: 'Never click on the link. Never share banking OTPs or debit card details with anyone.',
             recommendedActionEnglish: 'Never click on the link. Never share banking OTPs or debit card details with anyone.'
         };
     }
@@ -480,20 +468,17 @@ function analyzeScamLocally(rawText) {
             verdict: 'HIGH',
             confidenceScore: 99,
             category: 'lottery_kbc',
-            titleHindi: 'FRAUD: Fake Lottery & Unsolicited Cash Prize Scam',
             titleEnglish: 'FRAUD: Fake Lottery & Unsolicited Cash Prize Scam',
-            explanationHindi: 'You have not entered any lottery. Fraudsters impersonate popular TV shows or lotteries to convince victims to pay advance "processing fees" or "taxes".',
             explanationEnglish: 'You have not entered any lottery. Fraudsters impersonate popular TV shows or lotteries to convince victims to pay advance "processing fees" or "taxes".',
             redFlags: [
                 'Promises unrealistic lottery winnings without any prior ticket purchase.',
                 'Uses counterfeit logos and forged official credentials on WhatsApp.',
                 'Demands advance payment of processing charges before releasing the prize money.'
             ],
-            recommendedActionHindi: 'This is 100% fraudulent. Block and report the sender on WhatsApp immediately.',
-            recommendedActionEnglish: 'This is 100% fraudulent. Block and report the sender on WhatsApp immediately.'
+            recommendedActionEnglish: 'This is 100% fraudulent. Block and report the sender immediately.'
         };
     }
-    // 4. Digital Arrest / Fake Police / Law Enforcement Threat
+    // 4. Extortion / Fake Authority Threat
     if (lower.includes('cbi') || lower.includes('police') || lower.includes('customs') || lower.includes('arrest') || lower.includes('parcel') || lower.includes('drugs')) {
         return {
             id,
@@ -502,20 +487,17 @@ function analyzeScamLocally(rawText) {
             verdict: 'HIGH',
             confidenceScore: 97,
             category: 'digital_arrest',
-            titleHindi: 'CRITICAL WARNING: Impersonation / Fake Police Extortion',
-            titleEnglish: 'CRITICAL WARNING: Impersonation / Fake Police Extortion',
-            explanationHindi: 'Legitimate law enforcement agencies and courts NEVER place citizens under "digital arrest" via WhatsApp or demand monetary deposits for clearance.',
+            titleEnglish: 'CRITICAL WARNING: Impersonation & Extortion Scheme',
             explanationEnglish: 'Legitimate law enforcement agencies and courts NEVER place citizens under "digital arrest" via WhatsApp or demand monetary deposits for clearance.',
             redFlags: [
                 'Fabricates criminal allegations involving parcels or bank fraud over video calls.',
                 'Demands that you remain isolated in a closed room under surveillance.',
-                'Demands urgent fund transfers to a "government verification account".'
+                'Demands urgent fund transfers to a "verification account".'
             ],
-            recommendedActionHindi: 'Do not panic. Disconnect the call immediately and notify your family or call the National Cyber Crime Helpline at 1930.',
-            recommendedActionEnglish: 'Do not panic. Disconnect the call immediately and notify your family or call the National Cyber Crime Helpline at 1930.'
+            recommendedActionEnglish: 'Do not panic. Disconnect the call immediately and notify your family or authorities.'
         };
     }
-    // 5. Default / Unknown message
+    // 5. Default / Unknown message with links
     const hasLinks = /https?:\/\/[^\s]+/g.test(rawText);
     if (hasLinks) {
         return {
@@ -525,15 +507,12 @@ function analyzeScamLocally(rawText) {
             verdict: 'MEDIUM',
             confidenceScore: 75,
             category: 'general_phishing',
-            titleHindi: 'CAUTION: Message Contains Unverified External Links',
             titleEnglish: 'CAUTION: Message Contains Unverified External Links',
-            explanationHindi: 'This message contains web links from an unverified source. Unsolicited links can redirect to malicious phishing pages or trigger automatic downloads.',
             explanationEnglish: 'This message contains web links from an unverified source. Unsolicited links can redirect to malicious phishing pages or trigger automatic downloads.',
             redFlags: [
                 'Contains unverified third-party hyperlinks.',
                 'The sender is not in your recognized contact directory.'
             ],
-            recommendedActionHindi: 'Check with a trusted family member before clicking any links in this message.',
             recommendedActionEnglish: 'Check with a trusted family member before clicking any links in this message.'
         };
     }
@@ -544,12 +523,9 @@ function analyzeScamLocally(rawText) {
         verdict: 'SAFE',
         confidenceScore: 90,
         category: 'safe_message',
-        titleHindi: 'Message Appears Legitimate',
         titleEnglish: 'Message Appears Legitimate',
-        explanationHindi: 'No scam indicators, payment requests, or malicious links were detected in this message.',
         explanationEnglish: 'No scam indicators, payment requests, or malicious links were detected in this message.',
         redFlags: [],
-        recommendedActionHindi: 'This message appears normal. Exercise standard discretion.',
         recommendedActionEnglish: 'This message appears normal. Exercise standard discretion.'
     };
 }
@@ -937,7 +913,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'morning',
         scheduledTime: '08:00 AM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with warm water 15 minutes after breakfast',
         instructionsEnglish: 'Take with warm water 15 minutes after breakfast',
         takenToday: true,
         takenAt: new Date(Date.now() - 4 * 3600 * 1000).toISOString(),
@@ -951,7 +926,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'afternoon',
         scheduledTime: '01:30 PM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with water after lunch',
         instructionsEnglish: 'Take with water after lunch',
         takenToday: false,
         notes: 'Bone strength & joint health',
@@ -964,7 +938,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'night',
         scheduledTime: '08:30 PM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with water after dinner',
         instructionsEnglish: 'Take with water after dinner',
         takenToday: false,
         notes: 'Sugar management',
@@ -975,7 +948,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_morning_walk',
         title: 'Morning Park Walk & Breathing Exercises',
-        titleHindi: 'Morning Park Walk & Breathing Exercises (District Park)',
         time: '06:45 AM',
         icon: 'Footprints',
         completed: true,
@@ -984,7 +956,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_hydration',
         title: 'Warm Water & Fenugreek Seeds',
-        titleHindi: 'Warm water with soaked fenugreek seeds',
         time: '07:30 AM',
         icon: 'GlassWater',
         completed: true,
@@ -993,7 +964,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_music',
         title: 'Classic Retro Songs Radio',
-        titleHindi: 'Classic golden era radio songs',
         time: '04:30 PM',
         icon: 'Music',
         completed: false,
@@ -1002,7 +972,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_family_call',
         title: 'Evening Catch-up Call with Priya',
-        titleHindi: 'Daily evening call with daughter Priya',
         time: '07:30 PM',
         icon: 'PhoneCall',
         completed: false,
@@ -1015,7 +984,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
         type: 'scam_checked',
         title: 'Suspicious Disconnection SMS Deflected',
-        description: 'Papa checked an SMS alleging BSES Rajdhani bill default. Saathi auto-quarantined the link (bit.ly/del-power-pay) and alerted audio warning. System Blocked Successfully.',
+        description: 'Papa checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
         severity: 'warning',
         metadata: {
             quarantinedUrl: 'bit.ly/del-power-pay',
@@ -1027,8 +996,8 @@ const INITIAL_ACTIVITIES = [
         id: 'act_companion_1',
         timestamp: new Date(Date.now() - 2.5 * 3600 * 1000).toISOString(),
         type: 'companion_chat',
-        title: 'Retro Kishore Kumar & Weather Chat',
-        description: '12-minute engaging Hindi dialogue. Papa asked for "Zindagi Ke Safar Mein" playlist and checked afternoon temperature for West Delhi.',
+        title: 'Classic Retro Music & Weather Chat',
+        description: '12-minute engaging dialogue. Papa asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
         severity: 'info',
         metadata: {
             audioDuration: '12m',
@@ -1041,7 +1010,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 4.2 * 3600 * 1000).toISOString(),
         type: 'medication_taken',
         title: 'Amlodipine 5mg marked Taken',
-        description: 'Confirmed via physical Senior Tablet interaction: "Maine Le Li" button tapped on living room hub. Hardware Touch Verified.',
+        description: 'Confirmed via physical Senior Tablet interaction: "Mark as Taken" button tapped on living room hub. Hardware Touch Verified.',
         severity: 'success',
         metadata: {
             hardwareTouchVerified: true,

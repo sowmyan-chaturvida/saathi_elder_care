@@ -99,6 +99,12 @@
       "namedRegex": "^/api/v1/sos/trigger(?:/)?$"
     },
     {
+      "page": "/api/v1/vitals",
+      "regex": "^/api/v1/vitals(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/vitals(?:/)?$"
+    },
+    {
       "page": "/family",
       "regex": "^/family(?:/)?$",
       "routeKeys": {},

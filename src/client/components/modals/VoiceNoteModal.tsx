@@ -87,7 +87,7 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
         {/* Recording or Text area */}
         <div className="mt-4">
           <label className="block text-xs font-bold text-secondary uppercase tracking-wider mb-1.5">
-            Voice Note Message (Hindi / English / Hinglish)
+            Voice Note Message
           </label>
           <textarea
             value={noteText}

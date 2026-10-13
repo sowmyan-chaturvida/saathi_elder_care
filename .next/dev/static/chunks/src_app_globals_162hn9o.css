@@ -1140,6 +1140,10 @@
     max-width: var(--container-6xl);
   }
 
+  .max-w-\[200px\] {
+    max-width: 200px;
+  }
+
   .max-w-full {
     max-width: 100%;
   }

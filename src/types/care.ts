@@ -9,7 +9,6 @@ export interface Medication {
   timeSlot: TimeSlot;
   scheduledTime: string; // e.g. "08:00 AM"
   mealRelation: MealRelation;
-  instructionsHindi: string; // e.g. "Nashte ke 15 minute baad paani ke saath"
   instructionsEnglish: string;
   takenToday: boolean;
   takenAt?: string; // ISO string
@@ -20,7 +19,6 @@ export interface Medication {
 export interface RoutineItem {
   id: string;
   title: string;
-  titleHindi: string;
   time: string;
   icon: string;
   completed: boolean;
@@ -34,7 +32,7 @@ export interface SeniorProfile {
   age: number;
   city: string;
   locality: string;
-  languagePreference: 'hinglish' | 'hindi' | 'english';
+  languagePreference: 'english';
   conditions: string[];
   allergies: string[];
   emergencyContacts: EmergencyContact[];

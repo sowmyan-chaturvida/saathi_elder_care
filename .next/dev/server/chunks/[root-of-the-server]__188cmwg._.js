@@ -355,7 +355,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'morning',
         scheduledTime: '08:00 AM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with warm water 15 minutes after breakfast',
         instructionsEnglish: 'Take with warm water 15 minutes after breakfast',
         takenToday: true,
         takenAt: new Date(Date.now() - 4 * 3600 * 1000).toISOString(),
@@ -369,7 +368,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'afternoon',
         scheduledTime: '01:30 PM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with water after lunch',
         instructionsEnglish: 'Take with water after lunch',
         takenToday: false,
         notes: 'Bone strength & joint health',
@@ -382,7 +380,6 @@ const INITIAL_MEDICATIONS = [
         timeSlot: 'night',
         scheduledTime: '08:30 PM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Take with water after dinner',
         instructionsEnglish: 'Take with water after dinner',
         takenToday: false,
         notes: 'Sugar management',
@@ -393,7 +390,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_morning_walk',
         title: 'Morning Park Walk & Breathing Exercises',
-        titleHindi: 'Morning Park Walk & Breathing Exercises (District Park)',
         time: '06:45 AM',
         icon: 'Footprints',
         completed: true,
@@ -402,7 +398,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_hydration',
         title: 'Warm Water & Fenugreek Seeds',
-        titleHindi: 'Warm water with soaked fenugreek seeds',
         time: '07:30 AM',
         icon: 'GlassWater',
         completed: true,
@@ -411,7 +406,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_music',
         title: 'Classic Retro Songs Radio',
-        titleHindi: 'Classic golden era radio songs',
         time: '04:30 PM',
         icon: 'Music',
         completed: false,
@@ -420,7 +414,6 @@ const INITIAL_ROUTINES = [
     {
         id: 'rt_family_call',
         title: 'Evening Catch-up Call with Priya',
-        titleHindi: 'Daily evening call with daughter Priya',
         time: '07:30 PM',
         icon: 'PhoneCall',
         completed: false,
@@ -433,7 +426,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
         type: 'scam_checked',
         title: 'Suspicious Disconnection SMS Deflected',
-        description: 'Papa checked an SMS alleging BSES Rajdhani bill default. Saathi auto-quarantined the link (bit.ly/del-power-pay) and alerted audio warning. System Blocked Successfully.',
+        description: 'Papa checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
         severity: 'warning',
         metadata: {
             quarantinedUrl: 'bit.ly/del-power-pay',
@@ -445,8 +438,8 @@ const INITIAL_ACTIVITIES = [
         id: 'act_companion_1',
         timestamp: new Date(Date.now() - 2.5 * 3600 * 1000).toISOString(),
         type: 'companion_chat',
-        title: 'Retro Kishore Kumar & Weather Chat',
-        description: '12-minute engaging Hindi dialogue. Papa asked for "Zindagi Ke Safar Mein" playlist and checked afternoon temperature for West Delhi.',
+        title: 'Classic Retro Music & Weather Chat',
+        description: '12-minute engaging dialogue. Papa asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
         severity: 'info',
         metadata: {
             audioDuration: '12m',
@@ -459,7 +452,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 4.2 * 3600 * 1000).toISOString(),
         type: 'medication_taken',
         title: 'Amlodipine 5mg marked Taken',
-        description: 'Confirmed via physical Senior Tablet interaction: "Maine Le Li" button tapped on living room hub. Hardware Touch Verified.',
+        description: 'Confirmed via physical Senior Tablet interaction: "Mark as Taken" button tapped on living room hub. Hardware Touch Verified.',
         severity: 'success',
         metadata: {
             hardwareTouchVerified: true,

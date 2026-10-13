@@ -8,7 +8,7 @@ export const converseSchema = z.object({
       content: z.string().max(1000),
     })
   ).optional().default([]),
-  language: z.enum(['hinglish', 'hindi', 'english']).optional().default('hinglish'),
+  language: z.enum(['english']).optional().default('english'),
 });
 
 export type ConverseInput = z.infer<typeof converseSchema>;

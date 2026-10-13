@@ -80,23 +80,20 @@ export function ScamShieldStitch({ onScanCompleted, onBackToPortal }: ScamShield
         confidenceScore: 96,
         category: 'electricity_bill',
         titleEnglish: 'High Risk: Fraudulent Payment Demand Detected',
-        titleHindi: 'सावधान: बिजली बिल या बैंक फ्रॉड का फर्जी मैसेज',
-        explanationEnglish: 'Phishing scam targeting Indian elders. Uses artificial urgency, fake officer names, and unverified payment channels to extract money.',
-        explanationHindi: 'यह एक फर्जी मैसेज / स्क्रीनशॉट है। बिजली विभाग या पुलिस कभी भी ऐसे पर्सनल UPI या लिंक पर तुरंत पैसे नहीं मांगते।',
+        explanationEnglish: 'Phishing scam targeting elders. Uses artificial urgency, fake officer names, and unverified payment channels to extract money.',
         redFlags: [
           'Fake shortlink or personal unverified UPI ID',
           'Urgent threat of service disconnection or arrest',
           'Unverified mobile sender',
         ],
-        recommendedActionEnglish: 'Do NOT pay or click links. Call your daughter Priya or local customer counter.',
-        recommendedActionHindi: 'इस लिंक पर क्लिक न करें, न ही कोई पैसे भेजें। इस मैसेज को तुरंत डिलीट कर दें।',
+        recommendedActionEnglish: 'Do NOT pay or click links. Contact your family caregiver or customer service directly.',
       });
     } finally {
       setLoading(false);
     }
   };
 
-  const speakAudioWarning = (hindiText: string) => {
+  const speakAudioWarning = (text: string) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       if (isPlayingAudio) {
         window.speechSynthesis.cancel();
@@ -105,8 +102,9 @@ export function ScamShieldStitch({ onScanCompleted, onBackToPortal }: ScamShield
       }
 
       setIsPlayingAudio(true);
-      const utterance = new SpeechSynthesisUtterance(hindiText);
+      const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 0.9;
+      utterance.lang = 'en-US';
       utterance.onend = () => setIsPlayingAudio(false);
       utterance.onerror = () => setIsPlayingAudio(false);
       window.speechSynthesis.speak(utterance);
@@ -298,34 +296,24 @@ export function ScamShieldStitch({ onScanCompleted, onBackToPortal }: ScamShield
                 </span>
               </div>
 
-              {/* Hindi Audio Readout */}
+              {/* Audio Readout */}
               <button
-                onClick={() => speakAudioWarning(report.explanationHindi)}
+                onClick={() => speakAudioWarning(report.explanationEnglish)}
                 className="text-xs font-bold text-primary flex items-center gap-1 bg-primary/10 px-2.5 py-1 rounded-xl hover:bg-primary/20 transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-base">
                   {isPlayingAudio ? 'stop' : 'volume_up'}
                 </span>
-                <span>{isPlayingAudio ? 'Stop Audio' : 'Audio Chetwani'}</span>
+                <span>{isPlayingAudio ? 'Stop Audio' : 'Audio Alert'}</span>
               </button>
             </div>
 
-            {/* Vernacular Hindi Explanation */}
-            <div className="p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30">
-              <p className="text-[11px] font-bold text-secondary uppercase tracking-wider mb-1">
-                {report.titleHindi}
-              </p>
-              <p className="font-headline text-sm font-semibold text-on-surface leading-relaxed">
-                {report.explanationHindi}
-              </p>
-            </div>
-
-            {/* English Summary */}
+            {/* Analysis Summary */}
             <div className="p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30">
               <p className="text-[11px] font-bold text-secondary uppercase tracking-wider mb-1">
                 {report.titleEnglish}
               </p>
-              <p className="text-xs text-on-surface-variant leading-relaxed">
+              <p className="font-headline text-sm font-semibold text-on-surface leading-relaxed">
                 {report.explanationEnglish}
               </p>
             </div>
@@ -353,12 +341,10 @@ export function ScamShieldStitch({ onScanCompleted, onBackToPortal }: ScamShield
                 Recommended Action
               </p>
               <p className="text-xs font-semibold text-primary">
-                {report.recommendedActionHindi}
-              </p>
-              <p className="text-xs text-on-surface-variant mt-0.5">
                 {report.recommendedActionEnglish}
               </p>
             </div>
+
 
             <div className="pt-2 flex items-center justify-between text-[11px] text-on-surface-variant">
               <span className="flex items-center gap-1">

@@ -86,16 +86,13 @@ export async function detectScamMessage(text?: string, imageBase64?: string): Pr
         verdict: 'HIGH',
         confidenceScore: 92,
         category: 'general_phishing',
-        titleHindi: 'संदिग्ध स्क्रीनशॉट: बैंक या बिल फ्रॉड का खतरा',
         titleEnglish: 'High Risk: Suspicious Screenshot Alert',
-        explanationHindi: 'स्क्रीनशॉट में संदिग्ध लिंक या तत्काल भुगतान का दबाव दिख रहा है। कृपया किसी भी दिए गए नंबर पर कॉल न करें और न ही कोई ऐप डाउनलोड करें।',
-        explanationEnglish: 'The uploaded screenshot shows urgent financial demands or unverified link patterns commonly used in cyber fraud targeting Indian seniors.',
+        explanationEnglish: 'The uploaded screenshot shows urgent financial demands or unverified link patterns commonly used in cyber fraud targeting seniors.',
         redFlags: [
           'Unverified WhatsApp/SMS sender banner',
           'Urgent demand for payment or KYC link',
-          'Unknown APK or Bitly shortlink'
+          'Unknown APK or shortlink'
         ],
-        recommendedActionHindi: 'इस मैसेज पर कोई कार्रवाई न करें। अपने परिवार के सदस्य (प्रिया) को सूचित करें।',
         recommendedActionEnglish: 'Do not interact with the message or transfer any funds. Check with family caregiver.',
       };
     }
@@ -106,25 +103,23 @@ export async function detectScamMessage(text?: string, imageBase64?: string): Pr
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const prompt = `
-You are an expert cybersecurity investigator protecting Indian elderly citizens from fraud.
+You are an expert cybersecurity investigator protecting elderly citizens from fraud.
 Analyze the following message or screenshot image received on SMS/WhatsApp:
-${text ? `Message Text: """${text}"""` : 'Inspect the attached screenshot for fraudulent notices, bank KYC threats, electricity disconnections, fake KBC lotteries, or digital arrest scams.'}
+${text ? `Message Text: """${text}"""` : 'Inspect the attached screenshot for fraudulent notices, bank KYC threats, electricity disconnections, fake lotteries, or extortion scams.'}
 
 Return a strict JSON object with these exact keys:
 {
   "verdict": "HIGH" | "MEDIUM" | "SAFE",
   "confidenceScore": number (0-100),
   "category": "electricity_bill" | "banking_kyc" | "lottery_kbc" | "apk_download" | "digital_arrest" | "general_phishing" | "safe_message",
-  "titleHindi": "Short clear headline in Hindi",
   "titleEnglish": "Short clear headline in English",
-  "explanationHindi": "Clear explanation in simple everyday Hindi for an Indian senior citizen (no jargon)",
-  "explanationEnglish": "Clear explanation in English",
+  "explanationEnglish": "Clear explanation in English for an elderly citizen (no jargon)",
   "redFlags": ["specific red flag 1", "specific red flag 2"],
-  "recommendedActionHindi": "Immediate safety advice in Hindi (e.g. do not call, do not click, delete now)",
-  "recommendedActionEnglish": "Immediate safety advice in English"
+  "recommendedActionEnglish": "Immediate safety advice in English (e.g. do not call, do not click, delete now)"
 }
 Do NOT include markdown formatting or backticks around the JSON.
 `;
+
 
     const parts: any[] = [{ text: prompt }];
 

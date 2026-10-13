@@ -2375,7 +2375,7 @@ function FamilyPortalStitch({ summary, onRefresh, onOpenAudit, onSwitchToSenior,
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                         className: "text-xs text-on-surface-variant mt-0.5 leading-relaxed",
                                                         children: [
-                                                            "12-minute engaging Hindi dialogue. Papa asked for ",
+                                                            "12-minute engaging voice dialogue. Papa asked for ",
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("em", {
                                                                 children: "“Zindagi Ke Safar Mein”"
                                                             }, void 0, false, {
@@ -2992,7 +2992,6 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
     const [scheduledTime, setScheduledTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('08:30 PM');
     const [mealRelation, setMealRelation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('after_food');
     const [instructionsEnglish, setInstructionsEnglish] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Take with warm water after food');
-    const [instructionsHindi, setInstructionsHindi] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Khane ke baad gungune paani ke saath lein');
     const [notes, setNotes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Prescribed by Dr. Anand Verma');
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -3013,7 +3012,6 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                 scheduledTime,
                 mealRelation,
                 instructionsEnglish,
-                instructionsHindi,
                 notes,
                 colorTag: timeSlot === 'morning' ? '#316342' : timeSlot === 'afternoon' ? '#655d52' : '#6d5622'
             });
@@ -3043,12 +3041,12 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                         children: "add_circle"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                        lineNumber: 64,
+                                        lineNumber: 62,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3058,7 +3056,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Add New Medication"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 65,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3066,19 +3064,19 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Syncs directly to Ramesh Papa's Senior Hub"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 66,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 66,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 62,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3089,18 +3087,18 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                 children: "close"
                             }, void 0, false, {
                                 fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                lineNumber: 75,
+                                lineNumber: 73,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 71,
+                            lineNumber: 69,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                    lineNumber: 61,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, this),
                 error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3108,7 +3106,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                     children: error
                 }, void 0, false, {
                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                    lineNumber: 80,
+                    lineNumber: 78,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -3122,25 +3120,25 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                     children: "Medicine Name & Strength"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 86,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                     type: "text",
-                                    required: true,
                                     value: name,
                                     onChange: (e)=>setName(e.target.value),
-                                    placeholder: "e.g. Metformin 500mg, Shelcal 500",
-                                    className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                                    placeholder: "e.g. Metformin 500mg, Telmisartan 40mg",
+                                    className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40",
+                                    required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 89,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 86,
+                            lineNumber: 85,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3153,7 +3151,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Dosage"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 101,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -3164,13 +3162,13 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 105,
+                                            lineNumber: 104,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 101,
+                                    lineNumber: 100,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3180,7 +3178,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Time Slot"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 114,
+                                            lineNumber: 113,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -3197,52 +3195,52 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                     value: "morning",
-                                                    children: "Morning (सुबह)"
+                                                    children: "Morning"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
+                                                    lineNumber: 128,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "afternoon",
+                                                    children: "Afternoon"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
                                                     lineNumber: 129,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "afternoon",
-                                                    children: "Afternoon (दोपहर)"
+                                                    value: "evening",
+                                                    children: "Evening"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
                                                     lineNumber: 130,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "evening",
-                                                    children: "Evening (शाम)"
+                                                    value: "night",
+                                                    children: "Night"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
                                                     lineNumber: 131,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "night",
-                                                    children: "Night (रात)"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                                    lineNumber: 132,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 116,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 113,
+                                    lineNumber: 112,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 100,
+                            lineNumber: 99,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3255,7 +3253,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Scheduled Time"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 138,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -3266,13 +3264,13 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 141,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 138,
+                                    lineNumber: 137,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3282,7 +3280,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "Meal Relation"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 151,
+                                            lineNumber: 150,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -3292,71 +3290,71 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                     value: "after_food",
-                                                    children: "After Food (खाने के बाद)"
+                                                    children: "After Food"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
+                                                    lineNumber: 158,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "before_food",
+                                                    children: "Before Food"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
                                                     lineNumber: 159,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "before_food",
-                                                    children: "Before Food (खाली पेट)"
+                                                    value: "with_food",
+                                                    children: "With Food"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
                                                     lineNumber: 160,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "with_food",
-                                                    children: "With Food (खाने के साथ)"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                                    lineNumber: 161,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 154,
+                                            lineNumber: 153,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 150,
+                                    lineNumber: 149,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 137,
+                            lineNumber: 136,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                     className: "block text-xs font-bold text-secondary uppercase tracking-wider mb-1",
-                                    children: "Instructions (Hindi / Vernacular)"
+                                    children: "Instructions"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 166,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                     type: "text",
-                                    value: instructionsHindi,
-                                    onChange: (e)=>setInstructionsHindi(e.target.value),
-                                    placeholder: "Khane ke baad paani ke saath",
+                                    value: instructionsEnglish,
+                                    onChange: (e)=>setInstructionsEnglish(e.target.value),
+                                    placeholder: "Take with warm water after food",
                                     className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 170,
+                                    lineNumber: 169,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 166,
+                            lineNumber: 165,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3366,7 +3364,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                     children: "Doctor's Clinical Purpose"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 180,
+                                    lineNumber: 179,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -3377,13 +3375,13 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                     className: "w-full px-3 py-2 rounded-xl bg-surface-container-low border border-outline-variant/40 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 183,
+                                    lineNumber: 182,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 179,
+                            lineNumber: 178,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3396,7 +3394,7 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 193,
+                                    lineNumber: 192,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3409,43 +3407,43 @@ function AddMedModal({ isOpen, onClose, onSuccess }) {
                                             children: "save"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 205,
+                                            lineNumber: 204,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: loading ? 'Syncing...' : 'Save & Sync'
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                            lineNumber: 206,
+                                            lineNumber: 205,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 199,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                            lineNumber: 192,
+                            lineNumber: 191,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-                    lineNumber: 85,
+                    lineNumber: 84,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-            lineNumber: 59,
+            lineNumber: 57,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/client/components/modals/AddMedModal.tsx",
-        lineNumber: 58,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 }
@@ -5766,7 +5764,7 @@ function VoiceNoteModal({ isOpen, onClose, onSendSuccess }) {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                             className: "block text-xs font-bold text-secondary uppercase tracking-wider mb-1.5",
-                            children: "Voice Note Message (Hindi / English / Hinglish)"
+                            children: "Voice Note Message"
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/modals/VoiceNoteModal.tsx",
                             lineNumber: 89,
@@ -6043,22 +6041,19 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                 confidenceScore: 96,
                 category: 'electricity_bill',
                 titleEnglish: 'High Risk: Fraudulent Payment Demand Detected',
-                titleHindi: 'सावधान: बिजली बिल या बैंक फ्रॉड का फर्जी मैसेज',
-                explanationEnglish: 'Phishing scam targeting Indian elders. Uses artificial urgency, fake officer names, and unverified payment channels to extract money.',
-                explanationHindi: 'यह एक फर्जी मैसेज / स्क्रीनशॉट है। बिजली विभाग या पुलिस कभी भी ऐसे पर्सनल UPI या लिंक पर तुरंत पैसे नहीं मांगते।',
+                explanationEnglish: 'Phishing scam targeting elders. Uses artificial urgency, fake officer names, and unverified payment channels to extract money.',
                 redFlags: [
                     'Fake shortlink or personal unverified UPI ID',
                     'Urgent threat of service disconnection or arrest',
                     'Unverified mobile sender'
                 ],
-                recommendedActionEnglish: 'Do NOT pay or click links. Call your daughter Priya or local customer counter.',
-                recommendedActionHindi: 'इस लिंक पर क्लिक न करें, न ही कोई पैसे भेजें। इस मैसेज को तुरंत डिलीट कर दें।'
+                recommendedActionEnglish: 'Do NOT pay or click links. Contact your family caregiver or customer service directly.'
             });
         } finally{
             setLoading(false);
         }
     };
-    const speakAudioWarning = (hindiText)=>{
+    const speakAudioWarning = (text)=>{
         if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
         ;
     };
@@ -6082,12 +6077,12 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             children: "gshield"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 122,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 121,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6100,7 +6095,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                         children: "Saathi Scam Shield"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 126,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6108,13 +6103,13 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                         children: "Multimodal AI"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                        lineNumber: 131,
+                                                        lineNumber: 129,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                lineNumber: 127,
+                                                lineNumber: 125,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6122,19 +6117,19 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                 children: "Senior Anti-Fraud Analyzer • WhatsApp, SMS & Screenshot Vision"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                lineNumber: 135,
+                                                lineNumber: 133,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 126,
+                                        lineNumber: 124,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                lineNumber: 122,
+                                lineNumber: 120,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6147,14 +6142,14 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                 className: "w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                lineNumber: 144,
+                                                lineNumber: 142,
                                                 columnNumber: 17
                                             }, this),
                                             "Gemini 2.5 Flash"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 141,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6162,24 +6157,24 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                         children: "Vision & Reasoning"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 147,
+                                        lineNumber: 145,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                lineNumber: 142,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                        lineNumber: 121,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                    lineNumber: 120,
+                    lineNumber: 118,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6195,7 +6190,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             children: "Paste Suspicious Message or WhatsApp Text"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 156,
+                                            lineNumber: 154,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6208,26 +6203,26 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: "add_photo_alternate"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 162,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Upload Screenshot"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 165,
+                                                    lineNumber: 163,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 159,
+                                            lineNumber: 157,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 155,
+                                    lineNumber: 153,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -6238,13 +6233,13 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     className: "w-full p-3.5 rounded-2xl bg-surface-container-low border border-outline-variant/50 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary resize-none leading-relaxed"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 169,
+                                    lineNumber: 167,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 154,
+                            lineNumber: 152,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -6255,7 +6250,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                             className: "hidden"
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 179,
+                            lineNumber: 177,
                             columnNumber: 11
                         }, this),
                         selectedImage ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6270,7 +6265,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             className: "w-14 h-14 object-cover rounded-xl border border-outline-variant flex-shrink-0"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 190,
+                                            lineNumber: 188,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6281,7 +6276,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: "Screenshot Attached"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 196,
+                                                    lineNumber: 194,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6289,19 +6284,19 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: "Ready for Gemini Multimodal Inspection"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 197,
+                                                    lineNumber: 195,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 195,
+                                            lineNumber: 193,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 189,
+                                    lineNumber: 187,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6313,18 +6308,18 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                         children: "close"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 205,
+                                        lineNumber: 203,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 198,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 188,
+                            lineNumber: 186,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             onClick: ()=>fileInputRef.current?.click(),
@@ -6335,7 +6330,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "screenshot"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 213,
+                                    lineNumber: 211,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6343,13 +6338,13 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Or tap here to attach a WhatsApp / SMS Screenshot"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 214,
+                                    lineNumber: 212,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 209,
+                            lineNumber: 207,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6359,7 +6354,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Simulate Real Senior Scams"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 218,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6377,7 +6372,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: item.icon
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 234,
+                                                    lineNumber: 232,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6385,24 +6380,24 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: item.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 237,
+                                                    lineNumber: 235,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 225,
+                                            lineNumber: 223,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 223,
+                                    lineNumber: 221,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 219,
+                            lineNumber: 217,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6412,7 +6407,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Quick Text Presets"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 245,
+                                    lineNumber: 243,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6429,18 +6424,18 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 250,
+                                            lineNumber: 248,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 248,
+                                    lineNumber: 246,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 244,
+                            lineNumber: 242,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6455,31 +6450,31 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                         children: "security"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 270,
+                                        lineNumber: 268,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: loading ? 'Analyzing with Gemini Vision...' : 'Check Message & Screenshot Safety'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                        lineNumber: 271,
+                                        lineNumber: 269,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                lineNumber: 265,
+                                lineNumber: 263,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 264,
+                            lineNumber: 262,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                    lineNumber: 153,
+                    lineNumber: 151,
                     columnNumber: 9
                 }, this),
                 report && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6499,7 +6494,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: report.verdict === 'HIGH' ? 'dangerous' : 'verified'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 291,
+                                                    lineNumber: 289,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6509,13 +6504,13 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 294,
+                                                    lineNumber: 292,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 282,
+                                            lineNumber: 280,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6527,17 +6522,17 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 296,
+                                            lineNumber: 294,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 281,
+                                    lineNumber: 279,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>speakAudioWarning(report.explanationHindi),
+                                    onClick: ()=>speakAudioWarning(report.explanationEnglish),
                                     className: "text-xs font-bold text-primary flex items-center gap-1 bg-primary/10 px-2.5 py-1 rounded-xl hover:bg-primary/20 transition-colors cursor-pointer",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6545,51 +6540,26 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             children: isPlayingAudio ? 'stop' : 'volume_up'
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 304,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: isPlayingAudio ? 'Stop Audio' : 'Audio Chetwani'
+                                            children: isPlayingAudio ? 'Stop Audio' : 'Audio Alert'
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 309,
+                                            lineNumber: 307,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 302,
+                                    lineNumber: 300,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 280,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-[11px] font-bold text-secondary uppercase tracking-wider mb-1",
-                                    children: report.titleHindi
-                                }, void 0, false, {
-                                    fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 315,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-headline text-sm font-semibold text-on-surface leading-relaxed",
-                                    children: report.explanationHindi
-                                }, void 0, false, {
-                                    fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 318,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 314,
+                            lineNumber: 278,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6600,21 +6570,21 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: report.titleEnglish
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 325,
+                                    lineNumber: 313,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs text-on-surface-variant leading-relaxed",
+                                    className: "font-headline text-sm font-semibold text-on-surface leading-relaxed",
                                     children: report.explanationEnglish
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 328,
+                                    lineNumber: 316,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 324,
+                            lineNumber: 312,
                             columnNumber: 13
                         }, this),
                         report.redFlags && report.redFlags.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6625,7 +6595,7 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Detected Red Flags"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 336,
+                                    lineNumber: 324,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6638,31 +6608,31 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                                     children: "flag"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 342,
+                                                    lineNumber: 330,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: flag
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                                    lineNumber: 343,
+                                                    lineNumber: 331,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, i, true, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 341,
+                                            lineNumber: 329,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 339,
+                                    lineNumber: 327,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 335,
+                            lineNumber: 323,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6673,29 +6643,21 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Recommended Action"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 352,
+                                    lineNumber: 340,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-xs font-semibold text-primary",
-                                    children: report.recommendedActionHindi
-                                }, void 0, false, {
-                                    fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 355,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xs text-on-surface-variant mt-0.5",
                                     children: report.recommendedActionEnglish
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 358,
+                                    lineNumber: 343,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 351,
+                            lineNumber: 339,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6709,14 +6671,14 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                             children: "verified_user"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                            lineNumber: 365,
+                                            lineNumber: 351,
                                             columnNumber: 17
                                         }, this),
                                         "Logged to Family Safety Timeline"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 364,
+                                    lineNumber: 350,
                                     columnNumber: 15
                                 }, this),
                                 onBackToPortal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6725,30 +6687,30 @@ function ScamShieldStitch({ onScanCompleted, onBackToPortal }) {
                                     children: "Back to Family Portal →"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                                    lineNumber: 369,
+                                    lineNumber: 355,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                            lineNumber: 363,
+                            lineNumber: 349,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-                    lineNumber: 278,
+                    lineNumber: 276,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-            lineNumber: 118,
+            lineNumber: 116,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/client/components/scam/ScamShieldStitch.tsx",
-        lineNumber: 117,
+        lineNumber: 115,
         columnNumber: 5
     }, this);
 }
@@ -6771,13 +6733,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$canvas$2d$co
 ;
 function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
     const [currentTime, setCurrentTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [language, setLanguage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('hinglish');
     const [textScale, setTextScale] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('normal');
     const [highContrast, setHighContrast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [speechRate, setSpeechRate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0.92);
     const [isListening, setIsListening] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isSpeaking, setIsSpeaking] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [companionReply, setCompanionReply] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Namaste Ramesh ji! Aaj subah mausam suhana hai. Aapki chai ho gayi?');
+    const [companionReply, setCompanionReply] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Good morning Ramesh Uncle! The weather is pleasant today. Have you had your morning tea?');
     const [sosCountdown, setSosCountdown] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [sosFired, setSosFired] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [medLoadingId, setMedLoadingId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -6827,29 +6788,19 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
         ;
     };
     const handleTestAudio = ()=>{
-        if (language === 'hindi') {
-            const msg = 'नमस्ते रमेश जी! आपका स्वास्थ्य बहुत अच्छा रहे। अपनी दवाई समय पर ले लीजिए। साथी हमेशा आपके साथ है।';
-            setCompanionReply(msg);
-            speakText(msg);
-        } else if (language === 'english') {
-            const msg = 'Good morning Ramesh ji! Wishing you energy, health, and a happy day. Saathi companion is active.';
-            setCompanionReply(msg);
-            speakText(msg);
-        } else {
-            const msg = 'Namaste Ramesh ji! Aaj mausam bahut achha hai. Chai peene ke baad thodi der dhoop mein baithiye.';
-            setCompanionReply(msg);
-            speakText(msg);
-        }
+        const msg = 'Good morning Ramesh Uncle! Wishing you health and an energetic day. Saathi companion is active.';
+        setCompanionReply(msg);
+        speakText(msg);
     };
     const handleOrbClick = async ()=>{
         if (isListening) return;
         setIsListening(true);
-        setCompanionReply(language === 'hindi' ? 'सुन रहे हैं, रमेश जी... (Listening)' : language === 'english' ? 'Listening to you, Ramesh ji...' : 'Sunte hain, Ramesh ji... (Listening)');
+        setCompanionReply('Listening to you, Ramesh Uncle...');
         // Check SpeechRecognition support
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
             const recognition = new SpeechRecognition();
-            recognition.lang = language === 'hindi' ? 'hi-IN' : 'en-IN';
+            recognition.lang = 'en-US';
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
             recognition.onresult = async (event)=>{
@@ -6858,19 +6809,19 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                 setCompanionReply(`"${transcript}"`);
                 try {
                     const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["postConverse"])(transcript);
-                    const reply = res.reply || (language === 'hindi' ? 'बहुत बढ़िया रमेश जी, मैं समझ गया!' : 'Bahut badhiya Ramesh ji, main samajh gaya!');
+                    const reply = res.reply || 'Very good Ramesh Uncle, I understand!';
                     setCompanionReply(reply);
                     speakText(reply);
                     onRefresh();
                 } catch (e) {
-                    const fallback = language === 'hindi' ? 'हाँ रमेश जी! मैं आपकी सेवा में हाज़िर हूँ।' : 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+                    const fallback = 'Yes Ramesh Uncle! I am always here to assist you.';
                     setCompanionReply(fallback);
                     speakText(fallback);
                 }
             };
             recognition.onerror = ()=>{
                 setIsListening(false);
-                const fallback = language === 'hindi' ? 'हाँ रमेश जी! मैं आपको सुन रहा हूँ, बताइए कैसा लग रहा है?' : 'Haan Ramesh ji! Main aapko sun raha hoon, bataiye kaisa lag raha hai?';
+                const fallback = 'Yes Ramesh Uncle, I am listening. How are you feeling right now?';
                 setCompanionReply(fallback);
                 speakText(fallback);
             };
@@ -6879,15 +6830,15 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
             // Simulation fallback
             setTimeout(async ()=>{
                 setIsListening(false);
-                const prompt = 'Aaj mausam kaisa hai aur Kishore Kumar ka gaana bajao';
+                const prompt = 'How is the weather today and play some classic retro music';
                 try {
                     const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["postConverse"])(prompt);
-                    const reply = res.reply || 'Ramesh ji, New Delhi mein mausam suhana hai 24°C! Chaliye Kishore da ka gaana sunte hain.';
+                    const reply = res.reply || 'Ramesh Uncle, the weather in New Delhi is pleasant at 24°C! Let us enjoy some classic retro tunes.';
                     setCompanionReply(reply);
                     speakText(reply);
                     onRefresh();
                 } catch (e) {
-                    const fallback = 'Ramesh ji, New Delhi mein 24°C suhana mausam hai! Subah ki sair kaisi rahi?';
+                    const fallback = 'Ramesh Uncle, New Delhi has pleasant 24°C weather today! How was your morning walk?';
                     setCompanionReply(fallback);
                     speakText(fallback);
                 }
@@ -6896,16 +6847,16 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
     };
     const handleServerPrompt = async (promptText)=>{
         setIsListening(false);
-        setCompanionReply(language === 'hindi' ? 'सोच रहे हैं, रमेश जी...' : 'Soch rahe hain, Ramesh ji... (Consulting Saathi)');
+        setCompanionReply('Consulting Saathi, Ramesh Uncle...');
         try {
             const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["postConverse"])(promptText);
-            const reply = res.reply || 'Bahut badhiya Ramesh ji!';
+            const reply = res.reply || 'Very good Ramesh Uncle!';
             setCompanionReply(reply);
             speakText(reply);
             onRefresh();
         } catch (e) {
             console.error('Server conversation error:', e);
-            const fallback = 'Haan Ramesh ji! Main aapki seva mein hazir hoon.';
+            const fallback = 'Yes Ramesh Uncle! I am always here to assist you.';
             setCompanionReply(fallback);
             speakText(fallback);
         }
@@ -6931,7 +6882,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                     ]
                 });
             } catch (err) {}
-            const praise = language === 'hindi' ? `शाबाश रमेश जी! ${med.name} लेने के लिए धन्यवाद।` : language === 'english' ? `Well done Ramesh ji! ${med.name} recorded successfully.` : `Shabash Ramesh ji! ${med.name} lene ke liye dhanyavaad.`;
+            const praise = `Well done Ramesh Uncle! ${med.name} recorded successfully.`;
             speakText(praise);
             onRefresh();
         } catch (e) {
@@ -6959,7 +6910,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["postTriggerSos"])('senior_button').then(()=>{
                 onRefresh();
             });
-            speakText('Aapka emergency alert Priya ji ko bhej diya gaya hai!');
+            speakText('Your emergency alert has been sent to Priya immediately!');
         }
     }, [
         sosCountdown
@@ -6975,7 +6926,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
             await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$client$2f$services$2f$apiClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["postTriggerSos"])('fall_sensor');
             setSosFired(true);
             onRefresh();
-            speakText('Dhyan dein! Fall sensor ne girne ka aabhas kiya hai. Priya ji ko turant suchit kiya gaya hai!');
+            speakText('Attention! Fall sensor impact detected. Priya has been alerted immediately!');
         } catch (e) {
             console.error(e);
         } finally{
@@ -7004,14 +6955,14 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "accessibility_new"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 321,
+                                            lineNumber: 296,
                                             columnNumber: 15
                                         }, this),
-                                        "Senior Easy Controls"
+                                        "Senior Accessibility Controls"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 320,
+                                    lineNumber: 295,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7024,70 +6975,42 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "volume_up"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 330,
+                                            lineNumber: 305,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "Test Voice"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 306,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 325,
+                                    lineNumber: 300,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 319,
+                            lineNumber: 294,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid grid-cols-2 gap-2 text-xs",
+                            className: "flex items-center justify-between gap-2 text-xs",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30",
+                                    className: "flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30 flex-1 max-w-[200px]",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            onClick: ()=>setLanguage('hindi'),
-                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'hindi' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
-                                            children: "हिंदी"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[10px] font-bold text-on-surface-variant px-1.5",
+                                            children: "Text Size:"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 338,
+                                            lineNumber: 313,
                                             columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            onClick: ()=>setLanguage('hinglish'),
-                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'hinglish' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
-                                            children: "Hinglish"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 346,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            onClick: ()=>setLanguage('english'),
-                                            className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${language === 'english' ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant'}`,
-                                            children: "English"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 354,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 337,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center bg-surface-container rounded-xl p-1 border border-outline-variant/30",
-                                    children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>setTextScale('normal'),
                                             className: `flex-1 py-1 rounded-lg text-center font-bold text-[11px] transition-all cursor-pointer ${textScale === 'normal' ? 'bg-secondary text-on-secondary shadow-xs' : 'text-on-surface-variant'}`,
@@ -7095,7 +7018,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "A"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 366,
+                                            lineNumber: 314,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7105,7 +7028,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "A+"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 375,
+                                            lineNumber: 323,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7115,47 +7038,55 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "A++"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 384,
+                                            lineNumber: 332,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 365,
+                                    lineNumber: 312,
                                     columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 335,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex items-center justify-between pt-1 border-t border-outline-variant/20 text-[11px]",
-                            children: [
+                                }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setHighContrast(!highContrast),
-                                    className: `flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-bold cursor-pointer transition-colors ${highContrast ? 'bg-yellow-400 text-black' : 'bg-surface-container text-on-surface hover:bg-surface-container-high'}`,
+                                    className: `flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-colors ${highContrast ? 'bg-yellow-400 text-black' : 'bg-surface-container text-on-surface hover:bg-surface-container-high'}`,
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "material-symbols-outlined text-sm",
                                             children: "contrast"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 404,
+                                            lineNumber: 350,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: highContrast ? 'High Contrast ON' : 'High Contrast'
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 405,
+                                            lineNumber: 351,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 398,
+                                    lineNumber: 344,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                            lineNumber: 310,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex items-center justify-between pt-1 border-t border-outline-variant/20 text-[11px]",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-on-surface-variant",
+                                    children: "Voice Pace:"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
+                                    lineNumber: 357,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7167,35 +7098,32 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "speed"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 412,
+                                            lineNumber: 362,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: [
-                                                "Speech: ",
-                                                speechRate === 0.75 ? 'Gentle Slow (0.75x)' : 'Normal (0.9x)'
-                                            ]
-                                        }, void 0, true, {
+                                            children: speechRate === 0.75 ? 'Gentle Slow (0.75x)' : 'Normal Pace (0.9x)'
+                                        }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 413,
+                                            lineNumber: 363,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 408,
+                                    lineNumber: 358,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 397,
+                            lineNumber: 356,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 312,
+                    lineNumber: 287,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7212,14 +7140,14 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                 children: "Janakpuri, New Delhi"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                lineNumber: 429,
+                                                lineNumber: 379,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "•"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                lineNumber: 430,
+                                                lineNumber: 380,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7230,42 +7158,42 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                         children: "schedule"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                        lineNumber: 432,
+                                                        lineNumber: 382,
                                                         columnNumber: 19
                                                     }, this),
                                                     currentTime || '08:45 AM'
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                lineNumber: 431,
+                                                lineNumber: 381,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 428,
+                                        lineNumber: 378,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                         className: `font-headline font-bold ${headingScale} mt-1 tracking-tight`,
-                                        children: language === 'hindi' ? 'नमस्ते रमेश जी! 🙏' : language === 'english' ? 'Good Day Ramesh Uncle! 🙏' : 'Namaste Ramesh Uncle! 🙏'
+                                        children: "Good Day Ramesh Uncle! 🙏"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 437,
+                                        lineNumber: 387,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: `opacity-90 ${scaleClass} font-medium mt-1`,
-                                        children: language === 'hindi' ? 'आपका स्वास्थ्य अच्छा रहे। साथी हमेशा आपके साथ है।' : language === 'english' ? 'Wishing you a peaceful and energetic day.' : 'Wishing you a peaceful, healthy day. Saathi is always here with you.'
+                                        children: "Wishing you a peaceful, healthy day. Saathi is always here with you."
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 444,
+                                        lineNumber: 390,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 427,
+                                lineNumber: 377,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7275,31 +7203,31 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                         className: "w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 454,
+                                        lineNumber: 396,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Priya Connected"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 455,
+                                        lineNumber: 397,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 453,
+                                lineNumber: 395,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                        lineNumber: 426,
+                        lineNumber: 376,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 419,
+                    lineNumber: 369,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7316,28 +7244,28 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "psychology"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 470,
+                                            lineNumber: 412,
                                             columnNumber: 15
                                         }, this),
-                                        language === 'hindi' ? 'एआई आवाज साथी' : 'AI Voice Companion'
+                                        "AI Voice Companion"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 469,
+                                    lineNumber: 411,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant",
-                                    children: language.toUpperCase()
+                                    children: "English Audio"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 473,
+                                    lineNumber: 415,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 468,
+                            lineNumber: 410,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7352,26 +7280,26 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                         children: isListening ? 'mic' : isSpeaking ? 'volume_up' : 'graphic_eq'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 491,
+                                        lineNumber: 433,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "text-xs font-bold mt-1 uppercase tracking-tight",
-                                        children: isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : language === 'hindi' ? 'बोलने के लिए छुएं' : 'Tap to Speak'
+                                        children: isListening ? 'Listening...' : isSpeaking ? 'Speaking...' : 'Tap to Speak'
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 494,
+                                        lineNumber: 436,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 480,
+                                lineNumber: 422,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 479,
+                            lineNumber: 421,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7385,20 +7313,20 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "chat_bubble"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 451,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "Saathi Response:"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 516,
+                                            lineNumber: 452,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 514,
+                                    lineNumber: 450,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7410,78 +7338,78 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 518,
+                                    lineNumber: 454,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 507,
+                            lineNumber: 443,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "w-full mt-3 grid grid-cols-2 gap-2 text-xs",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>handleServerPrompt('Mujhe Kishore Kumar ji ka koi gaana aur trivia batayein'),
+                                    onClick: ()=>handleServerPrompt('Tell me trivia about classic golden era songs and melodies'),
                                     className: "p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "🎵"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 529,
+                                            lineNumber: 465,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "truncate",
-                                            children: "Kishore Kumar Trivia"
+                                            children: "Classic Golden Era Music"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 530,
+                                            lineNumber: 466,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 525,
+                                    lineNumber: 461,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>handleServerPrompt('Aaj New Delhi Janakpuri ka mausam kaisa hai?'),
+                                    onClick: ()=>handleServerPrompt('How is the weather today in New Delhi?'),
                                     className: "p-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low border border-outline-variant/30 text-left font-semibold text-on-surface flex items-center gap-2 cursor-pointer transition-colors",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "⛅"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 536,
+                                            lineNumber: 472,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "truncate",
-                                            children: "Janakpuri Weather"
+                                            children: "New Delhi Weather"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 537,
+                                            lineNumber: 473,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 532,
+                                    lineNumber: 468,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 524,
+                            lineNumber: 460,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 461,
+                    lineNumber: 403,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7498,14 +7426,14 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "medication"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 546,
+                                            lineNumber: 482,
                                             columnNumber: 15
                                         }, this),
-                                        language === 'hindi' ? 'आज की दवाई' : "Aaj Ki Dawai (Today's Medicines)"
+                                        "Today's Medications"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 545,
+                                    lineNumber: 481,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7518,13 +7446,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 549,
+                                    lineNumber: 485,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 544,
+                            lineNumber: 480,
                             columnNumber: 11
                         }, this),
                         summary.medications.map((med)=>{
@@ -7550,7 +7478,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                            lineNumber: 572,
+                                                            lineNumber: 508,
                                                             columnNumber: 23
                                                         }, this),
                                                         isTaken && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7561,20 +7489,20 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                                     children: "check_circle"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                                    lineNumber: 585,
+                                                                    lineNumber: 521,
                                                                     columnNumber: 27
                                                                 }, this),
-                                                                "Maine Le Li"
+                                                                "Taken ✓"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                            lineNumber: 584,
+                                                            lineNumber: 520,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 571,
+                                                    lineNumber: 507,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -7582,7 +7510,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                     children: med.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 591,
+                                                    lineNumber: 527,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7594,21 +7522,21 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 594,
+                                                    lineNumber: 530,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-xs text-primary font-semibold mt-1",
-                                                    children: language === 'hindi' ? med.instructionsHindi : med.instructionsHindi || med.instructionsEnglish
+                                                    children: med.instructionsEnglish
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 597,
+                                                    lineNumber: 533,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 570,
+                                            lineNumber: 506,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7621,38 +7549,38 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                                     children: isTaken ? 'check' : 'check_circle'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 612,
+                                                    lineNumber: 548,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    children: isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : language === 'hindi' ? 'मैंने ले ली' : 'Maine Le Li'
+                                                    children: isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : 'Mark as Taken'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                                    lineNumber: 615,
+                                                    lineNumber: 551,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 603,
+                                            lineNumber: 539,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 569,
+                                    lineNumber: 505,
                                     columnNumber: 17
                                 }, this)
                             }, med.id, false, {
                                 fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                lineNumber: 559,
+                                lineNumber: 495,
                                 columnNumber: 15
                             }, this);
                         })
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 543,
+                    lineNumber: 479,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7669,42 +7597,42 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                         children: "gshield"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 638,
+                                        lineNumber: 568,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 637,
+                                    lineNumber: 567,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                             className: "font-headline font-bold text-sm text-on-surface",
-                                            children: "Sandehik Message & Screenshot Checker (Scam Shield)"
+                                            children: "Suspicious Message & Screenshot Checker (Scam Shield)"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 641,
+                                            lineNumber: 571,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-xs text-on-surface-variant",
-                                            children: "WhatsApp, SMS ya Screenshot photo upload karke check karein"
+                                            children: "Verify WhatsApp, SMS, or screenshot images for cyber fraud"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 644,
+                                            lineNumber: 574,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 640,
+                                    lineNumber: 570,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 636,
+                            lineNumber: 566,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7712,13 +7640,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                             children: "arrow_forward_ios"
                         }, void 0, false, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 649,
+                            lineNumber: 579,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 632,
+                    lineNumber: 562,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7734,12 +7662,12 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                         children: "personal_injury"
                                     }, void 0, false, {
                                         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                        lineNumber: 656,
+                                        lineNumber: 586,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 655,
+                                    lineNumber: 585,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7749,7 +7677,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "Fall Detection Motion Sensor"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 659,
+                                            lineNumber: 589,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7757,19 +7685,19 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "Simulate living room impact / fall alert"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 660,
+                                            lineNumber: 590,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 658,
+                                    lineNumber: 588,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 654,
+                            lineNumber: 584,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -7782,26 +7710,26 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "notification_important"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 668,
+                                    lineNumber: 598,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: fallSimulating ? 'Testing...' : 'Simulate Fall'
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 669,
+                                    lineNumber: 599,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 663,
+                            lineNumber: 593,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 653,
+                    lineNumber: 583,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7818,14 +7746,14 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                             children: "emergency_home"
                                         }, void 0, false, {
                                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                            lineNumber: 677,
+                                            lineNumber: 607,
                                             columnNumber: 15
                                         }, this),
                                         "Emergency Escalation"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 676,
+                                    lineNumber: 606,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7833,13 +7761,13 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Siren + Family Alert"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 680,
+                                    lineNumber: 610,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 675,
+                            lineNumber: 605,
                             columnNumber: 11
                         }, this),
                         sosCountdown !== null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7854,7 +7782,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 687,
+                                    lineNumber: 617,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7862,22 +7790,22 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Priya and Dr. Verma will be notified immediately."
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 690,
+                                    lineNumber: 620,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: handleCancelSos,
                                     className: "mt-3 px-6 py-2.5 rounded-xl bg-surface-container-lowest text-error font-bold text-xs hover:bg-surface shadow-md cursor-pointer",
-                                    children: "Galti se dab gaya? Tap to Cancel"
+                                    children: "Tapped by mistake? Tap to Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 693,
+                                    lineNumber: 623,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 686,
+                            lineNumber: 616,
                             columnNumber: 13
                         }, this) : sosFired ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "p-4 rounded-2xl bg-error text-on-error flex flex-col items-center",
@@ -7887,7 +7815,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "warning"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 702,
+                                    lineNumber: 632,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7895,7 +7823,7 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "EMERGENCY SOS ACTIVE"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 703,
+                                    lineNumber: 633,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -7903,22 +7831,22 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "Siren sounded. Priya has received your urgent location and alert."
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 704,
+                                    lineNumber: 634,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: handleCancelSos,
                                     className: "mt-3 px-5 py-2 rounded-xl bg-surface-container-lowest text-error font-bold text-xs hover:bg-surface shadow-md cursor-pointer",
-                                    children: "I am Safe Now (Reset SOS)"
+                                    children: "I Am Safe Now (Reset SOS)"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 707,
+                                    lineNumber: 637,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 701,
+                            lineNumber: 631,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: handleSosStart,
@@ -7929,37 +7857,37 @@ function SeniorCompanionStitch({ summary, onRefresh, onOpenScamShield }) {
                                     children: "sos"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 719,
+                                    lineNumber: 649,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "EMERGENCY SOS (मदद चाहिए)"
+                                    children: "EMERGENCY SOS (I Need Help)"
                                 }, void 0, false, {
                                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                                    lineNumber: 720,
+                                    lineNumber: 650,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                            lineNumber: 715,
+                            lineNumber: 645,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-                    lineNumber: 674,
+                    lineNumber: 604,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-            lineNumber: 310,
+            lineNumber: 285,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/client/components/senior/SeniorCompanionStitch.tsx",
-        lineNumber: 305,
+        lineNumber: 280,
         columnNumber: 5
     }, this);
 }

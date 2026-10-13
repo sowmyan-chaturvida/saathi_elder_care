@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Saathi (साथी) — Elderly Care & Family Companion Platform',
+  title: 'Saathi — Elderly Care & Family Companion Platform',
   description: 'AI Companion & Family Care Platform for Ageing Parents with real-time peace of mind and Terra design system.',
 };
 

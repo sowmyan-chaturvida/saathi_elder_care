@@ -17,7 +17,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 const metadata = {
-    title: 'Saathi (साथी) — Elderly Care & Family Companion Platform',
+    title: 'Saathi — Elderly Care & Family Companion Platform',
     description: 'AI Companion & Family Care Platform for Ageing Parents with real-time peace of mind and Terra design system.'
 };
 function RootLayout({ children }) {

@@ -10,6 +10,7 @@
   "/api/v1/scam/analyze/route": "/api/v1/scam/analyze",
   "/api/v1/sos/resolve/route": "/api/v1/sos/resolve",
   "/api/v1/sos/trigger/route": "/api/v1/sos/trigger",
+  "/api/v1/vitals/route": "/api/v1/vitals",
   "/family/page": "/family",
   "/page": "/",
   "/senior/page": "/senior"

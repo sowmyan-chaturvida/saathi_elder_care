@@ -20,8 +20,7 @@ export function MedicationManager({ medications, onMedicationAdded }: Medication
     timeSlot: 'morning',
     scheduledTime: '09:00 AM',
     mealRelation: 'after_food',
-    instructionsHindi: 'Nashte ke baad taaza paani ke saath',
-    instructionsEnglish: 'Take with water after breakfast',
+    instructionsEnglish: 'Take with fresh water after breakfast',
     colorTag: '#0D9488',
   });
 
@@ -39,8 +38,7 @@ export function MedicationManager({ medications, onMedicationAdded }: Medication
         timeSlot: 'morning',
         scheduledTime: '09:00 AM',
         mealRelation: 'after_food',
-        instructionsHindi: 'Nashte ke baad taaza paani ke saath',
-        instructionsEnglish: 'Take with water after breakfast',
+        instructionsEnglish: 'Take with fresh water after breakfast',
         colorTag: '#0D9488',
       });
       onMedicationAdded();
@@ -95,7 +93,7 @@ export function MedicationManager({ medications, onMedicationAdded }: Medication
                   <span>•</span>
                   <span className="flex items-center gap-1">
                     <Utensils className="w-3.5 h-3.5" />
-                    {med.instructionsHindi}
+                    {med.instructionsEnglish}
                   </span>
                 </p>
               </div>
@@ -196,21 +194,21 @@ export function MedicationManager({ medications, onMedicationAdded }: Medication
                     onChange={(e) => setFormData({ ...formData, mealRelation: e.target.value })}
                     className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none bg-white"
                   >
-                    <option value="after_food">After Food (खाने के बाद)</option>
-                    <option value="before_food">Before Food (खाली पेट)</option>
-                    <option value="with_food">With Food (खाने के साथ)</option>
+                    <option value="after_food">After Food</option>
+                    <option value="before_food">Before Food (Empty Stomach)</option>
+                    <option value="with_food">With Food</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Instructions for Senior (Hindi/Vernacular)</label>
+                <label className="block text-xs font-bold text-slate-700 uppercase mb-1">Instructions for Senior</label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Nashte ke 15 minute baad paani se"
-                  value={formData.instructionsHindi}
-                  onChange={(e) => setFormData({ ...formData, instructionsHindi: e.target.value })}
+                  placeholder="e.g. 15 minutes after breakfast with water"
+                  value={formData.instructionsEnglish}
+                  onChange={(e) => setFormData({ ...formData, instructionsEnglish: e.target.value })}
                   className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
                 />
               </div>

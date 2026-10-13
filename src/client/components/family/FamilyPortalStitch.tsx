@@ -478,7 +478,7 @@ export function FamilyPortalStitch({
                   Retro Kishore Kumar &amp; Weather Chat
                 </p>
                 <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">
-                  12-minute engaging Hindi dialogue. Papa asked for <em>&ldquo;Zindagi Ke Safar Mein&rdquo;</em> playlist and checked afternoon temperature for West Delhi.
+                  12-minute engaging voice dialogue. Papa asked for <em>&ldquo;Zindagi Ke Safar Mein&rdquo;</em> playlist and checked afternoon temperature for West Delhi.
                 </p>
                 <div className="mt-2 flex items-center justify-between">
                   <button
