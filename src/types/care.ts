@@ -33,6 +33,8 @@ export interface SeniorProfile {
   city: string;
   locality: string;
   languagePreference: 'english';
+  relation?: string;
+  avatarUrl?: string;
   conditions: string[];
   allergies: string[];
   emergencyContacts: EmergencyContact[];
@@ -96,6 +98,7 @@ export interface VitalsLog {
 
 export interface FamilySummary {
   senior: SeniorProfile;
+  allSeniors?: SeniorProfile[];
   activeSos: SosAlert | null;
   adherencePercentage: number;
   medicationsTakenCount: number;

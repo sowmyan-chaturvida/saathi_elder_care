@@ -1,18 +1,30 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { FamilySummary } from '@/types/care';
 import { fetchFamilySummary } from '@/client/services/apiClient';
 import { SaathiHeader } from '@/client/components/common/SaathiHeader';
 import { SaathiBottomNav } from '@/client/components/common/SaathiBottomNav';
 import { SeniorCompanionStitch } from '@/client/components/senior/SeniorCompanionStitch';
 import { CareProfileModal } from '@/client/components/modals/CareProfileModal';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/client/context/AuthContext';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function SeniorPage() {
+function SeniorContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const restrictedNotice = searchParams.get('error') === 'family_portal_restricted';
+
+  const { user, loading: authLoading, isCaregiver } = useAuth();
   const [summary, setSummary] = useState<FamilySummary | null>(null);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [showRestrictedBanner, setShowRestrictedBanner] = useState(restrictedNotice);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/login?returnUrl=/senior');
+    }
+  }, [authLoading, user, router]);
 
   const loadData = async () => {
     try {
@@ -29,18 +41,52 @@ export default function SeniorPage() {
     return () => clearInterval(interval);
   }, []);
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-surface flex items-center justify-center text-on-surface-variant text-sm">
+        <span className="material-symbols-outlined text-3xl text-primary animate-spin mr-2">
+          progress_activity
+        </span>
+        Connecting to Senior Companion Hub...
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-surface font-body text-on-surface flex flex-col antialiased">
       <SaathiHeader
         currentTab="senior"
         onTabChange={(tab) => {
           if (tab === 'senior') return;
-          if (tab === 'family') router.push('/family');
-          else router.push(`/?tab=${tab}`);
+          if (tab === 'family') {
+            if (isCaregiver) router.push('/family');
+            else setShowRestrictedBanner(true);
+          } else {
+            router.push(`/?tab=${tab}`);
+          }
         }}
         onOpenProfile={() => setProfileModalOpen(true)}
         senior={summary?.senior}
+        allSeniors={summary?.allSeniors}
+        onParentSwitched={() => loadData()}
       />
+
+      {showRestrictedBanner && (
+        <div className="fixed top-20 left-0 right-0 z-40 bg-secondary-fixed text-on-secondary-fixed px-4 py-2 text-xs font-bold flex items-center justify-between border-b border-outline-variant/30 animate-fade-in">
+          <div className="max-w-4xl mx-auto w-full flex items-center justify-between">
+            <span className="flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-sm">info</span>
+              Family Portal is restricted to children and family guardians. Welcome to your Senior Companion Hub!
+            </span>
+            <button
+              onClick={() => setShowRestrictedBanner(false)}
+              className="text-on-secondary-fixed hover:opacity-80 cursor-pointer ml-2"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       <main className="flex-1 w-full">
         {summary ? (
@@ -63,8 +109,12 @@ export default function SeniorPage() {
         currentTab="senior"
         onTabChange={(tab) => {
           if (tab === 'senior') return;
-          if (tab === 'family') router.push('/family');
-          else router.push(`/?tab=${tab}`);
+          if (tab === 'family') {
+            if (isCaregiver) router.push('/family');
+            else setShowRestrictedBanner(true);
+          } else {
+            router.push(`/?tab=${tab}`);
+          }
         }}
       />
 
@@ -72,10 +122,29 @@ export default function SeniorPage() {
         isOpen={profileModalOpen}
         onClose={() => setProfileModalOpen(false)}
         senior={summary?.senior}
+        allSeniors={summary?.allSeniors}
         onSwitchMode={(mode) => {
-          if (mode === 'family') router.push('/family');
+          if (mode === 'family' && isCaregiver) router.push('/family');
         }}
+        onParentSwitched={() => loadData()}
       />
     </div>
+  );
+}
+
+export default function SeniorPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-surface flex items-center justify-center text-sm text-on-surface-variant">
+          <span className="material-symbols-outlined text-3xl text-primary animate-spin mr-2">
+            progress_activity
+          </span>
+          Connecting to Senior Companion Hub...
+        </div>
+      }
+    >
+      <SeniorContent />
+    </Suspense>
   );
 }

@@ -300,9 +300,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedD
 ;
 ;
 class CareStore {
-    senior = {
-        ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_SENIOR"]
-    };
+    seniors = [
+        {
+            ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_SENIOR"],
+            relation: 'Father'
+        }
+    ];
+    activeSeniorId = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_SENIOR"].id;
     medications = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_MEDICATIONS"]));
     routines = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ROUTINES"]));
     activities = JSON.parse(JSON.stringify(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$server$2f$db$2f$seedData$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["INITIAL_ACTIVITIES"]));
@@ -310,7 +314,66 @@ class CareStore {
     activeSos = null;
     lastCheckinTime = new Date(Date.now() - 15 * 60 * 1000).toISOString();
     getSeniorProfile() {
-        return this.senior;
+        return this.seniors.find((s)=>s.id === this.activeSeniorId) || this.seniors[0];
+    }
+    getAllParents() {
+        return this.seniors;
+    }
+    switchActiveParent(id) {
+        const found = this.seniors.find((s)=>s.id === id);
+        if (!found) return null;
+        this.activeSeniorId = id;
+        this.addActivity({
+            type: 'routine_completed',
+            title: 'Active Parent Switched',
+            description: `Caregiver switched view to ${found.name} (${found.relation || 'Parent'}).`,
+            severity: 'info'
+        });
+        return found;
+    }
+    addParent(input) {
+        const id = `senior_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+        const newSenior = {
+            id,
+            name: input.name,
+            preferredName: input.preferredName,
+            relation: input.relation,
+            age: input.age,
+            city: input.city,
+            locality: input.locality,
+            languagePreference: 'english',
+            conditions: input.conditions || [],
+            allergies: input.allergies || [],
+            emergencyContacts: [
+                {
+                    id: `ec_${Date.now()}_1`,
+                    name: input.emergencyContactName,
+                    relation: input.emergencyContactRelation,
+                    phone: input.emergencyContactPhone,
+                    isPrimary: true,
+                    notifyOnSos: true,
+                    notifyOnMissedMed: true
+                }
+            ],
+            primaryDoctor: input.primaryDoctorName ? {
+                name: input.primaryDoctorName,
+                clinic: input.primaryDoctorClinic || 'Family Medical Center',
+                phone: input.primaryDoctorPhone || '+91 98111 00000'
+            } : undefined
+        };
+        this.seniors.push(newSenior);
+        this.activeSeniorId = newSenior.id;
+        // Add activity log
+        this.addActivity({
+            type: 'routine_completed',
+            title: 'New Parent Profile Registered',
+            description: `${newSenior.name} (${newSenior.relation || 'Parent'}, Age ${newSenior.age}) added to Saathi Care Hub by family guardian.`,
+            severity: 'success',
+            metadata: {
+                seniorId: id
+            }
+        });
+        return newSenior;
     }
     getMedications() {
         return this.medications;
@@ -322,11 +385,12 @@ class CareStore {
         med.takenToday = true;
         med.takenAt = new Date().toISOString();
         this.lastCheckinTime = new Date().toISOString();
+        const senior = this.getSeniorProfile();
         // Add activity log
         this.addActivity({
             type: 'medication_taken',
             title: 'Medication Taken',
-            description: `${this.senior.preferredName} marked ${med.name} as taken.`,
+            description: `${senior.preferredName} marked ${med.name} as taken.`,
             severity: 'success',
             metadata: {
                 medicationId: id,
@@ -365,8 +429,9 @@ class CareStore {
             triggerSource: source
         };
         this.activeSos = alert;
-        const sourceName = source === 'fall_sensor' ? 'Fall Detection Sensor (Living Room / Wearable)' : source === 'voice_trigger' ? 'Voice Distress Trigger ("Bachao / Help")' : 'Oversized Senior SOS Button';
-        const description = source === 'fall_sensor' ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${this.senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!` : `Emergency alert activated by ${this.senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
+        const senior = this.getSeniorProfile();
+        const sourceName = source === 'fall_sensor' ? 'Fall Detection Sensor (Living Room / Wearable)' : source === 'voice_trigger' ? 'Voice Distress Trigger ("Emergency Help")' : 'Oversized Senior SOS Button';
+        const description = source === 'fall_sensor' ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!` : `Emergency alert activated by ${senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
         this.addActivity({
             type: 'sos_triggered',
             title: source === 'fall_sensor' ? 'FALL DETECTED — EMERGENCY SOS' : 'EMERGENCY SOS TRIGGERED',
@@ -438,7 +503,8 @@ class CareStore {
         const taken = this.medications.filter((m)=>m.takenToday).length;
         const adherence = total > 0 ? Math.round(taken / total * 100) : 100;
         return {
-            senior: this.senior,
+            senior: this.getSeniorProfile(),
+            allSeniors: this.getAllParents(),
             activeSos: this.activeSos,
             adherencePercentage: adherence,
             medicationsTakenCount: taken,
@@ -624,7 +690,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
         type: 'scam_checked',
         title: 'Suspicious Disconnection SMS Deflected',
-        description: 'Papa checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
+        description: 'Father checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
         severity: 'warning',
         metadata: {
             quarantinedUrl: 'bit.ly/del-power-pay',
@@ -637,7 +703,7 @@ const INITIAL_ACTIVITIES = [
         timestamp: new Date(Date.now() - 2.5 * 3600 * 1000).toISOString(),
         type: 'companion_chat',
         title: 'Classic Retro Music & Weather Chat',
-        description: '12-minute engaging dialogue. Papa asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
+        description: '12-minute engaging dialogue. Father asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
         severity: 'info',
         metadata: {
             audioDuration: '12m',

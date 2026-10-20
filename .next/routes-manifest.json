@@ -29,6 +29,14 @@
         "nxtPid": "nxtPid"
       },
       "namedRegex": "^/api/v1/medications/(?<nxtPid>[^/]+?)/take(?:/)?$"
+    },
+    {
+      "page": "/api/v1/parents/[id]/switch",
+      "regex": "^/api/v1/parents/([^/]+?)/switch(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/v1/parents/(?<nxtPid>[^/]+?)/switch(?:/)?$"
     }
   ],
   "staticRoutes": [
@@ -57,6 +65,24 @@
       "namedRegex": "^/api/v1/audit\\-logs(?:/)?$"
     },
     {
+      "page": "/api/v1/auth/login",
+      "regex": "^/api/v1/auth/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/auth/login(?:/)?$"
+    },
+    {
+      "page": "/api/v1/auth/logout",
+      "regex": "^/api/v1/auth/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/auth/logout(?:/)?$"
+    },
+    {
+      "page": "/api/v1/auth/session",
+      "regex": "^/api/v1/auth/session(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/auth/session(?:/)?$"
+    },
+    {
       "page": "/api/v1/companion/converse",
       "regex": "^/api/v1/companion/converse(?:/)?$",
       "routeKeys": {},
@@ -79,6 +105,12 @@
       "regex": "^/api/v1/medications(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/v1/medications(?:/)?$"
+    },
+    {
+      "page": "/api/v1/parents",
+      "regex": "^/api/v1/parents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/parents(?:/)?$"
     },
     {
       "page": "/api/v1/scam/analyze",
@@ -109,6 +141,12 @@
       "regex": "^/family(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/family(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
     },
     {
       "page": "/senior",

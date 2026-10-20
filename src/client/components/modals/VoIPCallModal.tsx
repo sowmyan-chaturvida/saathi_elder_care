@@ -77,7 +77,7 @@ export function VoIPCallModal({ isOpen, onClose, onCallEnded }: VoIPCallModalPro
         </div>
 
         {/* Contact Name & Status */}
-        <h3 className="font-headline font-bold text-xl text-on-surface mt-4">Ramesh Sharma (Papa)</h3>
+        <h3 className="font-headline font-bold text-xl text-on-surface mt-4">Ramesh Sharma (Father)</h3>
         <p className="text-xs text-on-surface-variant mt-0.5">Janakpuri Smart Companion Hub • VoIP</p>
 
         {callState === 'ringing' && (

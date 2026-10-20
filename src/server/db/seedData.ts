@@ -152,7 +152,7 @@ export const INITIAL_ACTIVITIES: ActivityLog[] = [
     timestamp: new Date(Date.now() - 45 * 60 * 1000).toISOString(), // 45 mins ago
     type: 'scam_checked',
     title: 'Suspicious Disconnection SMS Deflected',
-    description: 'Papa checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
+    description: 'Father checked an SMS alleging electricity bill default. Saathi quarantined the link and sounded alert. Threat Blocked Successfully.',
     severity: 'warning',
     metadata: {
       quarantinedUrl: 'bit.ly/del-power-pay',
@@ -165,7 +165,7 @@ export const INITIAL_ACTIVITIES: ActivityLog[] = [
     timestamp: new Date(Date.now() - 2.5 * 3600 * 1000).toISOString(), // ~2.5 hrs ago
     type: 'companion_chat',
     title: 'Classic Retro Music & Weather Chat',
-    description: '12-minute engaging dialogue. Papa asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
+    description: '12-minute engaging dialogue. Father asked for classic golden era playlist and checked afternoon temperature for West Delhi.',
     severity: 'info',
     metadata: {
       audioDuration: '12m',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AuthProvider } from '@/client/context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'Saathi — Elderly Care & Family Companion Platform',
@@ -26,7 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body className="h-full antialiased font-body bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

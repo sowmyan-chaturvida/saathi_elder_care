@@ -169,7 +169,7 @@ export function PeaceOfMindHeader({ summary, onRefresh }: PeaceOfMindHeaderProps
             <textarea
               value={resolveNote}
               onChange={(e) => setResolveNote(e.target.value)}
-              placeholder="e.g. Spoke to Papa on phone. False alarm, he is doing fine."
+              placeholder="e.g. Spoke to parent on phone. False alarm, doing fine."
               rows={3}
               className="w-full p-3 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none mb-4"
             />

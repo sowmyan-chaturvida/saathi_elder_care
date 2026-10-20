@@ -131,7 +131,7 @@ export function MedicationManager({ medications, onMedicationAdded }: Medication
               </div>
               <div>
                 <h3 className="text-xl font-bold text-slate-900">Add New Prescription</h3>
-                <p className="text-xs text-slate-500">Will immediately sync to Papa&apos;s companion view</p>
+                <p className="text-xs text-slate-500">Will immediately sync to parent&apos;s companion view</p>
               </div>
             </div>
 

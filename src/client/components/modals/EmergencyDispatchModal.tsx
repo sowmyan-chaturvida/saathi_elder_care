@@ -20,7 +20,7 @@ export function EmergencyDispatchModal({
   onResolved,
 }: EmergencyDispatchModalProps) {
   const [resolving, setResolving] = useState(false);
-  const [resolveNote, setResolveNote] = useState('Spoke with Papa and checked living room camera. He is safe.');
+  const [resolveNote, setResolveNote] = useState(`Spoke with ${senior.preferredName || 'parent'} and verified status. Everything is safe.`);
 
   if (!isOpen) return null;
 
@@ -92,7 +92,7 @@ export function EmergencyDispatchModal({
           <div className="flex items-center gap-2.5">
             <span className="material-symbols-outlined text-error text-xl">location_on</span>
             <div>
-              <p className="font-headline font-bold text-xs text-on-surface">{senior.name} (Papa)</p>
+              <p className="font-headline font-bold text-xs text-on-surface">{senior.name} ({senior.relation || 'Parent'})</p>
               <p className="text-[11px] text-on-surface-variant">{senior.locality}, {senior.city}</p>
             </div>
           </div>
@@ -164,7 +164,7 @@ export function EmergencyDispatchModal({
               className="py-2.5 px-3 rounded-xl bg-error text-on-error font-headline font-bold text-xs flex items-center justify-center gap-1.5 shadow-md hover:bg-error/90 transition-all cursor-pointer"
             >
               <span className="material-symbols-outlined text-base">call</span>
-              Direct Call (Papa)
+              Direct Call ({senior.relation || 'Parent'})
             </a>
             <a
               href={`sms:+919811245678?body=${smsMessage}`}

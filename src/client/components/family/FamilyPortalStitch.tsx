@@ -74,9 +74,10 @@ export function FamilyPortalStitch({
     setIsPlayingAudioDigest(true);
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       const text =
-        "Namaste Ramesh ji! Aaj subah dhoop bahut suhaani hai. Kishore Kumar ka gaana 'Zindagi Ke Safar Mein' suniye aur apni subah ki dawai samay par le lijiye.";
+        "Good morning Mr. Ramesh! The morning weather is pleasant and clear today. Enjoy your classic morning music playlist and remember to take your scheduled morning medication with water.";
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 0.95;
+      utterance.lang = 'en-US';
       utterance.onend = () => setIsPlayingAudioDigest(false);
       utterance.onerror = () => setIsPlayingAudioDigest(false);
       window.speechSynthesis.speak(utterance);
@@ -118,7 +119,7 @@ export function FamilyPortalStitch({
                     : 'EMERGENCY SOS ACTIVE!'}
                 </h3>
                 <p className="text-xs text-error-container mt-0.5">
-                  Ramesh Papa triggered emergency from Janakpuri Hub
+                  {summary.senior.preferredName} triggered emergency alert from {summary.senior.locality} Hub
                 </p>
               </div>
             </div>
@@ -140,13 +141,13 @@ export function FamilyPortalStitch({
               <div
                 onClick={onSwitchToSenior}
                 className="relative flex-shrink-0 group cursor-pointer"
-                title="Switch to Ramesh Papa's View"
+                title={`Switch to ${summary.senior.preferredName}'s View`}
               >
                 <img
                   className="w-14 h-14 rounded-2xl object-cover ring-2 ring-primary/20 shadow-xs transition-transform duration-300 group-hover:scale-105"
-                  data-alt="Warm documentary portrait of Indian grandfather Ramesh Sharma"
+                  data-alt="Warm documentary portrait of elder"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvigIpS2ATby-uoiW00Ja_LbcvXuy5ug_3HH5KCbuALXUU22gKcTNW06fG0cm_PCqJVtixSMvhrtPg5cITOhAMR8_RIxZrkUZZ2Urla2xsNSkRhYNGV4cYTPPkM1D66PMyfedIk6pYDa-4UKqeMxNqg8JvTCCHUj_s7UM6XMEfKforiaX8zMwSB4-rbNjN3KBlGo456Yy-XTDGeXBjTm4NKnKQCQ8TRzxpSsIgkh9lBDcuuFwTbByR"
-                  alt="Ramesh Sharma"
+                  alt={summary.senior.name}
                 />
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-primary border-2 border-surface flex items-center justify-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
@@ -156,7 +157,7 @@ export function FamilyPortalStitch({
               <div className="flex flex-col min-w-0">
                 <div className="flex items-center gap-1.5">
                   <h2 className="font-headline font-bold text-lg text-on-surface truncate">
-                    Papa is doing well today
+                    {summary.senior.preferredName} is doing well today
                   </h2>
                   <span className="text-base leading-none transition-transform hover:scale-125 inline-block cursor-default">
                     💚
@@ -375,12 +376,12 @@ export function FamilyPortalStitch({
             <button
               onClick={() => setVoipCallOpen(true)}
               className="flex flex-col items-center justify-center py-2.5 px-1 rounded-xl bg-surface-container-lowest hover:bg-surface hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-200 shadow-xs border border-outline-variant/30 text-on-surface group cursor-pointer"
-              id="callPapaBtn"
+              id="callParentBtn"
             >
               <div className="w-9 h-9 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center mb-1 shadow-xs transition-transform duration-200 group-hover:scale-110">
                 <span className="material-symbols-outlined text-lg">call</span>
               </div>
-              <span className="text-[11px] font-semibold text-center text-on-surface truncate w-full">Call Papa</span>
+              <span className="text-[11px] font-semibold text-center text-on-surface truncate w-full">Call {summary.senior.relation || 'Parent'}</span>
             </button>
 
             {/* Log Vitals */}
@@ -448,7 +449,7 @@ export function FamilyPortalStitch({
                   Suspicious Disconnection SMS Deflected
                 </p>
                 <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">
-                  Papa checked an SMS alleging BSES Rajdhani bill default. Saathi auto-quarantined the link (
+                  {summary.senior.relation || 'Parent'} checked an SMS alleging electricity bill default. Saathi auto-quarantined the link (
                   <code className="bg-error-container/40 text-error px-1 py-0.5 rounded text-[11px] font-mono">
                     bit.ly/del-power-pay
                   </code>
@@ -475,10 +476,10 @@ export function FamilyPortalStitch({
                   <span className="text-xs text-on-surface-variant font-medium">09:30 AM</span>
                 </div>
                 <p className="font-headline text-sm text-on-surface font-bold mt-1">
-                  Retro Kishore Kumar &amp; Weather Chat
+                  Retro Classics &amp; Weather Chat
                 </p>
                 <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">
-                  12-minute engaging voice dialogue. Papa asked for <em>&ldquo;Zindagi Ke Safar Mein&rdquo;</em> playlist and checked afternoon temperature for West Delhi.
+                  12-minute engaging voice dialogue. Father asked for <em>&ldquo;Golden Era Classics&rdquo;</em> playlist and checked afternoon temperature for West Delhi.
                 </p>
                 <div className="mt-2 flex items-center justify-between">
                   <button
@@ -628,7 +629,7 @@ export function FamilyPortalStitch({
         isOpen={voipCallOpen}
         onClose={() => setVoipCallOpen(false)}
         onCallEnded={(dur) => {
-          showToast(`VoIP Call completed (${dur}s duration). Ramesh Papa was cheerful!`);
+          showToast(`VoIP Call completed (${dur}s duration). ${summary.senior.preferredName} was cheerful!`);
           onRefresh();
         }}
       />
@@ -637,7 +638,7 @@ export function FamilyPortalStitch({
         isOpen={addMedOpen}
         onClose={() => setAddMedOpen(false)}
         onSuccess={() => {
-          showToast('Prescription added and synced with Papa\'s hub!');
+          showToast(`Prescription added and synced with ${summary.senior.preferredName}'s hub!`);
           onRefresh();
         }}
       />

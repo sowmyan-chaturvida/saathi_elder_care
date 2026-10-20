@@ -63,7 +63,7 @@ export function AddMedModal({ isOpen, onClose, onSuccess }: AddMedModalProps) {
             </div>
             <div>
               <h2 className="font-headline font-bold text-lg text-on-surface">Add New Medication</h2>
-              <p className="text-[11px] text-on-surface-variant">Syncs directly to Ramesh Papa&apos;s Senior Hub</p>
+              <p className="text-[11px] text-on-surface-variant">Syncs directly to Senior Companion Hub</p>
             </div>
           </div>
           <button

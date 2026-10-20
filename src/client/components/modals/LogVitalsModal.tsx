@@ -192,7 +192,7 @@ export function LogVitalsModal({ isOpen, onClose, onSuccess }: LogVitalsModalPro
               type="text"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="e.g. Papa felt energetic after evening walk"
+              placeholder="e.g. Father felt energetic after evening walk"
               className="w-full mt-1 px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/60 text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/40"
             />
           </div>

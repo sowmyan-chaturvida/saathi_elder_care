@@ -1,9 +1,11 @@
 import 'server-only';
 import { ActivityLog, FamilySummary, Medication, RoutineItem, SeniorProfile, SosAlert, VitalsLog } from '@/types/care';
+import { CreateParentInput } from '../schemas/parentSchema';
 import { INITIAL_ACTIVITIES, INITIAL_MEDICATIONS, INITIAL_ROUTINES, INITIAL_SENIOR, INITIAL_VITALS } from './seedData';
 
 class CareStore {
-  private senior: SeniorProfile = { ...INITIAL_SENIOR };
+  private seniors: SeniorProfile[] = [{ ...INITIAL_SENIOR, relation: 'Father' }];
+  private activeSeniorId: string = INITIAL_SENIOR.id;
   private medications: Medication[] = JSON.parse(JSON.stringify(INITIAL_MEDICATIONS));
   private routines: RoutineItem[] = JSON.parse(JSON.stringify(INITIAL_ROUTINES));
   private activities: ActivityLog[] = JSON.parse(JSON.stringify(INITIAL_ACTIVITIES));
@@ -12,7 +14,72 @@ class CareStore {
   private lastCheckinTime: string = new Date(Date.now() - 15 * 60 * 1000).toISOString(); // 15 mins ago
 
   public getSeniorProfile(): SeniorProfile {
-    return this.senior;
+    return this.seniors.find(s => s.id === this.activeSeniorId) || this.seniors[0];
+  }
+
+  public getAllParents(): SeniorProfile[] {
+    return this.seniors;
+  }
+
+  public switchActiveParent(id: string): SeniorProfile | null {
+    const found = this.seniors.find(s => s.id === id);
+    if (!found) return null;
+    this.activeSeniorId = id;
+
+    this.addActivity({
+      type: 'routine_completed',
+      title: 'Active Parent Switched',
+      description: `Caregiver switched view to ${found.name} (${found.relation || 'Parent'}).`,
+      severity: 'info',
+    });
+
+    return found;
+  }
+
+  public addParent(input: CreateParentInput): SeniorProfile {
+    const id = `senior_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    const newSenior: SeniorProfile = {
+      id,
+      name: input.name,
+      preferredName: input.preferredName,
+      relation: input.relation,
+      age: input.age,
+      city: input.city,
+      locality: input.locality,
+      languagePreference: 'english',
+      conditions: input.conditions || [],
+      allergies: input.allergies || [],
+      emergencyContacts: [
+        {
+          id: `ec_${Date.now()}_1`,
+          name: input.emergencyContactName,
+          relation: input.emergencyContactRelation,
+          phone: input.emergencyContactPhone,
+          isPrimary: true,
+          notifyOnSos: true,
+          notifyOnMissedMed: true,
+        }
+      ],
+      primaryDoctor: input.primaryDoctorName ? {
+        name: input.primaryDoctorName,
+        clinic: input.primaryDoctorClinic || 'Family Medical Center',
+        phone: input.primaryDoctorPhone || '+91 98111 00000',
+      } : undefined,
+    };
+
+    this.seniors.push(newSenior);
+    this.activeSeniorId = newSenior.id;
+
+    // Add activity log
+    this.addActivity({
+      type: 'routine_completed',
+      title: 'New Parent Profile Registered',
+      description: `${newSenior.name} (${newSenior.relation || 'Parent'}, Age ${newSenior.age}) added to Saathi Care Hub by family guardian.`,
+      severity: 'success',
+      metadata: { seniorId: id }
+    });
+
+    return newSenior;
   }
 
   public getMedications(): Medication[] {
@@ -28,11 +95,12 @@ class CareStore {
     med.takenAt = new Date().toISOString();
     this.lastCheckinTime = new Date().toISOString();
 
+    const senior = this.getSeniorProfile();
     // Add activity log
     this.addActivity({
       type: 'medication_taken',
       title: 'Medication Taken',
-      description: `${this.senior.preferredName} marked ${med.name} as taken.`,
+      description: `${senior.preferredName} marked ${med.name} as taken.`,
       severity: 'success',
       metadata: { medicationId: id, medicationName: med.name }
     });
@@ -72,14 +140,15 @@ class CareStore {
     };
     this.activeSos = alert;
 
+    const senior = this.getSeniorProfile();
     const sourceName = 
       source === 'fall_sensor' ? 'Fall Detection Sensor (Living Room / Wearable)' :
-      source === 'voice_trigger' ? 'Voice Distress Trigger ("Bachao / Help")' : 'Oversized Senior SOS Button';
+      source === 'voice_trigger' ? 'Voice Distress Trigger ("Emergency Help")' : 'Oversized Senior SOS Button';
 
     const description = 
       source === 'fall_sensor'
-        ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${this.senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!`
-        : `Emergency alert activated by ${this.senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
+        ? `CRITICAL: Sudden physical fall / hard impact detected by motion sensor for ${senior.preferredName}. Automated SOS triggered, siren sounded, and family emergency alert broadcasted immediately!`
+        : `Emergency alert activated by ${senior.preferredName} via ${sourceName}. Loud siren sounded and family notified!`;
 
     this.addActivity({
       type: 'sos_triggered',
@@ -159,7 +228,8 @@ class CareStore {
     const adherence = total > 0 ? Math.round((taken / total) * 100) : 100;
 
     return {
-      senior: this.senior,
+      senior: this.getSeniorProfile(),
+      allSeniors: this.getAllParents(),
       activeSos: this.activeSos,
       adherencePercentage: adherence,
       medicationsTakenCount: taken,

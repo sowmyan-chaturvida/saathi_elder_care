@@ -16,10 +16,10 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
   if (!isOpen) return null;
 
   const presetMessages = [
-    'Papa, doophar ka calcium tablet le lijiye khane ke baad. Love you!',
-    'Papa, I will call you at 7:30 PM this evening after my meeting.',
-    'Papa, doctor Verma se baat ho gayi hai, blood pressure bilkul normal hai.',
-    'Papa, please drink a warm glass of water and rest your knees.',
+    'Dad, please remember to take your afternoon calcium tablet after lunch. Love you!',
+    'Dad, I will call you at 7:30 PM this evening right after my meeting.',
+    'Dad, I spoke with Dr. Verma, your blood pressure reports look completely normal.',
+    'Dad, please drink a warm glass of water and rest your knees comfortably.',
   ];
 
   const handleRecordToggle = () => {
@@ -29,7 +29,7 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
       setIsRecording(true);
       // Simulate speech-to-text recording
       setTimeout(() => {
-        setNoteText('Papa, doophar ka calcium tablet le lijiye khane ke baad. Love you!');
+        setNoteText('Dad, please remember to take your afternoon calcium tablet after lunch. Love you!');
         setIsRecording(false);
       }, 2500);
     }
@@ -38,13 +38,14 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
   const handleSend = () => {
     if (!noteText.trim()) return;
 
-    setSentStatus('Relaying voice note to Ramesh Papa\'s Smart Hub in Janakpuri...');
+    setSentStatus('Relaying voice note to Parent\'s Smart Hub in living room...');
 
     // Try text-to-speech preview if available
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       try {
         const utterance = new SpeechSynthesisUtterance(noteText);
         utterance.rate = 0.95;
+        utterance.lang = 'en-US';
         window.speechSynthesis.speak(utterance);
       } catch (e) {
         console.warn('Speech synthesis error', e);
@@ -53,7 +54,7 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
 
     setTimeout(() => {
       onSendSuccess(noteText);
-      setSentStatus('Sent! Spoken aloud on Papa\'s tablet hub.');
+      setSentStatus('Sent! Spoken aloud on Parent\'s companion tablet.');
       setTimeout(() => {
         setSentStatus(null);
         setNoteText('');
@@ -73,7 +74,7 @@ export function VoiceNoteModal({ isOpen, onClose, onSendSuccess }: VoiceNoteModa
             </div>
             <div>
               <h2 className="font-headline font-bold text-lg text-on-surface leading-tight">Instant Voice Note</h2>
-              <p className="text-[11px] text-on-surface-variant">Spoken aloud on Ramesh Papa&apos;s living room hub</p>
+              <p className="text-[11px] text-on-surface-variant">Spoken aloud on Parent&apos;s living room hub</p>
             </div>
           </div>
           <button
