@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { FamilySummary } from '@/types/care';
 import { fetchFamilySummary, postResolveSos } from '@/client/services/apiClient';
 import { SaathiHeader } from '@/client/components/common/SaathiHeader';
@@ -11,13 +11,17 @@ import { ScamShieldStitch } from '@/client/components/scam/ScamShieldStitch';
 import { AuditComplianceStitch } from '@/client/components/audit/AuditComplianceStitch';
 import { CareProfileModal } from '@/client/components/modals/CareProfileModal';
 import { useAuth } from '@/client/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function HomePage() {
+function HomeContent() {
   const { user, isSenior, isCaregiver, loading: authLoading } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get('tab') as 'family' | 'senior' | 'scam' | 'audit' | null;
 
-  const [currentTab, setCurrentTab] = useState<'family' | 'senior' | 'scam' | 'audit'>('family');
+  const [currentTab, setCurrentTab] = useState<'family' | 'senior' | 'scam' | 'audit'>(
+    initialTab && ['family', 'senior', 'scam', 'audit'].includes(initialTab) ? initialTab : 'family'
+  );
   const [summary, setSummary] = useState<FamilySummary | null>(null);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [resolvingSos, setResolvingSos] = useState(false);
@@ -171,5 +175,22 @@ export default function HomePage() {
         onParentSwitched={() => loadData()}
       />
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-surface flex items-center justify-center text-sm text-on-surface-variant">
+          <span className="material-symbols-outlined text-3xl text-primary animate-spin mr-2">
+            progress_activity
+          </span>
+          Connecting to Saathi Secure Hub...
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   );
 }

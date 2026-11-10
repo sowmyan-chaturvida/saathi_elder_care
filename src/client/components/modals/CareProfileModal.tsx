@@ -100,7 +100,7 @@ export function CareProfileModal({
                   className="text-xs font-bold text-primary hover:underline flex items-center gap-1 cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-sm">add_circle</span>
-                  <span>+ Add Parent</span>
+                  <span>Add Parent</span>
                 </button>
               )}
             </div>

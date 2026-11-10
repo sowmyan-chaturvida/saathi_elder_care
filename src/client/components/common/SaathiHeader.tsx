@@ -101,16 +101,18 @@ export function SaathiHeader({
               </button>
             )}
 
-            <button
-              onClick={() => onTabChange('senior')}
-              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                currentTab === 'senior'
-                  ? 'bg-primary text-on-primary shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-              }`}
-            >
-              Senior Care
-            </button>
+            {!isCaregiver && (
+              <button
+                onClick={() => onTabChange('senior')}
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                  currentTab === 'senior'
+                    ? 'bg-primary text-on-primary shadow-xs'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                }`}
+              >
+                Senior Care
+              </button>
+            )}
 
             <button
               onClick={() => onTabChange('scam')}
@@ -163,7 +165,7 @@ export function SaathiHeader({
                   title="Add another parent profile"
                 >
                   <span className="material-symbols-outlined text-sm">person_add</span>
-                  <span>+ Add Parent</span>
+                  <span>Add Parent</span>
                 </button>
               </>
             )}

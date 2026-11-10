@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 76, "column": 0}, "map": {"version":3,"sources":["file:///D:/elder-care/src/app/api/v1/auth/session/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server';\nimport { AuthUser } from '@/types/auth';\n\nexport async function GET(request: NextRequest) {\n  const cookie = request.cookies.get('saathi_auth');\n\n  if (!cookie || !cookie.value) {\n    return NextResponse.json({\n      authenticated: false,\n      user: null,\n    });\n  }\n\n  try {\n    const user = JSON.parse(cookie.value) as AuthUser;\n    return NextResponse.json({\n      authenticated: true,\n      user,\n    });\n  } catch {\n    return NextResponse.json({\n      authenticated: false,\n      user: null,\n    });\n  }\n}\n"],"names":["GET","request","cookie","cookies","get","value","json","authenticated","user","JSON","parse"],"mappings":";;;;AAAA;;AAGO,eAAeA,IAAIC,OAAoB;IAC5C,MAAMC,SAASD,QAAQE,OAAO,CAACC,GAAG,CAAC;IAEnC,IAAI,CAACF,UAAU,CAACA,OAAOG,KAAK,EAAE;QAC5B,OAAO,gJAAY,CAACC,IAAI,CAAC;YACvBC,eAAe;YACfC,MAAM;QACR;IACF;IAEA,IAAI;QACF,MAAMA,OAAOC,KAAKC,KAAK,CAACR,OAAOG,KAAK;QACpC,OAAO,gJAAY,CAACC,IAAI,CAAC;YACvBC,eAAe;YACfC;QACF;IACF,EAAE,OAAM;QACN,OAAO,gJAAY,CAACF,IAAI,CAAC;YACvBC,eAAe;YACfC,MAAM;QACR;IACF;AACF"}}]
-}

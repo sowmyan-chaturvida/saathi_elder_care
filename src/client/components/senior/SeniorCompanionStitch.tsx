@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FamilySummary, Medication } from '@/types/care';
 import { postTakeMedication, postTriggerSos, postConverse } from '@/client/services/apiClient';
 import confetti from 'canvas-confetti';
@@ -19,6 +19,7 @@ export function SeniorCompanionStitch({
   onOpenScamShield,
 }: SeniorCompanionStitchProps) {
   const [currentTime, setCurrentTime] = useState('');
+  const [greeting, setGreeting] = useState('Good Day');
   const [textScale, setTextScale] = useState<TextScale>('normal');
   const [highContrast, setHighContrast] = useState(false);
   const [speechRate, setSpeechRate] = useState<0.92 | 0.75>(0.92);
@@ -39,6 +40,8 @@ export function SeniorCompanionStitch({
       setCurrentTime(
         now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       );
+      const hour = now.getHours();
+      setGreeting(hour < 12 ? 'Good Morning' : hour < 17 ? 'Good Afternoon' : 'Good Evening');
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -112,8 +115,18 @@ export function SeniorCompanionStitch({
     speakText(msg);
   };
 
+  const recognitionRef = useRef<any>(null);
+
   const handleOrbClick = async () => {
-    if (isListening) return;
+    if (isListening) {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {}
+      }
+      setIsListening(false);
+      return;
+    }
 
     setIsListening(true);
     setCompanionReply('Listening to you, Ramesh Uncle...');
@@ -123,55 +136,76 @@ export function SeniorCompanionStitch({
       (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'en-US';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+      try {
+        if (recognitionRef.current) {
+          try {
+            recognitionRef.current.abort();
+          } catch (e) {}
+        }
 
-      recognition.onresult = async (event: any) => {
-        setIsListening(false);
-        const transcript = event.results[0][0].transcript;
-        setCompanionReply(`"${transcript}"`);
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
 
-        try {
-          const res = await postConverse(transcript);
-          const reply = res.reply || 'Very good Ramesh Uncle, I understand!';
-          setCompanionReply(reply);
-          speakText(reply);
-          onRefresh();
-        } catch (e) {
-          const fallback = 'Yes Ramesh Uncle! I am always here to assist you.';
+        recognition.onresult = async (event: any) => {
+          setIsListening(false);
+          const transcript = event.results[0][0].transcript;
+          setCompanionReply(`"${transcript}"`);
+
+          try {
+            const res = await postConverse(transcript);
+            const reply = res.reply || 'Very good Ramesh Uncle, I understand!';
+            setCompanionReply(reply);
+            speakText(reply);
+            onRefresh();
+          } catch (e) {
+            const fallback = 'Yes Ramesh Uncle! I am always here to assist you.';
+            setCompanionReply(fallback);
+            speakText(fallback);
+          }
+        };
+
+        recognition.onerror = (event: any) => {
+          console.warn('Speech recognition error:', event?.error);
+          setIsListening(false);
+          const fallback = 'Yes Ramesh Uncle, I am listening. How are you feeling right now?';
           setCompanionReply(fallback);
           speakText(fallback);
-        }
-      };
+        };
 
-      recognition.onerror = () => {
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+
+        recognitionRef.current = recognition;
+        recognition.start();
+      } catch (e) {
+        console.warn('Speech recognition start failed:', e);
         setIsListening(false);
-        const fallback = 'Yes Ramesh Uncle, I am listening. How are you feeling right now?';
+        simulateSpeechFallback();
+      }
+    } else {
+      simulateSpeechFallback();
+    }
+  };
+
+  const simulateSpeechFallback = async () => {
+    setTimeout(async () => {
+      setIsListening(false);
+      const prompt = 'How is the weather today and play some classic retro music';
+      try {
+        const res = await postConverse(prompt);
+        const reply = res.reply || 'Ramesh Uncle, the weather in New Delhi is pleasant at 24°C! Let us enjoy some classic retro tunes.';
+        setCompanionReply(reply);
+        speakText(reply);
+        onRefresh();
+      } catch (e) {
+        const fallback = 'Ramesh Uncle, New Delhi has pleasant 24°C weather today! How was your morning walk?';
         setCompanionReply(fallback);
         speakText(fallback);
-      };
-
-      recognition.start();
-    } else {
-      // Simulation fallback
-      setTimeout(async () => {
-        setIsListening(false);
-        const prompt = 'How is the weather today and play some classic retro music';
-        try {
-          const res = await postConverse(prompt);
-          const reply = res.reply || 'Ramesh Uncle, the weather in New Delhi is pleasant at 24°C! Let us enjoy some classic retro tunes.';
-          setCompanionReply(reply);
-          speakText(reply);
-          onRefresh();
-        } catch (e) {
-          const fallback = 'Ramesh Uncle, New Delhi has pleasant 24°C weather today! How was your morning walk?';
-          setCompanionReply(fallback);
-          speakText(fallback);
-        }
-      }, 2000);
-    }
+      }
+    }, 2000);
   };
 
   const handleServerPrompt = async (promptText: string) => {
@@ -276,16 +310,19 @@ export function SeniorCompanionStitch({
       ? 'text-2xl sm:text-3xl'
       : 'text-xl sm:text-2xl';
 
+  const seniorName = summary?.senior?.preferredName || summary?.senior?.name?.split(' ')[0] || 'Ramesh Uncle';
+
   return (
     <div
-      className={`flex flex-col relative w-full pt-20 pb-28 min-h-screen transition-colors ${
+      className={`flex flex-col relative w-full pb-28 min-h-screen transition-colors ${
         highContrast ? 'bg-black text-white font-sans' : 'bg-surface text-on-surface'
       }`}
+      style={{ paddingTop: 'calc(5rem + env(safe-area-inset-top, 0px))' }}
     >
       <div className="flex flex-col w-full px-4 space-y-4 max-w-lg mx-auto">
         {/* Accessibility & Voice Controls Bar */}
         <div
-          className={`p-3 rounded-2xl border shadow-xs flex flex-col gap-2.5 ${
+          className={`p-3 rounded-2xl border shadow-xs flex flex-col gap-2.5 mt-3 sm:mt-4 ${
             highContrast
               ? 'bg-zinc-900 border-yellow-400 text-yellow-300'
               : 'bg-surface-container-low border-outline-variant/40'
@@ -353,8 +390,8 @@ export function SeniorCompanionStitch({
           </div>
 
           {/* Speech Speed toggle */}
-          <div className="flex items-center justify-between pt-1 border-t border-outline-variant/20 text-[11px]">
-            <span className="text-on-surface-variant">Voice Pace:</span>
+          <div className="flex items-center gap-2.5 pt-1 border-t border-outline-variant/20 text-[11px]">
+            <span className="text-on-surface-variant font-medium">Voice Pace:</span>
             <button
               onClick={() => setSpeechRate(speechRate === 0.92 ? 0.75 : 0.92)}
               className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold cursor-pointer transition-colors"
@@ -367,35 +404,19 @@ export function SeniorCompanionStitch({
 
         {/* Dignified Senior Greeting Card */}
         <div
-          className={`rounded-3xl p-5 shadow-md relative overflow-hidden transition-all ${
+          className={`rounded-3xl p-5 shadow-sm relative overflow-hidden transition-all ${
             highContrast
               ? 'bg-zinc-900 border-2 border-yellow-400 text-yellow-300'
               : 'bg-gradient-to-br from-primary via-primary-container to-surface-tint text-on-primary'
           }`}
         >
-          <div className="flex items-start justify-between relative z-10">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider opacity-90">
-                <span>Janakpuri, New Delhi</span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">schedule</span>
-                  {currentTime || '08:45 AM'}
-                </span>
-              </div>
-
-              <h1 className={`font-headline font-bold ${headingScale} mt-1 tracking-tight`}>
-                Good Day Ramesh Uncle! 🙏
-              </h1>
-              <p className={`opacity-90 ${scaleClass} font-medium mt-1`}>
-                Wishing you a peaceful, healthy day. Saathi is always here with you.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-1.5 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot"></span>
-              <span>Priya Connected</span>
-            </div>
+          <div className="relative z-10">
+            <h1 className={`font-headline font-bold ${headingScale} tracking-tight leading-tight`}>
+              {greeting}, {seniorName}! 🙏
+            </h1>
+            <p className={`opacity-90 ${scaleClass} font-medium mt-1 leading-snug`}>
+              Wishing you a peaceful, healthy day.
+            </p>
           </div>
         </div>
 
@@ -516,12 +537,6 @@ export function SeniorCompanionStitch({
                       >
                         {med.timeSlot} • {med.scheduledTime}
                       </span>
-                      {isTaken && (
-                        <span className="text-[10px] font-bold text-primary flex items-center gap-0.5">
-                          <span className="material-symbols-outlined text-sm">check_circle</span>
-                          Taken ✓
-                        </span>
-                      )}
                     </div>
 
                     <h3 className={`font-headline font-bold ${scaleClass} text-on-surface mt-1 truncate`}>
@@ -549,7 +564,7 @@ export function SeniorCompanionStitch({
                       {isTaken ? 'check' : 'check_circle'}
                     </span>
                     <span>
-                      {isTaken ? 'Taken ✓' : isLoading ? 'Saving...' : 'Mark as Taken'}
+                      {isTaken ? 'Taken' : isLoading ? 'Saving...' : 'Mark as Taken'}
                     </span>
                   </button>
                 </div>

@@ -33,6 +33,7 @@ export function useSpeech() {
   const [speechSupported, setSpeechSupported] = useState(false);
 
   const recognitionRef = useRef<ISpeechRecognition | null>(null);
+  const onSpeechDetectedRef = useRef<((text: string) => void) | undefined>(undefined);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -50,8 +51,12 @@ export function useSpeech() {
         recognition.onresult = (event: SpeechRecognitionEvent) => {
           const current = event.results[0][0].transcript;
           setTranscript(current);
+          onSpeechDetectedRef.current?.(current);
         };
-        recognition.onerror = () => setIsListening(false);
+        recognition.onerror = (event) => {
+          console.warn('Speech recognition error:', event.error);
+          setIsListening(false);
+        };
         recognition.onend = () => setIsListening(false);
 
         recognitionRef.current = recognition;
@@ -61,19 +66,21 @@ export function useSpeech() {
   }, []);
 
   const startListening = useCallback((onSpeechDetected?: (text: string) => void) => {
+    if (onSpeechDetected) {
+      onSpeechDetectedRef.current = onSpeechDetected;
+    }
     if (recognitionRef.current) {
       setTranscript('');
       try {
-        if (onSpeechDetected) {
-          recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
-            const current = event.results[0][0].transcript;
-            setTranscript(current);
-            onSpeechDetected(current);
-          };
-        }
+        recognitionRef.current.abort();
+      } catch (e) {
+        // ignore
+      }
+      try {
         recognitionRef.current.start();
       } catch (e) {
         console.warn('Speech recognition start error:', e);
+        setIsListening(false);
       }
     }
   }, []);

@@ -15,15 +15,11 @@ Key Personality & Interaction Rules:
 export function generateSmartCompanionResponse(userMessage: string): string {
   const lower = userMessage.toLowerCase();
 
+  if (lower.includes('weather') || lower.includes('mausam') || lower.includes('rain') || lower.includes('hot') || lower.includes('cold') || lower.includes('delhi')) {
+    return 'The weather in New Delhi is pleasant today at 24°C with gentle sunshine. It is a wonderful day for a relaxed stroll in District Park!';
+  }
+
   if (lower.includes('hello') || lower.includes('hi') || lower.includes('namaste') || lower.includes('how are you')) {
-    return 'Hello Ramesh Uncle! I am doing very well, thank you. How was your morning tea and walk today?';
-  }
-
-  if (lower.includes('medicine') || lower.includes('pill') || lower.includes('dose') || lower.includes('dawai')) {
-    return 'Ramesh Uncle, you have taken your morning Amlodipine tablet. Next is your Shelcal Calcium tablet after lunch. Have you had your afternoon meal yet?';
-  }
-
-  if (lower.includes('weather') || lower.includes('mausam') || lower.includes('rain') || lower.includes('hot') || lower.includes('cold')) {
     return 'The weather in Delhi is quite pleasant today with mild sunshine. It will be a wonderful evening for your walk in District Park.';
   }
 
